@@ -2,7 +2,7 @@
   <id>AsyncApostle.AsyncApostle</id>
   <name>AsyncApostle</name>
   <description>Plugin for converting code to async.</description>
-  <version>1.2.8.31</version>
+  <version>1.0.0.0</version>
   <vendor url="https://github.com/phasTrak/AsyncApostle">phasTrak</vendor>
   <idea-version since-build="212" until-build="212.*"/>
   <extensions defaultExtensionNs="com.intellij" />
