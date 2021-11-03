@@ -1,0 +1,24 @@
+﻿using System;
+using System.Threading.Tasks;
+
+namespace A
+{
+    public class Class
+    {
+        public async Task<string> {caret}TestAsync()
+        {
+            var a = await MethodAsync("input").ConfigureAwait(false);
+            return a;
+        }
+
+        private string Method<T>(T input)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Task<string> MethodAsync<T>(T input)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

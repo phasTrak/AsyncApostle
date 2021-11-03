@@ -1,0 +1,17 @@
+﻿using System;
+using System.Threading.Tasks;
+
+namespace AsyncApostle.Tests.Test.Data.FixReturnValueToTaskTests
+{
+    public class Class
+    {
+        public async Task TestAsync()
+        {
+            await Task.Factory.StartNew(() =>
+            {
+              Console.WriteLine("foo");
+              re{caret}turn Task.Delay(1000);
+            }
+        }
+    }
+}

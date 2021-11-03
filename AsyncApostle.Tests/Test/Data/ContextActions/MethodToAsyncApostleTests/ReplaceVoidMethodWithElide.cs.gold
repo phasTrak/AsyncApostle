@@ -1,0 +1,21 @@
+﻿using System.Threading.Tasks;
+
+namespace AsyncApostle.Tests.Test.Data.FixReturnValueToTaskTests
+{
+    public class Class
+    {
+        public Task {caret}TestAsync()
+        {
+          return MethodAsync();
+        }
+
+        public void Method()
+        {
+        }
+
+        public Task MethodAsync()
+        {
+            return Task.CompletedTask;
+        }
+    }
+}

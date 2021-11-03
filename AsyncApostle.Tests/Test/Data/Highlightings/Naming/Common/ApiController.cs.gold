@@ -1,0 +1,21 @@
+﻿using System.Threading.Tasks;
+
+namespace AsyncApostle.Tests.Test.Data.FixReturnValueToTaskTests
+{
+    using System.Web.Http;
+    public class Class : ApiController
+    {
+        public async Task Test()
+        {
+            |await Task.Delay(1000).ConfigureAwait(false)|(0);
+        }
+    }
+}
+
+namespace System.Web.Http
+{
+    public class ApiController
+    { }
+}
+---------------------------------------------------------
+(0): ReSharper Warning: (T) 'Async in method declaration and await may be elided.' (E) 'Await may be elided.'
