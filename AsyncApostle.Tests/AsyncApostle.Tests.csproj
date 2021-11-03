@@ -7,7 +7,7 @@
         <IsPackable>false</IsPackable>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
-        <TargetFramework>net461</TargetFramework>
+        <TargetFramework>net472</TargetFramework>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,9 +40,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2021.1.0" />
-        <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="16.7.0" />
-        <PackageReference Include="Microsoft.TestPlatform.TranslationLayer" Version="16.7.0" />
+        <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2021.2.2" />
+        <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.0.0" />
+        <PackageReference Include="Microsoft.TestPlatform.TranslationLayer" Version="17.0.0" />
     </ItemGroup>
 
     <ItemGroup>

@@ -16,18 +16,18 @@
         <PackageProjectUrl>https://github.com/phasTrak/AsyncApostle</PackageProjectUrl>
         <PackageTags>async</PackageTags>
         <Product />
-        <TargetFramework>net461</TargetFramework>
+        <TargetFramework>net472</TargetFramework>
         <Title>AsyncApostle</Title>
         <Version>1.0.0.0</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DefineConstants>TRACE;DEBUG;NETFRAMEWORK;NET461;RESHARPER</DefineConstants>
+        <DefineConstants>TRACE;DEBUG;NETFRAMEWORK;NET472;RESHARPER</DefineConstants>
         <OutputPath>bin\Resharper\Debug</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DefineConstants>TRACE;RELEASE;NETFRAMEWORK;NET461;RESHARPER</DefineConstants>
+        <DefineConstants>TRACE;RELEASE;NETFRAMEWORK;NET472;RESHARPER</DefineConstants>
         <OutputPath>bin\Resharper\Release</OutputPath>
     </PropertyGroup>
 
@@ -38,8 +38,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.ReSharper.SDK" Version="2021.1.0" PrivateAssets="All" />
-        <PackageReference Include="Wave" Version="[211]" />
+        <PackageReference Include="JetBrains.ReSharper.SDK" Version="2021.2.2" PrivateAssets="All" />
+        <PackageReference Include="Wave" Version="[212]" />
     </ItemGroup>
 
 </Project>
