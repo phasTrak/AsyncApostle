@@ -2,6 +2,10 @@
 
 This is an implementation of a ReSharper Plugin that converts your synchronous code to its asynchronous version and helps you to write your own asynchronous applications.
 
+This is a copy of the very useful and popular extension [AsyncConverter](https://github.com/BigBabay/AsyncConverter), which was developed by [Igor Mamay](https://github.com/BigBabay). 
+
+AsyncConverter has not received immediate attention in the past year (2021), making it hard to stay recent with with ReSharper updates as AsyncConverter updates would continually lag behind. So AsyncApostle was created to resolve that.
+
 ## Convert Any Method to Its Async Implementation
 
 AsyncApostle can:
