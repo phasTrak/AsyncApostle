@@ -19,7 +19,7 @@ public static class AsyncExtensions
                 case IMethodDeclaration methodDeclaration:
                     return methodDeclaration.Type.IsTask() || methodDeclaration.Type.IsGenericTask();
                 case IAnonymousFunctionExpression functionExpression:
-                    return functionExpression.ReturnType.IsTask() || functionExpression.ReturnType.IsGenericTask();
+                    return functionExpression.InferredReturnType.IsTask() || functionExpression.InferredReturnType.IsGenericTask();
                 case ILocalFunctionDeclaration functionDeclaration:
                     return functionDeclaration.Type.IsTask() || functionDeclaration.Type.IsGenericTask();
                 case IQueryParameterPlatform:

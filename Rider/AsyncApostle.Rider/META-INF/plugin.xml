@@ -19,7 +19,7 @@
     </description>
     <version>1.0.0.1</version>
     <vendor url="https://github.com/phasTrak/AsyncApostle">phasTrak</vendor>
-    <idea-version since-build="212" until-build="212.*" />
+    <idea-version since-build="213" until-build="213.*" />
     <extensions defaultExtensionNs="com.intellij" />
     <depends>com.intellij.modules.rider</depends>
 </idea-plugin>

@@ -25,10 +25,10 @@ public class NullReturnFromLambdaAnalyzer : ElementProblemAnalyzer<ILambdaExpres
         if (element.IsAsync)
             return;
 
-        if (!element.ReturnType.IsTask() && !element.ReturnType.IsGenericTask())
+        if (!element.InferredReturnType.IsTask() && !element.InferredReturnType.IsGenericTask())
             return;
 
-        consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, element.ReturnType));
+        consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, element.InferredReturnType));
     }
 
     #endregion

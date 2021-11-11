@@ -24,12 +24,12 @@ public class NullReturnFromMethodAnalyzer : ElementProblemAnalyzer<IReturnStatem
 
         switch (element.GetContainingFunctionLikeDeclarationOrClosure())
         {
-            case IAnonymousFunctionExpression lambda when !lambda.ReturnType.IsTask() && !lambda.ReturnType.IsGenericTask():
+            case IAnonymousFunctionExpression lambda when !lambda.InferredReturnType.IsTask() && !lambda.InferredReturnType.IsGenericTask():
                 return;
             case IAnonymousFunctionExpression { IsAsync: true }:
                 return;
             case IAnonymousFunctionExpression lambda:
-                consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, lambda.ReturnType));
+                consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, lambda.InferredReturnType));
 
                 break;
             case IMethodDeclaration method when !method.Type.IsTask() && !method.Type.IsGenericTask():

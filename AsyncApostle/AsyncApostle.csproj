@@ -18,7 +18,7 @@
         <Product />
         <TargetFramework>net472</TargetFramework>
         <Title>AsyncApostle</Title>
-        <Version>1.0.0.1</Version>
+        <Version>1.0.0.3-eap07</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -38,8 +38,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.ReSharper.SDK" Version="2021.2.2" PrivateAssets="All" />
-        <PackageReference Include="Wave" Version="[212]" />
+        <PackageReference Include="JetBrains.ReSharper.SDK" Version="2021.3.0-eap07" PrivateAssets="All" />
+        <PackageReference Include="Wave" Version="[213-eap07]" />
     </ItemGroup>
 
 </Project>
