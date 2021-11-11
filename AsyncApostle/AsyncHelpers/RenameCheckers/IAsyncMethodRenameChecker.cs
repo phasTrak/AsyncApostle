@@ -1,13 +1,12 @@
 ﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.RenameCheckers
+namespace AsyncApostle.AsyncHelpers.RenameCheckers;
+
+public interface IRenameChecker
 {
-    public interface IRenameChecker
-    {
-        #region methods
+    #region methods
 
-        bool NeedRename(IMethodDeclaration method);
+    bool NeedRename(IMethodDeclaration method);
 
-        #endregion
-    }
+    #endregion
 }

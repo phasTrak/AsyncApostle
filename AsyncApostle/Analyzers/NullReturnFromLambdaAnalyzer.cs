@@ -4,33 +4,32 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using static JetBrains.ReSharper.Psi.CSharp.Parsing.CSharpTokenType;
 
-namespace AsyncApostle.Analyzers
+namespace AsyncApostle.Analyzers;
+
+[ElementProblemAnalyzer(typeof(ILambdaExpression),
+                        HighlightingTypes = new[]
+                                            {
+                                                typeof(NullReturnAsTaskHighlighting)
+                                            })]
+public class NullReturnFromLambdaAnalyzer : ElementProblemAnalyzer<ILambdaExpression>
 {
-    [ElementProblemAnalyzer(typeof(ILambdaExpression),
-                            HighlightingTypes = new[]
-                                                {
-                                                    typeof(NullReturnAsTaskHighlighting)
-                                                })]
-    public class NullReturnFromLambdaAnalyzer : ElementProblemAnalyzer<ILambdaExpression>
+    #region methods
+
+    protected override void Run(ILambdaExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
     {
-        #region methods
+        var literalExpression = element.BodyExpression as ICSharpLiteralExpression;
 
-        protected override void Run(ILambdaExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
-        {
-            var literalExpression = element.BodyExpression as ICSharpLiteralExpression;
+        if (literalExpression?.Literal.GetTokenType() != NULL_KEYWORD)
+            return;
 
-            if (literalExpression?.Literal.GetTokenType() != NULL_KEYWORD)
-                return;
+        if (element.IsAsync)
+            return;
 
-            if (element.IsAsync)
-                return;
+        if (!element.ReturnType.IsTask() && !element.ReturnType.IsGenericTask())
+            return;
 
-            if (!element.ReturnType.IsTask() && !element.ReturnType.IsGenericTask())
-                return;
-
-            consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, element.ReturnType));
-        }
-
-        #endregion
+        consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, element.ReturnType));
     }
+
+    #endregion
 }

@@ -5,27 +5,26 @@ using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AsyncApostle.Analyzers
+namespace AsyncApostle.Analyzers;
+
+[ElementProblemAnalyzer(typeof(IMethodDeclaration),
+                        HighlightingTypes = new[]
+                                            {
+                                                typeof(AsyncMethodNamingHighlighting)
+                                            })]
+public class AsyncMethodNamingAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>
 {
-    [ElementProblemAnalyzer(typeof(IMethodDeclaration),
-                            HighlightingTypes = new[]
-                                                {
-                                                    typeof(AsyncMethodNamingHighlighting)
-                                                })]
-    public class AsyncMethodNamingAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>
+    #region methods
+
+    protected override void Run(IMethodDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
     {
-        #region methods
+        if (!element.GetSolution()
+                    .GetComponent<IRenameChecker>()
+                    .NeedRename(element))
+            return;
 
-        protected override void Run(IMethodDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
-        {
-            if (!element.GetSolution()
-                        .GetComponent<IRenameChecker>()
-                        .NeedRename(element))
-                return;
-
-            consumer.AddHighlighting(new AsyncMethodNamingHighlighting(element));
-        }
-
-        #endregion
+        consumer.AddHighlighting(new AsyncMethodNamingHighlighting(element));
     }
+
+    #endregion
 }

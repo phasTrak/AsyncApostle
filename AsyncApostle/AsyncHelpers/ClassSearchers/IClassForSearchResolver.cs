@@ -1,15 +1,14 @@
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi;
 
-namespace AsyncApostle.AsyncHelpers.ClassSearchers
+namespace AsyncApostle.AsyncHelpers.ClassSearchers;
+
+public interface IClassForSearchResolver
 {
-    public interface IClassForSearchResolver
-    {
-        #region methods
+    #region methods
 
-        [Pure]
-        ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType);
+    [Pure]
+    ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType);
 
-        #endregion
-    }
+    #endregion
 }

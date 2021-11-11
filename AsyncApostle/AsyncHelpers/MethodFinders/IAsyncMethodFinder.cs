@@ -1,15 +1,14 @@
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi;
 
-namespace AsyncApostle.AsyncHelpers.MethodFinders
+namespace AsyncApostle.AsyncHelpers.MethodFinders;
+
+public interface IAsyncMethodFinder
 {
-    public interface IAsyncMethodFinder
-    {
-        #region methods
+    #region methods
 
-        [Pure]
-        FindingResult FindEquivalentAsyncMethod(IMethod originalMethod, IType? invokedType);
+    [Pure]
+    FindingResult FindEquivalentAsyncMethod(IMethod originalMethod, IType? invokedType);
 
-        #endregion
-    }
+    #endregion
 }

@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace AsyncApostle.Helpers
+namespace AsyncApostle.Helpers;
+
+public static class EnumerableExtension
 {
-    public static class EnumerableExtension
-    {
-        #region methods
+    #region methods
 
-        public static HashSet<TItem> ToHashSet<TItem>(this IEnumerable<TItem> items) => new (items);
+    public static HashSet<TItem> ToHashSet<TItem>(this IEnumerable<TItem> items) => new (items);
 
-        #endregion
-    }
+    #endregion
 }

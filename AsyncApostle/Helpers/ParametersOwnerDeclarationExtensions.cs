@@ -4,21 +4,20 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using static System.Linq.Enumerable;
 
-namespace AsyncApostle.Helpers
+namespace AsyncApostle.Helpers;
+
+public static class ParametersOwnerDeclarationExtensions
 {
-    public static class ParametersOwnerDeclarationExtensions
-    {
-        #region methods
+    #region methods
 
-        // TODO: already exists?
-        [Pure]
-        public static IEnumerable<TNode> DescendantsInScope<TNode>(this IParametersOwnerDeclaration? root) where TNode : class, ICSharpTreeNode =>
-            root is null
-                ? Empty<TNode>()
-                : root.Descendants<TNode>()
-                      .ToEnumerable()
-                      .Where(x => x.GetContainingFunctionLikeDeclarationOrClosure() == root);
+    // TODO: already exists?
+    [Pure]
+    public static IEnumerable<TNode> DescendantsInScope<TNode>(this IParametersOwnerDeclaration? root) where TNode : class, ICSharpTreeNode =>
+        root is null
+            ? Empty<TNode>()
+            : root.Descendants<TNode>()
+                  .ToEnumerable()
+                  .Where(x => x.GetContainingFunctionLikeDeclarationOrClosure() == root);
 
-        #endregion
-    }
+    #endregion
 }

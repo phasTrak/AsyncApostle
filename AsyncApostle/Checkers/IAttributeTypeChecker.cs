@@ -1,13 +1,12 @@
 ﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.Checkers
+namespace AsyncApostle.Checkers;
+
+public interface IAttributeTypeChecker
 {
-    public interface IAttributeTypeChecker
-    {
-        #region methods
+    #region methods
 
-        bool IsUnder(ICSharpTreeNode node);
+    bool IsUnder(ICSharpTreeNode node);
 
-        #endregion
-    }
+    #endregion
 }

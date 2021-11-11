@@ -1,13 +1,12 @@
 ﻿using JetBrains.ReSharper.Psi.Tree;
 
-namespace AsyncApostle.AsyncHelpers.AwaitEliders
+namespace AsyncApostle.AsyncHelpers.AwaitEliders;
+
+public interface IAwaitEliderChecker
 {
-    public interface IAwaitEliderChecker
-    {
-        #region methods
+    #region methods
 
-        bool CanElide(IParametersOwnerDeclaration element);
+    bool CanElide(IParametersOwnerDeclaration element);
 
-        #endregion
-    }
+    #endregion
 }

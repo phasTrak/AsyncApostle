@@ -2,32 +2,31 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using static JetBrains.ReSharper.Psi.CSharp.CSharpElementFactory;
 
-namespace AsyncApostle.AsyncHelpers.AwaitEliders
+namespace AsyncApostle.AsyncHelpers.AwaitEliders;
+
+[SolutionComponent]
+class MethodAwaitElider : ICustomAwaitElider
 {
-    [SolutionComponent]
-    class MethodAwaitElider : ICustomAwaitElider
+    #region methods
+
+    public bool CanElide(ICSharpDeclaration declarationOrClosure) => declarationOrClosure is IMethodDeclaration;
+
+    public void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression)
     {
-        #region methods
+        if (declarationOrClosure is not IMethodDeclaration methodDeclaration)
+            return;
 
-        public bool CanElide(ICSharpDeclaration declarationOrClosure) => declarationOrClosure is IMethodDeclaration;
+        methodDeclaration.SetAsync(false);
 
-        public void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression)
+        if (methodDeclaration.Body is not null)
         {
-            if (declarationOrClosure is not IMethodDeclaration methodDeclaration)
-                return;
-
-            methodDeclaration.SetAsync(false);
-
-            if (methodDeclaration.Body is not null)
-            {
-                awaitExpression.GetContainingStatement()
-                               ?.ReplaceBy(GetInstance(awaitExpression)
-                                               .CreateStatement("return $0;", awaitExpression));
-            }
-            else
-                methodDeclaration.ArrowClause?.SetExpression(awaitExpression);
+            awaitExpression.GetContainingStatement()
+                           ?.ReplaceBy(GetInstance(awaitExpression)
+                                           .CreateStatement("return $0;", awaitExpression));
         }
-
-        #endregion
+        else
+            methodDeclaration.ArrowClause?.SetExpression(awaitExpression);
     }
+
+    #endregion
 }

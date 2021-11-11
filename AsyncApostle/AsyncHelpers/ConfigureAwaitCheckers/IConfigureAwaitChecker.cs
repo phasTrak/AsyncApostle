@@ -1,13 +1,12 @@
 ﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers
+namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers;
+
+public interface IConfigureAwaitChecker
 {
-    public interface IConfigureAwaitChecker
-    {
-        #region methods
+    #region methods
 
-        bool NeedAdding(IAwaitExpression element);
+    bool NeedAdding(IAwaitExpression element);
 
-        #endregion
-    }
+    #endregion
 }

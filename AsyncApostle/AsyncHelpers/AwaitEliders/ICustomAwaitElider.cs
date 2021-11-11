@@ -1,14 +1,13 @@
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.AwaitEliders
+namespace AsyncApostle.AsyncHelpers.AwaitEliders;
+
+public interface ICustomAwaitElider
 {
-    public interface ICustomAwaitElider
-    {
-        #region methods
+    #region methods
 
-        bool CanElide(ICSharpDeclaration declarationOrClosure);
-        void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression);
+    bool CanElide(ICSharpDeclaration declarationOrClosure);
+    void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression);
 
-        #endregion
-    }
+    #endregion
 }

@@ -6,31 +6,30 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using static AsyncApostle.Settings.AsyncApostleSettingsAccessor;
 
-namespace AsyncApostle.AsyncHelpers.AwaitEliders
+namespace AsyncApostle.AsyncHelpers.AwaitEliders;
+
+[SolutionComponent]
+public class EliderInTestChecker : IConcreteAwaitEliderChecker
 {
-    [SolutionComponent]
-    public class EliderInTestChecker : IConcreteAwaitEliderChecker
-    {
-        #region fields
+    #region fields
 
-        readonly IUnderTestChecker _underTestChecker;
+    readonly IUnderTestChecker _underTestChecker;
 
-        #endregion
+    #endregion
 
-        #region constructors
+    #region constructors
 
-        public EliderInTestChecker(IUnderTestChecker underTestChecker) => _underTestChecker = underTestChecker;
+    public EliderInTestChecker(IUnderTestChecker underTestChecker) => _underTestChecker = underTestChecker;
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public bool CanElide(IParametersOwnerDeclaration element) =>
-            !element.GetSettingsStore()
-                    .GetValue(ExcludeTestMethodsFromEliding)
-            || element is not IMethodDeclaration method
-            || !_underTestChecker.IsUnder(method);
+    public bool CanElide(IParametersOwnerDeclaration element) =>
+        !element.GetSettingsStore()
+                .GetValue(ExcludeTestMethodsFromEliding)
+        || element is not IMethodDeclaration method
+        || !_underTestChecker.IsUnder(method);
 
-        #endregion
-    }
+    #endregion
 }

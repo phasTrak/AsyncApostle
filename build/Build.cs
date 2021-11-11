@@ -37,7 +37,7 @@ class Build : NukeBuild
     [NotNull]
     Target Compile =>
         _ => _.DependsOn(Restore)
-              .Executes(() => DotNetBuild(s => DefaultDotNetBuild));
+              .Executes(() => DotNetBuild(_ => DefaultDotNetBuild));
 
     [NotNull]
     Target Pack =>

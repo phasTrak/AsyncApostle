@@ -1,15 +1,14 @@
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers
+namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
+
+[SolutionComponent]
+class InAsyncMethodChecker : IConcreteCanBeUseAsyncMethodChecker
 {
-    [SolutionComponent]
-    class InAsyncMethodChecker : IConcreteCanBeUseAsyncMethodChecker
-    {
-        #region methods
+    #region methods
 
-        public bool CanReplace(IInvocationExpression element) => element.IsUnderAsyncDeclaration();
+    public bool CanReplace(IInvocationExpression element) => element.IsUnderAsyncDeclaration();
 
-        #endregion
-    }
+    #endregion
 }

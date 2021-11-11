@@ -9,7 +9,7 @@
         <Copyright>phasTrak</Copyright>
         <Description>Plugin for resharper, for converting code to async.</Description>
         <IsPackable>true</IsPackable>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>10.0</LangVersion>
         <Nullable>enable</Nullable>
         <PackageId>AsyncApostle.AsyncApostle</PackageId>
         <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>

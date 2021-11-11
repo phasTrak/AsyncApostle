@@ -3,27 +3,26 @@ using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 
-namespace AsyncApostle.AsyncHelpers.MethodFinders
+namespace AsyncApostle.AsyncHelpers.MethodFinders;
+
+[SolutionComponent]
+public class MethodFindingChecker : IMethodFindingChecker
 {
-    [SolutionComponent]
-    public class MethodFindingChecker : IMethodFindingChecker
-    {
-        #region fields
+    #region fields
 
-        readonly IConcreteMethodFindingChecker[] _concreteMethodFindingCheckers;
+    readonly IConcreteMethodFindingChecker[] _concreteMethodFindingCheckers;
 
-        #endregion
+    #endregion
 
-        #region constructors
+    #region constructors
 
-        public MethodFindingChecker(IEnumerable<IConcreteMethodFindingChecker> concreteMethodFindingCheckers) => _concreteMethodFindingCheckers = concreteMethodFindingCheckers.ToArray();
+    public MethodFindingChecker(IEnumerable<IConcreteMethodFindingChecker> concreteMethodFindingCheckers) => _concreteMethodFindingCheckers = concreteMethodFindingCheckers.ToArray();
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public bool NeedSkip(IMethod originalMethod, IMethod candidateMethod) => _concreteMethodFindingCheckers.Any(x => x.NeedSkip(originalMethod, candidateMethod));
+    public bool NeedSkip(IMethod originalMethod, IMethod candidateMethod) => _concreteMethodFindingCheckers.Any(x => x.NeedSkip(originalMethod, candidateMethod));
 
-        #endregion
-    }
+    #endregion
 }

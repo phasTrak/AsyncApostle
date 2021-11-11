@@ -3,34 +3,33 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace AsyncApostle.AsyncHelpers.ParameterComparers
+namespace AsyncApostle.AsyncHelpers.ParameterComparers;
+
+public static class AsyncExtensions
 {
-    public static class AsyncExtensions
+    #region methods
+
+    [Pure]
+    public static bool IsUnderAsync(this ITreeNode node)
     {
-        #region methods
-
-        [Pure]
-        public static bool IsUnderAsync(this ITreeNode node)
+        foreach (var containingNode in node.ContainingNodes())
         {
-            foreach (var containingNode in node.ContainingNodes())
+            switch (containingNode)
             {
-                switch (containingNode)
-                {
-                    case IMethodDeclaration methodDeclaration:
-                        return methodDeclaration.Type.IsTask() || methodDeclaration.Type.IsGenericTask();
-                    case IAnonymousFunctionExpression functionExpression:
-                        return functionExpression.ReturnType.IsTask() || functionExpression.ReturnType.IsGenericTask();
-                    case ILocalFunctionDeclaration functionDeclaration:
-                        return functionDeclaration.Type.IsTask() || functionDeclaration.Type.IsGenericTask();
-                    case IQueryParameterPlatform:
-                    case ICSharpTypeMemberDeclaration:
-                        return false;
-                }
+                case IMethodDeclaration methodDeclaration:
+                    return methodDeclaration.Type.IsTask() || methodDeclaration.Type.IsGenericTask();
+                case IAnonymousFunctionExpression functionExpression:
+                    return functionExpression.ReturnType.IsTask() || functionExpression.ReturnType.IsGenericTask();
+                case ILocalFunctionDeclaration functionDeclaration:
+                    return functionDeclaration.Type.IsTask() || functionDeclaration.Type.IsGenericTask();
+                case IQueryParameterPlatform:
+                case ICSharpTypeMemberDeclaration:
+                    return false;
             }
-
-            return false;
         }
 
-        #endregion
+        return false;
     }
+
+    #endregion
 }

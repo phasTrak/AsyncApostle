@@ -3,16 +3,15 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using static AsyncApostle.AsyncHelpers.ParameterComparers.ParameterCompareResultAction;
 
-namespace AsyncApostle.AsyncHelpers.ParameterComparers
+namespace AsyncApostle.AsyncHelpers.ParameterComparers;
+
+[SolutionComponent]
+class TypeComparer : ITypeComparer
 {
-    [SolutionComponent]
-    class TypeComparer : ITypeComparer
-    {
-        #region methods
+    #region methods
 
-        public ParameterCompareResultAction Compare(IType originalParameterType, IType parameterType) =>
-            parameterType.IsEquals(originalParameterType) ? Equal : parameterType.IsAsyncDelegate(originalParameterType) ? NeedConvertToAsyncFunc : NotEqual;
+    public ParameterCompareResultAction Compare(IType originalParameterType, IType parameterType) =>
+        parameterType.IsEquals(originalParameterType) ? Equal : parameterType.IsAsyncDelegate(originalParameterType) ? NeedConvertToAsyncFunc : NotEqual;
 
-        #endregion
-    }
+    #endregion
 }

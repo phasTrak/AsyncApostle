@@ -1,21 +1,20 @@
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 
-namespace AsyncApostle.AsyncHelpers.ClassSearchers
+namespace AsyncApostle.AsyncHelpers.ClassSearchers;
+
+[SolutionComponent]
+public class DefaultSearcher : IClassSearcher
 {
-    [SolutionComponent]
-    public class DefaultSearcher : IClassSearcher
-    {
-        #region properties
+    #region properties
 
-        public int Priority => 0;
+    public int Priority => 0;
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType) => originalMethod.GetContainingType();
+    public ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType) => originalMethod.GetContainingType();
 
-        #endregion
-    }
+    #endregion
 }

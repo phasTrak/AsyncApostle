@@ -7,24 +7,23 @@ using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 using static AsyncApostle.Settings.AsyncApostleSettingsAccessor;
 
-namespace AsyncApostle.AsyncHelpers.Checker
+namespace AsyncApostle.AsyncHelpers.Checker;
+
+[SolutionComponent]
+public class AttributeFunctionChecker : IAttributeFunctionChecker
 {
-    [SolutionComponent]
-    public class AttributeFunctionChecker : IAttributeFunctionChecker
+    #region methods
+
+    public bool IsUnder(ICSharpTreeNode node)
     {
-        #region methods
+        var customTypes = node.GetSettingsStore()
+                              .EnumIndexedValues(ConfigureAwaitIgnoreAttributeTypes)
+                              .ToArray();
 
-        public bool IsUnder(ICSharpTreeNode node)
-        {
-            var customTypes = node.GetSettingsStore()
-                                  .EnumIndexedValues(ConfigureAwaitIgnoreAttributeTypes)
-                                  .ToArray();
-
-            return !customTypes.IsNullOrEmpty()
-                   && node.GetContainingFunctionDeclarationIgnoringClosures()
-                          ?.ContainsAttribute(customTypes) is true;
-        }
-
-        #endregion
+        return !customTypes.IsNullOrEmpty()
+               && node.GetContainingFunctionDeclarationIgnoringClosures()
+                      ?.ContainsAttribute(customTypes) is true;
     }
+
+    #endregion
 }

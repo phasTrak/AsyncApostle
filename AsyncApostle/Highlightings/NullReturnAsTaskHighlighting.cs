@@ -7,38 +7,37 @@ using JetBrains.ReSharper.Psi.Tree;
 using static AsyncApostle.Settings.AsyncApostleGroupSettings;
 using static JetBrains.ReSharper.Feature.Services.Daemon.Severity;
 
-namespace AsyncApostle.Highlightings
+namespace AsyncApostle.Highlightings;
+
+[RegisterConfigurableSeverity(SeverityId, null, Id, "Null return from async method", "May cause null reference exception if return of method will be awaiting.", WARNING)]
+[ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
+public class NullReturnAsTaskHighlighting : IHighlighting
 {
-    [RegisterConfigurableSeverity(SeverityId, null, Id, "Null return from async method", "May cause null reference exception if return of method will be awaiting.", WARNING)]
-    [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
-    public class NullReturnAsTaskHighlighting : IHighlighting
-    {
-        #region fields
+    #region fields
 
-        public const string SeverityId = "AsyncApostle.NullReturnAsTask";
+    public const string SeverityId = "AsyncApostle.NullReturnAsTask";
 
-        #endregion
+    #endregion
 
-        #region constructors
+    #region constructors
 
-        public NullReturnAsTaskHighlighting(ICSharpLiteralExpression cSharpLiteralExpression, IType returnType) => (CSharpLiteralExpression, ReturnType) = (cSharpLiteralExpression, returnType);
+    public NullReturnAsTaskHighlighting(ICSharpLiteralExpression cSharpLiteralExpression, IType returnType) => (CSharpLiteralExpression, ReturnType) = (cSharpLiteralExpression, returnType);
 
-        #endregion
+    #endregion
 
-        #region properties
+    #region properties
 
-        public ICSharpLiteralExpression CSharpLiteralExpression { get; }
-        public string ErrorStripeToolTip => "May cause null reference if Task will be await.";
-        public IType ReturnType { get; }
-        public string ToolTip => "Null return as Task";
+    public ICSharpLiteralExpression CSharpLiteralExpression { get; }
+    public string ErrorStripeToolTip => "May cause null reference if Task will be await.";
+    public IType ReturnType { get; }
+    public string ToolTip => "Null return as Task";
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public DocumentRange CalculateRange() => CSharpLiteralExpression.GetDocumentRange();
-        public bool IsValid() => CSharpLiteralExpression.IsValid() && ReturnType.IsValid();
+    public DocumentRange CalculateRange() => CSharpLiteralExpression.GetDocumentRange();
+    public bool IsValid() => CSharpLiteralExpression.IsValid() && ReturnType.IsValid();
 
-        #endregion
-    }
+    #endregion
 }

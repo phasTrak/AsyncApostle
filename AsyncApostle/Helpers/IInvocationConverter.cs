@@ -1,13 +1,12 @@
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.Helpers
+namespace AsyncApostle.Helpers;
+
+public interface IInvocationConverter
 {
-    public interface IInvocationConverter
-    {
-        #region methods
+    #region methods
 
-        bool TryReplaceInvocationToAsync(IInvocationExpression invocationExpression);
+    bool TryReplaceInvocationToAsync(IInvocationExpression invocationExpression);
 
-        #endregion
-    }
+    #endregion
 }

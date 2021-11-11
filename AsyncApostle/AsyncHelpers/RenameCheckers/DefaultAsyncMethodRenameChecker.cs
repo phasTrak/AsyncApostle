@@ -3,15 +3,14 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using static System.StringComparison;
 
-namespace AsyncApostle.AsyncHelpers.RenameCheckers
+namespace AsyncApostle.AsyncHelpers.RenameCheckers;
+
+[SolutionComponent]
+class DefaultRenameChecker : IConcreteRenameChecker
 {
-    [SolutionComponent]
-    class DefaultRenameChecker : IConcreteRenameChecker
-    {
-        #region methods
+    #region methods
 
-        public bool SkipRename(IMethodDeclaration methodDeclaration) => !methodDeclaration.Type.IsTask() && !methodDeclaration.Type.IsGenericTask() || methodDeclaration.DeclaredName.EndsWith("Async", Ordinal);
+    public bool SkipRename(IMethodDeclaration methodDeclaration) => !methodDeclaration.Type.IsTask() && !methodDeclaration.Type.IsGenericTask() || methodDeclaration.DeclaredName.EndsWith("Async", Ordinal);
 
-        #endregion
-    }
+    #endregion
 }

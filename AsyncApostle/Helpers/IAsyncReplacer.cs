@@ -1,13 +1,12 @@
 using JetBrains.ReSharper.Psi;
 
-namespace AsyncApostle.Helpers
+namespace AsyncApostle.Helpers;
+
+public interface IAsyncReplacer
 {
-    public interface IAsyncReplacer
-    {
-        #region methods
+    #region methods
 
-        void ReplaceToAsync(IMethod methodDeclaredElement);
+    void ReplaceToAsync(IMethod methodDeclaredElement);
 
-        #endregion
-    }
+    #endregion
 }

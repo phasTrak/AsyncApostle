@@ -6,39 +6,38 @@ using JetBrains.ReSharper.Psi.Tree;
 using static AsyncApostle.Settings.AsyncApostleGroupSettings;
 using static JetBrains.ReSharper.Feature.Services.Daemon.Severity;
 
-namespace AsyncApostle.Highlightings
+namespace AsyncApostle.Highlightings;
+
+[RegisterConfigurableSeverity(SeverityId, null, Id, "Use async wait instead sync wait.", "Use async wait instead sync wait.", ERROR)]
+[ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
+public class AsyncWaitHighlighting : IHighlighting
 {
-    [RegisterConfigurableSeverity(SeverityId, null, Id, "Use async wait instead sync wait.", "Use async wait instead sync wait.", ERROR)]
-    [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
-    public class AsyncWaitHighlighting : IHighlighting
-    {
-        #region fields
+    #region fields
 
-        public const string SeverityId = "AsyncApostle.AsyncWait";
+    public const string SeverityId = "AsyncApostle.AsyncWait";
 
-        #endregion
+    #endregion
 
-        #region constructors
+    #region constructors
 
-        public AsyncWaitHighlighting(IReferenceExpression referenceExpression) => ReferenceExpression = referenceExpression;
-        public AsyncWaitHighlighting(IInvocationExpression invocationExpression) => InvocationExpression = invocationExpression;
+    public AsyncWaitHighlighting(IReferenceExpression referenceExpression) => ReferenceExpression = referenceExpression;
+    public AsyncWaitHighlighting(IInvocationExpression invocationExpression) => InvocationExpression = invocationExpression;
 
-        #endregion
+    #endregion
 
-        #region properties
+    #region properties
 
-        public string ErrorStripeToolTip => "Use async wait.";
-        public IInvocationExpression? InvocationExpression { get; }
-        public IReferenceExpression? ReferenceExpression { get; }
-        public string ToolTip => "Use async wait instead sync wait.";
+    public string ErrorStripeToolTip => "Use async wait.";
+    public IInvocationExpression? InvocationExpression { get; }
+    public IReferenceExpression? ReferenceExpression { get; }
+    public string ToolTip => "Use async wait instead sync wait.";
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public DocumentRange CalculateRange() => ReferenceExpression?.GetDocumentRange() ?? InvocationExpression.GetDocumentRange();
-        public bool IsValid() => ReferenceExpression?.IsValid() ?? InvocationExpression?.IsValid() ?? false;
+    public DocumentRange CalculateRange() => ReferenceExpression?.GetDocumentRange() ?? InvocationExpression.GetDocumentRange();
+    public bool IsValid() => ReferenceExpression?.IsValid() ?? InvocationExpression?.IsValid() ?? false;
 
-        #endregion
-    }
+    #endregion
 }

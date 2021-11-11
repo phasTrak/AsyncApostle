@@ -2,27 +2,26 @@
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers
+namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
+
+[SolutionComponent]
+class AttributeFunctionChecker : IConfigureAwaitCustomChecker
 {
-    [SolutionComponent]
-    class AttributeFunctionChecker : IConfigureAwaitCustomChecker
-    {
-        #region fields
+    #region fields
 
-        readonly IAttributeFunctionChecker _attributeFunctionChecker;
+    readonly IAttributeFunctionChecker _attributeFunctionChecker;
 
-        #endregion
+    #endregion
 
-        #region constructors
+    #region constructors
 
-        public AttributeFunctionChecker(IAttributeFunctionChecker attributeFunctionChecker) => _attributeFunctionChecker = attributeFunctionChecker;
+    public AttributeFunctionChecker(IAttributeFunctionChecker attributeFunctionChecker) => _attributeFunctionChecker = attributeFunctionChecker;
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public bool CanBeAdded(IAwaitExpression element) => !_attributeFunctionChecker.IsUnder(element);
+    public bool CanBeAdded(IAwaitExpression element) => !_attributeFunctionChecker.IsUnder(element);
 
-        #endregion
-    }
+    #endregion
 }

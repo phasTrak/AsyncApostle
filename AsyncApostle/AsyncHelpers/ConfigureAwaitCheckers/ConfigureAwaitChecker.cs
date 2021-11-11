@@ -4,27 +4,26 @@ using AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers
+namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers;
+
+[SolutionComponent]
+class ConfigureAwaitChecker : IConfigureAwaitChecker
 {
-    [SolutionComponent]
-    class ConfigureAwaitChecker : IConfigureAwaitChecker
-    {
-        #region fields
+    #region fields
 
-        readonly IConfigureAwaitCustomChecker[] _awaitCustomCheckers;
+    readonly IConfigureAwaitCustomChecker[] _awaitCustomCheckers;
 
-        #endregion
+    #endregion
 
-        #region constructors
+    #region constructors
 
-        public ConfigureAwaitChecker(IEnumerable<IConfigureAwaitCustomChecker> awaitCustomCheckers) => _awaitCustomCheckers = awaitCustomCheckers.ToArray();
+    public ConfigureAwaitChecker(IEnumerable<IConfigureAwaitCustomChecker> awaitCustomCheckers) => _awaitCustomCheckers = awaitCustomCheckers.ToArray();
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public bool NeedAdding(IAwaitExpression element) => _awaitCustomCheckers.All(x => x.CanBeAdded(element));
+    public bool NeedAdding(IAwaitExpression element) => _awaitCustomCheckers.All(x => x.CanBeAdded(element));
 
-        #endregion
-    }
+    #endregion
 }

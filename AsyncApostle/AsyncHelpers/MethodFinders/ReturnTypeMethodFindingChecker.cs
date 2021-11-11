@@ -3,22 +3,21 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Util;
 
-namespace AsyncApostle.AsyncHelpers.MethodFinders
+namespace AsyncApostle.AsyncHelpers.MethodFinders;
+
+[SolutionComponent]
+public class ReturnTypeMethodFindingChecker : IConcreteMethodFindingChecker
 {
-    [SolutionComponent]
-    public class ReturnTypeMethodFindingChecker : IConcreteMethodFindingChecker
+    #region methods
+
+    public bool NeedSkip(IMethod originalMethod, IMethod candidateMethod)
     {
-        #region methods
+        var originalReturnType = originalMethod.Type();
 
-        public bool NeedSkip(IMethod originalMethod, IMethod candidateMethod)
-        {
-            var originalReturnType = originalMethod.Type();
-
-            return originalReturnType is not null
-                   && candidateMethod.Type()
-                                     ?.IsTaskOf(originalReturnType) is not true;
-        }
-
-        #endregion
+        return originalReturnType is not null
+               && candidateMethod.Type()
+                                 ?.IsTaskOf(originalReturnType) is not true;
     }
+
+    #endregion
 }

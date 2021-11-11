@@ -4,45 +4,44 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using static JetBrains.ReSharper.Psi.CSharp.Parsing.CSharpTokenType;
 
-namespace AsyncApostle.Analyzers
+namespace AsyncApostle.Analyzers;
+
+[ElementProblemAnalyzer(typeof(IReturnStatement),
+                        HighlightingTypes = new[]
+                                            {
+                                                typeof(NullReturnAsTaskHighlighting)
+                                            })]
+public class NullReturnFromMethodAnalyzer : ElementProblemAnalyzer<IReturnStatement>
 {
-    [ElementProblemAnalyzer(typeof(IReturnStatement),
-                            HighlightingTypes = new[]
-                                                {
-                                                    typeof(NullReturnAsTaskHighlighting)
-                                                })]
-    public class NullReturnFromMethodAnalyzer : ElementProblemAnalyzer<IReturnStatement>
+    #region methods
+
+    protected override void Run(IReturnStatement element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
     {
-        #region methods
+        var literalExpression = element.Value as ICSharpLiteralExpression;
 
-        protected override void Run(IReturnStatement element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
+        if (literalExpression?.Literal.GetTokenType() != NULL_KEYWORD)
+            return;
+
+        switch (element.GetContainingFunctionLikeDeclarationOrClosure())
         {
-            var literalExpression = element.Value as ICSharpLiteralExpression;
-
-            if (literalExpression?.Literal.GetTokenType() != NULL_KEYWORD)
+            case IAnonymousFunctionExpression lambda when !lambda.ReturnType.IsTask() && !lambda.ReturnType.IsGenericTask():
                 return;
+            case IAnonymousFunctionExpression { IsAsync: true }:
+                return;
+            case IAnonymousFunctionExpression lambda:
+                consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, lambda.ReturnType));
 
-            switch (element.GetContainingFunctionLikeDeclarationOrClosure())
-            {
-                case IAnonymousFunctionExpression lambda when !lambda.ReturnType.IsTask() && !lambda.ReturnType.IsGenericTask():
-                    return;
-                case IAnonymousFunctionExpression { IsAsync: true }:
-                    return;
-                case IAnonymousFunctionExpression lambda:
-                    consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, lambda.ReturnType));
+                break;
+            case IMethodDeclaration method when !method.Type.IsTask() && !method.Type.IsGenericTask():
+                return;
+            case IMethodDeclaration { IsAsync: true }:
+                return;
+            case IMethodDeclaration method:
+                consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, method.Type));
 
-                    break;
-                case IMethodDeclaration method when !method.Type.IsTask() && !method.Type.IsGenericTask():
-                    return;
-                case IMethodDeclaration { IsAsync: true }:
-                    return;
-                case IMethodDeclaration method:
-                    consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, method.Type));
-
-                    break;
-            }
+                break;
         }
-
-        #endregion
     }
+
+    #endregion
 }

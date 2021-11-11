@@ -3,27 +3,26 @@ using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.RenameCheckers
+namespace AsyncApostle.AsyncHelpers.RenameCheckers;
+
+[SolutionComponent]
+class RenameChecker : IRenameChecker
 {
-    [SolutionComponent]
-    class RenameChecker : IRenameChecker
-    {
-        #region fields
+    #region fields
 
-        readonly IConcreteRenameChecker[] _concreteCheckers;
+    readonly IConcreteRenameChecker[] _concreteCheckers;
 
-        #endregion
+    #endregion
 
-        #region constructors
+    #region constructors
 
-        public RenameChecker(IEnumerable<IConcreteRenameChecker> concreteCheckers) => _concreteCheckers = concreteCheckers.ToArray();
+    public RenameChecker(IEnumerable<IConcreteRenameChecker> concreteCheckers) => _concreteCheckers = concreteCheckers.ToArray();
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public bool NeedRename(IMethodDeclaration method) => !_concreteCheckers.Any(x => x.SkipRename(method));
+    public bool NeedRename(IMethodDeclaration method) => !_concreteCheckers.Any(x => x.SkipRename(method));
 
-        #endregion
-    }
+    #endregion
 }

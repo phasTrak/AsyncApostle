@@ -1,13 +1,12 @@
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers
+namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
+
+public interface IConcreteCanBeUseAsyncMethodChecker
 {
-    public interface IConcreteCanBeUseAsyncMethodChecker
-    {
-        #region methods
+    #region methods
 
-        bool CanReplace(IInvocationExpression element);
+    bool CanReplace(IInvocationExpression element);
 
-        #endregion
-    }
+    #endregion
 }

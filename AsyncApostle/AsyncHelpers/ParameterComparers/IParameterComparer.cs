@@ -2,15 +2,14 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi;
 
-namespace AsyncApostle.AsyncHelpers.ParameterComparers
+namespace AsyncApostle.AsyncHelpers.ParameterComparers;
+
+public interface IParameterComparer
 {
-    public interface IParameterComparer
-    {
-        #region methods
+    #region methods
 
-        [Pure]
-        ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters);
+    [Pure]
+    ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters);
 
-        #endregion
-    }
+    #endregion
 }

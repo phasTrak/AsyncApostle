@@ -3,31 +3,30 @@ using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 
-namespace AsyncApostle.AsyncHelpers.ClassSearchers
+namespace AsyncApostle.AsyncHelpers.ClassSearchers;
+
+[SolutionComponent]
+public class ClassForSearchResolver : IClassForSearchResolver
 {
-    [SolutionComponent]
-    public class ClassForSearchResolver : IClassForSearchResolver
-    {
-        #region fields
+    #region fields
 
-        readonly IClassSearcher[] _classSearchers;
+    readonly IClassSearcher[] _classSearchers;
 
-        #endregion
+    #endregion
 
-        #region constructors
+    #region constructors
 
-        public ClassForSearchResolver(IEnumerable<IClassSearcher> classSearchers) =>
-            _classSearchers = classSearchers.OrderBy(x => x.Priority)
-                                            .ToArray();
+    public ClassForSearchResolver(IEnumerable<IClassSearcher> classSearchers) =>
+        _classSearchers = classSearchers.OrderBy(x => x.Priority)
+                                        .ToArray();
 
-        #endregion
+    #endregion
 
-        #region methods
+    #region methods
 
-        public ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType) =>
-            _classSearchers.Select(strategyResolver => strategyResolver.GetClassForSearch(originalMethod, invokedType))
-                           .FirstOrDefault(element => element is not null);
+    public ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType) =>
+        _classSearchers.Select(strategyResolver => strategyResolver.GetClassForSearch(originalMethod, invokedType))
+                       .FirstOrDefault(element => element is not null);
 
-        #endregion
-    }
+    #endregion
 }

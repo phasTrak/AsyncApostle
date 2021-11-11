@@ -1,13 +1,12 @@
 ﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.AsyncHelpers.Checker
+namespace AsyncApostle.AsyncHelpers.Checker;
+
+public interface ILastNodeChecker
 {
-    public interface ILastNodeChecker
-    {
-        #region methods
+    #region methods
 
-        bool IsLastNode(ICSharpExpression element);
+    bool IsLastNode(ICSharpExpression element);
 
-        #endregion
-    }
+    #endregion
 }

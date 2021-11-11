@@ -1,15 +1,14 @@
 using JetBrains.ReSharper.Psi;
 
-namespace AsyncApostle.AsyncHelpers.ParameterComparers
+namespace AsyncApostle.AsyncHelpers.ParameterComparers;
+
+public class CompareResult
 {
-    public class CompareResult
-    {
-        #region properties
+    #region properties
 
-        public ParameterCompareResultAction Action { get; set; }
-        public IType From { get; set; } = default!;
-        public IType To { get; set; } = default!;
+    public ParameterCompareResultAction Action { get; set; }
+    public IType From { get; set; } = default!;
+    public IType To { get; set; } = default!;
 
-        #endregion
-    }
+    #endregion
 }

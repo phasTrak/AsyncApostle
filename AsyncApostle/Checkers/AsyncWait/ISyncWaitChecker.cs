@@ -1,14 +1,13 @@
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace AsyncApostle.Checkers.AsyncWait
+namespace AsyncApostle.Checkers.AsyncWait;
+
+public interface ISyncWaitChecker
 {
-    public interface ISyncWaitChecker
-    {
-        #region methods
+    #region methods
 
-        bool CanReplaceResultToAsync(IReferenceExpression referenceExpression);
-        bool CanReplaceWaitToAsync(IInvocationExpression invocationExpression);
+    bool CanReplaceResultToAsync(IReferenceExpression referenceExpression);
+    bool CanReplaceWaitToAsync(IInvocationExpression invocationExpression);
 
-        #endregion
-    }
+    #endregion
 }

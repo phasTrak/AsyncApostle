@@ -1,9 +1,8 @@
-namespace AsyncApostle.AsyncHelpers.ParameterComparers
+namespace AsyncApostle.AsyncHelpers.ParameterComparers;
+
+public enum ParameterCompareResultAction
 {
-    public enum ParameterCompareResultAction
-    {
-        NotEqual,
-        Equal,
-        NeedConvertToAsyncFunc
-    }
+    NotEqual,
+    Equal,
+    NeedConvertToAsyncFunc
 }
