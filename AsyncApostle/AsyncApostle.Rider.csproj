@@ -3,43 +3,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Authors>phasTrak</Authors>
-        <CodeAnalysisRuleSet>$(SolutionDir)Strict.ruleset</CodeAnalysisRuleSet>
-        <Company />
-        <Copyright>phasTrak</Copyright>
-        <Description>Plugin for resharper, for converting code to async.</Description>
-        <IsPackable>true</IsPackable>
-        <LangVersion>10.0</LangVersion>
-        <Nullable>enable</Nullable>
+        <Description>Plugin for rider, for converting code to async.</Description>
         <PackageId>AsyncApostle.Rider</PackageId>
-        <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-        <PackageProjectUrl>https://github.com/phasTrak/AsyncApostle</PackageProjectUrl>
-        <PackageTags>async</PackageTags>
-        <Product />
-        <RootNamespace>AsyncApostle</RootNamespace>
-        <TargetFramework>net472</TargetFramework>
-        <Title>AsyncApostle</Title>
-        <Version>1.0.0.3-eap07</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DefineConstants>TRACE;DEBUG;NETFRAMEWORK;NET472;RIDER</DefineConstants>
-        <OutputPath>bin\Rider\Debug</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <DefineConstants>TRACE;RELEASE;NETFRAMEWORK;NET472;RIDER</DefineConstants>
-        <OutputPath>bin\Rider\Release</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
         <Compile Remove="Settings\ConfigureAwaitOptions\AsyncApostleConfigureAwaitPage.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Remove="AsyncApostle.Rider.nuspec" />
-        <None Remove="packages.AsyncApostle.config" />
-        <None Remove="packages.AsyncApostle.Rider.config" />
     </ItemGroup>
 
     <ItemGroup>

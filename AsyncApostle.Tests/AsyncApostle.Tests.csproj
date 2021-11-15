@@ -3,19 +3,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <CodeAnalysisRuleSet>$(SolutionDir)Strict.ruleset</CodeAnalysisRuleSet>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <IsPackable>false</IsPackable>
-        <LangVersion>latest</LangVersion>
-        <Nullable>enable</Nullable>
-        <TargetFramework>net472</TargetFramework>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <OutputPath>bin\Resharper\Debug</OutputPath>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <OutputPath>bin\Resharper\Release</OutputPath>
+        <OutputPath>bin\$(Configuration)\</OutputPath>
+        <RootNamespace>AsyncApostle.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -51,10 +42,6 @@
 
     <ItemGroup>
         <EmbeddedResource Remove="Packages\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Test\Data\Highlightings\Eliding" />
     </ItemGroup>
 
 </Project>

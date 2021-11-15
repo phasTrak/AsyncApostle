@@ -1,0 +1,25 @@
+<Project>
+
+  <PropertyGroup>
+      <AssemblyVersion>2021.3.0.1115</AssemblyVersion>
+      <Authors>phasTrak</Authors>
+      <CodeAnalysisRuleSet>$(SolutionDir)Strict.ruleset</CodeAnalysisRuleSet>
+      <Copyright>phasTrak</Copyright>
+      <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
+      <IsPackable>true</IsPackable>
+      <FileVersion>2021.3.0.1115</FileVersion>
+      <LangVersion>10.0</LangVersion>
+      <Nullable>enable</Nullable>
+      <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+      <PackageProjectUrl>https://github.com/phasTrak/AsyncApostle</PackageProjectUrl>
+      <PackageTags>async</PackageTags>
+      <TargetFramework>net472</TargetFramework>
+      <Title>AsyncApostle</Title>
+      <RootNamespace>AsyncApostle</RootNamespace>
+      <DefaultItemExcludes>$(DefaultItemExcludes);obj\**</DefaultItemExcludes>
+      <BaseIntermediateOutputPath>obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+      <OutputPath>bin\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
+      <Version>1.0.0.4-eap07</Version>
+  </PropertyGroup>
+
+</Project>
