@@ -4,9 +4,9 @@ namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers;
 
 public interface IConfigureAwaitChecker
 {
-    #region methods
+   #region methods
 
-    bool NeedAdding(IAwaitExpression element);
+   bool NeedAdding(IAwaitExpression element);
 
-    #endregion
+   #endregion
 }

@@ -7,24 +7,20 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(IAwaitExpression),
-                        HighlightingTypes = new[]
-                                            {
-                                                typeof(ConfigureAwaitHighlighting)
-                                            })]
+[ElementProblemAnalyzer(typeof(IAwaitExpression), HighlightingTypes = new[] { typeof(ConfigureAwaitHighlighting) })]
 public class ConfigureAwaitAnalyzer : ElementProblemAnalyzer<IAwaitExpression>
 {
-    #region methods
+   #region methods
 
-    protected override void Run(IAwaitExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
-    {
-        if (!element.GetSolution()
-                    .GetComponent<IConfigureAwaitChecker>()
-                    .NeedAdding(element))
-            return;
+   protected override void Run(IAwaitExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
+   {
+      if (!element.GetSolution()
+                  .GetComponent<IConfigureAwaitChecker>()
+                  .NeedAdding(element))
+         return;
 
-        consumer.AddHighlighting(new ConfigureAwaitHighlighting(element));
-    }
+      consumer.AddHighlighting(new ConfigureAwaitHighlighting(element));
+   }
 
-    #endregion
+   #endregion
 }

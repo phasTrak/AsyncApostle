@@ -4,9 +4,9 @@ namespace AsyncApostle.AsyncHelpers.Checker;
 
 public interface IAttributeFunctionChecker
 {
-    #region methods
+   #region methods
 
-    bool IsUnder(ICSharpTreeNode node);
+   bool IsUnder(ICSharpTreeNode node);
 
-    #endregion
+   #endregion
 }

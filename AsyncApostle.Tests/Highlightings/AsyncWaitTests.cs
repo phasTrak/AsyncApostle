@@ -5,11 +5,6 @@ namespace AsyncApostle.Tests.Highlightings;
 
 public class AsyncWaitTests : HighlightingsTestsBase
 {
-    [TestCaseSource(typeof(TestHelper),
-                    nameof(TestHelper.FileNames),
-                    new object[]
-                    {
-                        $@"Highlightings\{nameof(AsyncWaitTests)}"
-                    })]
-    public void Test(string fileName) => DoTestSolution(fileName);
+   [TestCaseSource(typeof(TestHelper), nameof(TestHelper.FileNames), new object[] { $@"Highlightings\{nameof(AsyncWaitTests)}" })]
+   public void Test(string fileName) => DoTestSolution(fileName);
 }

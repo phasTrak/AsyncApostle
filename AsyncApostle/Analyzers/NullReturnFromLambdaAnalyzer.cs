@@ -6,30 +6,26 @@ using static JetBrains.ReSharper.Psi.CSharp.Parsing.CSharpTokenType;
 
 namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(ILambdaExpression),
-                        HighlightingTypes = new[]
-                                            {
-                                                typeof(NullReturnAsTaskHighlighting)
-                                            })]
+[ElementProblemAnalyzer(typeof(ILambdaExpression), HighlightingTypes = new[] { typeof(NullReturnAsTaskHighlighting) })]
 public class NullReturnFromLambdaAnalyzer : ElementProblemAnalyzer<ILambdaExpression>
 {
-    #region methods
+   #region methods
 
-    protected override void Run(ILambdaExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
-    {
-        var literalExpression = element.BodyExpression as ICSharpLiteralExpression;
+   protected override void Run(ILambdaExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
+   {
+      var literalExpression = element.BodyExpression as ICSharpLiteralExpression;
 
-        if (literalExpression?.Literal.GetTokenType() != NULL_KEYWORD)
-            return;
+      if (literalExpression?.Literal.GetTokenType() != NULL_KEYWORD)
+         return;
 
-        if (element.IsAsync)
-            return;
+      if (element.IsAsync)
+         return;
 
-        if (!element.InferredReturnType.IsTask() && !element.InferredReturnType.IsGenericTask())
-            return;
+      if (!element.InferredReturnType.IsTask() && !element.InferredReturnType.IsGenericTask())
+         return;
 
-        consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, element.InferredReturnType));
-    }
+      consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, element.InferredReturnType));
+   }
 
-    #endregion
+   #endregion
 }

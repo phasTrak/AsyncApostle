@@ -12,97 +12,100 @@ namespace AsyncApostle.Helpers;
 [SolutionComponent]
 public class InvocationConverter : IInvocationConverter
 {
-    #region fields
+   #region fields
 
-    readonly IAsyncInvocationReplacer _asyncInvocationReplacer;
-    readonly IAsyncMethodFinder _asyncMethodFinder;
-    readonly ISyncWaitChecker _syncWaitChecker;
-    readonly ISyncWaitConverter _syncWaitConverter;
+   readonly IAsyncInvocationReplacer _asyncInvocationReplacer;
+   readonly IAsyncMethodFinder _asyncMethodFinder;
+   readonly ISyncWaitChecker _syncWaitChecker;
+   readonly ISyncWaitConverter _syncWaitConverter;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public InvocationConverter(IAsyncMethodFinder asyncMethodFinder, IAsyncInvocationReplacer asyncInvocationReplacer, ISyncWaitChecker syncWaitChecker, ISyncWaitConverter syncWaitConverter) =>
-        (_asyncInvocationReplacer, _asyncMethodFinder, _syncWaitChecker, _syncWaitConverter) = (asyncInvocationReplacer, asyncMethodFinder, syncWaitChecker, syncWaitConverter);
+   public InvocationConverter(IAsyncMethodFinder asyncMethodFinder,
+                              IAsyncInvocationReplacer asyncInvocationReplacer,
+                              ISyncWaitChecker syncWaitChecker,
+                              ISyncWaitConverter syncWaitConverter) =>
+      (_asyncInvocationReplacer, _asyncMethodFinder, _syncWaitChecker, _syncWaitConverter) = (asyncInvocationReplacer, asyncMethodFinder, syncWaitChecker, syncWaitConverter);
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public bool TryReplaceInvocationToAsync(IInvocationExpression invocationExpression)
-    {
-        var referenceCurrentResolveResult = invocationExpression.Reference.Resolve();
+   public bool TryReplaceInvocationToAsync(IInvocationExpression invocationExpression)
+   {
+      var referenceCurrentResolveResult = invocationExpression.Reference.Resolve();
 
-        if (!referenceCurrentResolveResult.IsValid() || referenceCurrentResolveResult.DeclaredElement is not IMethod invocationMethod)
-            return false;
+      if (!referenceCurrentResolveResult.IsValid() || referenceCurrentResolveResult.DeclaredElement is not IMethod invocationMethod)
+         return false;
 
-        var findingResult = _asyncMethodFinder.FindEquivalentAsyncMethod(invocationMethod, (invocationExpression.ConditionalQualifier as IReferenceExpression)?.QualifierExpression?.Type());
+      var findingResult = _asyncMethodFinder.FindEquivalentAsyncMethod(invocationMethod, (invocationExpression.ConditionalQualifier as IReferenceExpression)?.QualifierExpression?.Type());
 
-        if (!findingResult.CanBeConvertedToAsync() || !TryConvertParameterFuncToAsync(invocationExpression, findingResult.ParameterCompareResult) || findingResult.Method is null)
-            return false;
+      if (!findingResult.CanBeConvertedToAsync() || !TryConvertParameterFuncToAsync(invocationExpression, findingResult.ParameterCompareResult) || findingResult.Method is null)
+         return false;
 
-        _asyncInvocationReplacer.ReplaceInvocation(invocationExpression, findingResult.Method.ShortName, true);
+      _asyncInvocationReplacer.ReplaceInvocation(invocationExpression, findingResult.Method.ShortName, true);
 
-        return true;
-    }
+      return true;
+   }
 
-    bool TryConvertParameterFuncToAsync(ICSharpArgumentsOwner invocationExpression, ParameterCompareResult parameterCompareResult)
-    {
-        invocationExpression.PsiModule.GetPsiServices()
-                            .Transactions.StartTransaction("convertAsyncParameter");
+   bool TryConvertParameterFuncToAsync(ICSharpArgumentsOwner invocationExpression, ParameterCompareResult parameterCompareResult)
+   {
+      invocationExpression.PsiModule.GetPsiServices()
+                          .Transactions.StartTransaction("convertAsyncParameter");
 
-        try
-        {
-            for (var i = 0; i < invocationExpression.Arguments.Count; i++)
+      try
+      {
+         for (var i = 0; i < invocationExpression.Arguments.Count; i++)
+         {
+            if (parameterCompareResult.ParameterResults[i]
+                                      .Action is not NeedConvertToAsyncFunc)
+               continue;
+
+            if (invocationExpression.Arguments[i]
+                                    .Value is not ILambdaExpression lambdaExpression)
             {
-                if (parameterCompareResult.ParameterResults[i]
-                                          .Action is not NeedConvertToAsyncFunc)
-                    continue;
+               invocationExpression.PsiModule.GetPsiServices()
+                                   .Transactions.RollbackTransaction();
 
-                if (invocationExpression.Arguments[i]
-                                        .Value is not ILambdaExpression lambdaExpression)
-                {
-                    invocationExpression.PsiModule.GetPsiServices()
-                                        .Transactions.RollbackTransaction();
-
-                    return false;
-                }
-
-                lambdaExpression.SetAsync(true);
-
-                IInvocationExpression? innerInvocationExpression;
-
-                while ((innerInvocationExpression = lambdaExpression.DescendantsInScope<IInvocationExpression>()
-                                                                    .FirstOrDefault(_syncWaitChecker.CanReplaceWaitToAsync)) is not null)
-                    _syncWaitConverter.ReplaceWaitToAsync(innerInvocationExpression);
-
-                IReferenceExpression? referenceExpression;
-
-                while ((referenceExpression = lambdaExpression.DescendantsInScope<IReferenceExpression>()
-                                                              .FirstOrDefault(_syncWaitChecker.CanReplaceResultToAsync)) is not null)
-                    _syncWaitConverter.ReplaceResultToAsync(referenceExpression);
-
-                foreach (var unused in lambdaExpression.DescendantsInScope<IInvocationExpression>()
-                                                       .Where(innerInvocationExpression2 => !TryReplaceInvocationToAsync(innerInvocationExpression2)))
-                {
-                    //invocationExpression.PsiModule.GetPsiServices().Transactions.RollbackTransaction();
-                }
+               return false;
             }
-        }
-        catch
-        {
-            invocationExpression.PsiModule.GetPsiServices()
-                                .Transactions.RollbackTransaction();
 
-            return false;
-        }
+            lambdaExpression.SetAsync(true);
 
-        invocationExpression.PsiModule.GetPsiServices()
-                            .Transactions.CommitTransaction();
+            IInvocationExpression? innerInvocationExpression;
 
-        return true;
-    }
+            while ((innerInvocationExpression = lambdaExpression.DescendantsInScope<IInvocationExpression>()
+                                                                .FirstOrDefault(_syncWaitChecker.CanReplaceWaitToAsync)) is not null)
+               _syncWaitConverter.ReplaceWaitToAsync(innerInvocationExpression);
 
-    #endregion
+            IReferenceExpression? referenceExpression;
+
+            while ((referenceExpression = lambdaExpression.DescendantsInScope<IReferenceExpression>()
+                                                          .FirstOrDefault(_syncWaitChecker.CanReplaceResultToAsync)) is not null)
+               _syncWaitConverter.ReplaceResultToAsync(referenceExpression);
+
+            foreach (var unused in lambdaExpression.DescendantsInScope<IInvocationExpression>()
+                                                   .Where(innerInvocationExpression2 => !TryReplaceInvocationToAsync(innerInvocationExpression2)))
+            {
+               //invocationExpression.PsiModule.GetPsiServices().Transactions.RollbackTransaction();
+            }
+         }
+      }
+      catch
+      {
+         invocationExpression.PsiModule.GetPsiServices()
+                             .Transactions.RollbackTransaction();
+
+         return false;
+      }
+
+      invocationExpression.PsiModule.GetPsiServices()
+                          .Transactions.CommitTransaction();
+
+      return true;
+   }
+
+   #endregion
 }

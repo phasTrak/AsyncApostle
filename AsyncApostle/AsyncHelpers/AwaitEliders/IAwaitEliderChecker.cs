@@ -4,9 +4,9 @@ namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
 public interface IAwaitEliderChecker
 {
-    #region methods
+   #region methods
 
-    bool CanElide(IParametersOwnerDeclaration element);
+   bool CanElide(IParametersOwnerDeclaration element);
 
-    #endregion
+   #endregion
 }

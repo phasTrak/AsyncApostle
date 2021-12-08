@@ -6,9 +6,9 @@ namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 [SolutionComponent]
 class InLockChecker : IConcreteCanBeUseAsyncMethodChecker
 {
-    #region methods
+   #region methods
 
-    public bool CanReplace(IInvocationExpression element) => element.GetContainingNode<ILockStatement>() is null;
+   public bool CanReplace(IInvocationExpression element) => element.GetContainingNode<ILockStatement>() is null;
 
-    #endregion
+   #endregion
 }

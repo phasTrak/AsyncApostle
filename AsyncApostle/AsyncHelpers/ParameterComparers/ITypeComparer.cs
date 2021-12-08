@@ -4,9 +4,9 @@ namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 
 public interface ITypeComparer
 {
-    #region methods
+   #region methods
 
-    ParameterCompareResultAction Compare(IType originalParameterType, IType parameterType);
+   ParameterCompareResultAction Compare(IType originalParameterType, IType parameterType);
 
-    #endregion
+   #endregion
 }

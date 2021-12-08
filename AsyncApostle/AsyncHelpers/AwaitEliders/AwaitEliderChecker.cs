@@ -9,21 +9,21 @@ namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 [SolutionComponent]
 public class AwaitEliderChecker : IAwaitEliderChecker
 {
-    #region fields
+   #region fields
 
-    readonly IConcreteAwaitEliderChecker[] _checkers;
+   readonly IConcreteAwaitEliderChecker[] _checkers;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public AwaitEliderChecker(IEnumerable<IConcreteAwaitEliderChecker> checkers) => _checkers = checkers.ToArray();
+   public AwaitEliderChecker(IEnumerable<IConcreteAwaitEliderChecker> checkers) => _checkers = checkers.ToArray();
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public bool CanElide(IParametersOwnerDeclaration element) => _checkers.All(x => x.CanElide(element));
+   public bool CanElide(IParametersOwnerDeclaration element) => _checkers.All(x => x.CanElide(element));
 
-    #endregion
+   #endregion
 }

@@ -14,55 +14,55 @@ namespace AsyncApostle.ContextActions;
 [ContextAction(Group = "C#", Name = "ConvertToAsync", Description = "Convert method to async and replace all inner call to async version if exist.")]
 public class MethodToAsyncApostle : ContextActionBase
 {
-    #region fields
+   #region fields
 
-    IAsyncReplacer? _asyncReplacer;
+   IAsyncReplacer? _asyncReplacer;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public MethodToAsyncApostle(ICSharpContextActionDataProvider provider) => Provider = provider;
+   public MethodToAsyncApostle(ICSharpContextActionDataProvider provider) => Provider = provider;
 
-    #endregion
+   #endregion
 
-    #region properties
+   #region properties
 
-    public override string Text => "Convert method to async and replace all inner call to async version if exist.";
-    ICSharpContextActionDataProvider Provider { get; }
+   public override string Text => "Convert method to async and replace all inner call to async version if exist.";
+   ICSharpContextActionDataProvider Provider { get; }
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public override bool IsAvailable(IUserDataHolder cache)
-    {
-        var method = GetMethodFromCaretPosition();
+   public override bool IsAvailable(IUserDataHolder cache)
+   {
+      var method = GetMethodFromCaretPosition();
 
-        if (method is null)
-            return false;
+      if (method is null)
+         return false;
 
-        var returnType = method.DeclaredElement?.ReturnType;
+      var returnType = method.DeclaredElement?.ReturnType;
 
-        return !(returnType?.IsTask() is true || returnType?.IsGenericTask() is true);
-    }
+      return !(returnType?.IsTask() is true || returnType?.IsGenericTask() is true);
+   }
 
-    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
-    {
-        _asyncReplacer = solution.GetComponent<IAsyncReplacer>();
+   protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
+   {
+      _asyncReplacer = solution.GetComponent<IAsyncReplacer>();
 
-        var methodDeclaredElement = GetMethodFromCaretPosition()
-            ?.DeclaredElement;
+      var methodDeclaredElement = GetMethodFromCaretPosition()
+       ?.DeclaredElement;
 
-        if (methodDeclaredElement is null)
-            return null;
+      if (methodDeclaredElement is null)
+         return null;
 
-        _asyncReplacer.ReplaceToAsync(methodDeclaredElement);
+      _asyncReplacer.ReplaceToAsync(methodDeclaredElement);
 
-        return null;
-    }
+      return null;
+   }
 
-    IMethodDeclaration? GetMethodFromCaretPosition() => (Provider.TokenAfterCaret as ICSharpIdentifier ?? Provider.TokenBeforeCaret as ICSharpIdentifier)?.Parent as IMethodDeclaration;
+   IMethodDeclaration? GetMethodFromCaretPosition() => (Provider.TokenAfterCaret as ICSharpIdentifier ?? Provider.TokenBeforeCaret as ICSharpIdentifier)?.Parent as IMethodDeclaration;
 
-    #endregion
+   #endregion
 }

@@ -10,39 +10,39 @@ namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 [SolutionComponent]
 class AwaitElider : IAwaitElider
 {
-    #region fields
+   #region fields
 
-    readonly ICustomAwaitElider[] _awaitEliders;
+   readonly ICustomAwaitElider[] _awaitEliders;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public AwaitElider(IEnumerable<ICustomAwaitElider> awaitEliders) => _awaitEliders = awaitEliders.ToArray();
+   public AwaitElider(IEnumerable<ICustomAwaitElider> awaitEliders) => _awaitEliders = awaitEliders.ToArray();
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public void Elide(IAwaitExpression awaitExpression)
-    {
-        if (awaitExpression.Task is not IInvocationExpression invocationExpression)
-            return;
+   public void Elide(IAwaitExpression awaitExpression)
+   {
+      if (awaitExpression.Task is not IInvocationExpression invocationExpression)
+         return;
 
-        var declarationOrClosure = awaitExpression.GetContainingFunctionLikeDeclarationOrClosure();
+      var declarationOrClosure = awaitExpression.GetContainingFunctionLikeDeclarationOrClosure();
 
-        if (declarationOrClosure is null)
-            return;
+      if (declarationOrClosure is null)
+         return;
 
-        _awaitEliders.FirstOrDefault(x => x.CanElide(declarationOrClosure))
-                     ?.Elide(declarationOrClosure, invocationExpression.RemoveConfigureAwait());
-    }
+      _awaitEliders.FirstOrDefault(x => x.CanElide(declarationOrClosure))
+                  ?.Elide(declarationOrClosure, invocationExpression.RemoveConfigureAwait());
+   }
 
-    public void Elide(IParametersOwnerDeclaration parametersOwnerDeclaration)
-    {
-        foreach (var awaitExpression in parametersOwnerDeclaration.DescendantsInScope<IAwaitExpression>())
-            Elide(awaitExpression);
-    }
+   public void Elide(IParametersOwnerDeclaration parametersOwnerDeclaration)
+   {
+      foreach (var awaitExpression in parametersOwnerDeclaration.DescendantsInScope<IAwaitExpression>())
+         Elide(awaitExpression);
+   }
 
-    #endregion
+   #endregion
 }

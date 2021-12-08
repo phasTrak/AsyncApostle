@@ -7,21 +7,21 @@ namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 [SolutionComponent]
 class AttributeTypeChecker : IConfigureAwaitCustomChecker
 {
-    #region fields
+   #region fields
 
-    readonly IAttributeTypeChecker _attributeTypeChecker;
+   readonly IAttributeTypeChecker _attributeTypeChecker;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public AttributeTypeChecker(IAttributeTypeChecker attributeTypeChecker) => _attributeTypeChecker = attributeTypeChecker;
+   public AttributeTypeChecker(IAttributeTypeChecker attributeTypeChecker) => _attributeTypeChecker = attributeTypeChecker;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public bool CanBeAdded(IAwaitExpression element) => !_attributeTypeChecker.IsUnder(element);
+   public bool CanBeAdded(IAwaitExpression element) => !_attributeTypeChecker.IsUnder(element);
 
-    #endregion
+   #endregion
 }

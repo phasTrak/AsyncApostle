@@ -10,24 +10,24 @@ namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 [SolutionComponent]
 class TestRenameChecker : IConcreteRenameChecker
 {
-    #region fields
+   #region fields
 
-    readonly IUnderTestChecker _underTestChecker;
+   readonly IUnderTestChecker _underTestChecker;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public TestRenameChecker(IUnderTestChecker underTestChecker) => _underTestChecker = underTestChecker;
+   public TestRenameChecker(IUnderTestChecker underTestChecker) => _underTestChecker = underTestChecker;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public bool SkipRename(IMethodDeclaration methodDeclaration) =>
-        methodDeclaration.GetSettingsStore()
-                         .GetValue(ExcludeTestMethodsFromRenaming)
-        && _underTestChecker.IsUnder(methodDeclaration);
+   public bool SkipRename(IMethodDeclaration methodDeclaration) =>
+      methodDeclaration.GetSettingsStore()
+                       .GetValue(ExcludeTestMethodsFromRenaming)
+   && _underTestChecker.IsUnder(methodDeclaration);
 
-    #endregion
+   #endregion
 }

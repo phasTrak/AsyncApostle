@@ -4,9 +4,9 @@ namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
 public interface IConcreteRenameChecker
 {
-    #region methods
+   #region methods
 
-    bool SkipRename(IMethodDeclaration methodDeclaration);
+   bool SkipRename(IMethodDeclaration methodDeclaration);
 
-    #endregion
+   #endregion
 }

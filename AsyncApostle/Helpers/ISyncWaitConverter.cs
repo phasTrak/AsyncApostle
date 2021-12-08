@@ -4,10 +4,10 @@ namespace AsyncApostle.Helpers;
 
 public interface ISyncWaitConverter
 {
-    #region methods
+   #region methods
 
-    void ReplaceResultToAsync(IReferenceExpression referenceExpression);
-    void ReplaceWaitToAsync(IInvocationExpression invocationExpression);
+   void ReplaceResultToAsync(IReferenceExpression referenceExpression);
+   void ReplaceWaitToAsync(IInvocationExpression invocationExpression);
 
-    #endregion
+   #endregion
 }

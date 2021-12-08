@@ -8,27 +8,27 @@ namespace AsyncApostle.Helpers;
 [SolutionComponent]
 public class SyncWaitConverter : ISyncWaitConverter
 {
-    #region methods
+   #region methods
 
-    public void ReplaceResultToAsync(IReferenceExpression referenceExpression)
-    {
-        var replaceBy = referenceExpression.QualifierExpression;
+   static void ReplaceToAwait(ICSharpExpression invocationExpression, ITreeNode replaceBy) =>
+      invocationExpression.ReplaceBy(GetInstance(invocationExpression)
+                                       .CreateExpression("await $0.ConfigureAwait(false)", replaceBy));
 
-        if (replaceBy is not null)
-            ReplaceToAwait(referenceExpression, replaceBy);
-    }
+   public void ReplaceResultToAsync(IReferenceExpression referenceExpression)
+   {
+      var replaceBy = referenceExpression.QualifierExpression;
 
-    public void ReplaceWaitToAsync(IInvocationExpression invocationExpression)
-    {
-        var replaceBy = invocationExpression.FirstChild?.FirstChild;
+      if (replaceBy is not null)
+         ReplaceToAwait(referenceExpression, replaceBy);
+   }
 
-        if (replaceBy is not null)
-            ReplaceToAwait(invocationExpression, replaceBy);
-    }
+   public void ReplaceWaitToAsync(IInvocationExpression invocationExpression)
+   {
+      var replaceBy = invocationExpression.FirstChild?.FirstChild;
 
-    static void ReplaceToAwait(ICSharpExpression invocationExpression, ITreeNode replaceBy) =>
-        invocationExpression.ReplaceBy(GetInstance(invocationExpression)
-                                           .CreateExpression("await $0.ConfigureAwait(false)", replaceBy));
+      if (replaceBy is not null)
+         ReplaceToAwait(invocationExpression, replaceBy);
+   }
 
-    #endregion
+   #endregion
 }

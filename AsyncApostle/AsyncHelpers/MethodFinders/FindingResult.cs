@@ -5,17 +5,17 @@ namespace AsyncApostle.AsyncHelpers.MethodFinders;
 
 public class FindingResult
 {
-    #region properties
+   #region properties
 
-    public IMethod? Method { get; set; }
-    public ParameterCompareResult ParameterCompareResult { get; set; } = default!;
+   public IMethod? Method { get; set; }
+   public ParameterCompareResult ParameterCompareResult { get; set; } = default!;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public static FindingResult CreateFail() => new ();
-    public bool CanBeConvertedToAsync() => Method is not null && ParameterCompareResult.CanBeConvertedToAsync();
+   public static FindingResult CreateFail() => new ();
+   public bool CanBeConvertedToAsync() => Method is not null && ParameterCompareResult.CanBeConvertedToAsync();
 
-    #endregion
+   #endregion
 }

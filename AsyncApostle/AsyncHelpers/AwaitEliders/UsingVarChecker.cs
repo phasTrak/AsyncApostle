@@ -10,12 +10,12 @@ namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 [SolutionComponent]
 class UsingVarChecker : IConcreteAwaitEliderChecker
 {
-    #region methods
+   #region methods
 
-    public bool CanElide(IParametersOwnerDeclaration element) =>
-        element.Descendants<IMultipleLocalVariableDeclaration>()
-               .ToEnumerable()
-               .All(x => x.UsingKind is Regular);
+   public bool CanElide(IParametersOwnerDeclaration element) =>
+      element.Descendants<IMultipleLocalVariableDeclaration>()
+             .ToEnumerable()
+             .All(x => x.UsingKind is Regular);
 
-    #endregion
+   #endregion
 }

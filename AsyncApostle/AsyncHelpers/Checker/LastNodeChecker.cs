@@ -7,35 +7,35 @@ namespace AsyncApostle.AsyncHelpers.Checker;
 [SolutionComponent]
 class LastNodeChecker : ILastNodeChecker
 {
-    #region methods
+   #region methods
 
-    public bool IsLastNode(ICSharpExpression element)
-    {
-        var parentStatement = element.Parent as ICSharpStatement;
+   static bool IsFinalStatement(ICSharpStatement statement)
+   {
+      var focus = statement;
 
-        return parentStatement is IReturnStatement or IExpressionStatement
-               && IsFinalStatement(parentStatement)
-               && parentStatement.GetContainingNode<IUsingStatement>() is null
-               && parentStatement.GetContainingNode<ITryStatement>() is null
-               && parentStatement.GetContainingNode<ILoopStatement>() is null
-               && parentStatement.GetContainingNode<IIfStatement>() is null
-               || element.Parent is IArrowExpressionClause or ILambdaExpression;
-    }
+      while (focus.GetNextStatement() is null)
+      {
+         if (focus is null)
+            return true;
 
-    static bool IsFinalStatement(ICSharpStatement statement)
-    {
-        var focus = statement;
+         focus = focus.GetContainingStatement();
+      }
 
-        while (focus.GetNextStatement() is null)
-        {
-            if (focus is null)
-                return true;
+      return false;
+   }
 
-            focus = focus.GetContainingStatement();
-        }
+   public bool IsLastNode(ICSharpExpression element)
+   {
+      var parentStatement = element.Parent as ICSharpStatement;
 
-        return false;
-    }
+      return parentStatement is IReturnStatement or IExpressionStatement
+          && IsFinalStatement(parentStatement)
+          && parentStatement.GetContainingNode<IUsingStatement>() is null
+          && parentStatement.GetContainingNode<ITryStatement>() is null
+          && parentStatement.GetContainingNode<ILoopStatement>() is null
+          && parentStatement.GetContainingNode<IIfStatement>() is null
+          || element.Parent is IArrowExpressionClause or ILambdaExpression;
+   }
 
-    #endregion
+   #endregion
 }

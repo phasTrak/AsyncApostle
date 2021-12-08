@@ -9,9 +9,9 @@ namespace AsyncApostle.Tests.ContextActions;
 [TestNetFramework45]
 public class MethodToAsyncApostleAvailabilityTests : CSharpContextActionAvailabilityTestBase<MethodToAsyncApostle>
 {
-    protected override string ExtraPath => Empty;
-    protected override string RelativeTestDataPath => @"ContextActions\MethodToAsyncApostleAvailabilityTests";
+   protected override string ExtraPath => Empty;
+   protected override string RelativeTestDataPath => @"ContextActions\MethodToAsyncApostleAvailabilityTests";
 
-    [Test]
-    public void Test() => DoTestSolution("Test01.cs");
+   [Test]
+   public void Test() => DoTestSolution("Test01.cs");
 }

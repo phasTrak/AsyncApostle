@@ -8,12 +8,12 @@ namespace AsyncApostle.Settings;
 
 public static class AsyncApostleSettingsAccessor
 {
-    #region fields
+   #region fields
 
-    public static readonly Expression<Func<AsyncApostleConfigureAwaitSettings, IIndexedEntry<string, string>?>> ConfigureAwaitIgnoreAttributeTypes = x => x.ConfigureAwaitIgnoreAttributeTypes;
-    public static readonly Expression<Func<AsyncApostleConfigureAwaitSettings, bool>> ExcludeTestMethodsFromConfigureAwait = x => x.ExcludeTestMethodsFromConfigureAwait;
-    public static readonly Expression<Func<GeneralSettings, bool>> ExcludeTestMethodsFromEliding = x => x.ExcludeTestMethodsFromEliding;
-    public static readonly Expression<Func<GeneralSettings, bool>> ExcludeTestMethodsFromRenaming = x => x.ExcludeTestMethodsFromRenaming;
+   public static readonly Expression<Func<AsyncApostleConfigureAwaitSettings, IIndexedEntry<string, string>?>> ConfigureAwaitIgnoreAttributeTypes = x => x.ConfigureAwaitIgnoreAttributeTypes;
+   public static readonly Expression<Func<AsyncApostleConfigureAwaitSettings, bool>> ExcludeTestMethodsFromConfigureAwait = x => x.ExcludeTestMethodsFromConfigureAwait;
+   public static readonly Expression<Func<GeneralSettings, bool>> ExcludeTestMethodsFromEliding = x => x.ExcludeTestMethodsFromEliding;
+   public static readonly Expression<Func<GeneralSettings, bool>> ExcludeTestMethodsFromRenaming = x => x.ExcludeTestMethodsFromRenaming;
 
-    #endregion
+   #endregion
 }

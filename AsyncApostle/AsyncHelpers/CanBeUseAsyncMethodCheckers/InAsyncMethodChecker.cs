@@ -6,9 +6,9 @@ namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 [SolutionComponent]
 class InAsyncMethodChecker : IConcreteCanBeUseAsyncMethodChecker
 {
-    #region methods
+   #region methods
 
-    public bool CanReplace(IInvocationExpression element) => element.IsUnderAsyncDeclaration();
+   public bool CanReplace(IInvocationExpression element) => element.IsUnderAsyncDeclaration();
 
-    #endregion
+   #endregion
 }

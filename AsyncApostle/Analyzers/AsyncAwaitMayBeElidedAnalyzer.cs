@@ -8,25 +8,21 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(IParametersOwnerDeclaration),
-                        HighlightingTypes = new[]
-                                            {
-                                                typeof(AsyncAwaitMayBeElidedHighlighting)
-                                            })]
+[ElementProblemAnalyzer(typeof(IParametersOwnerDeclaration), HighlightingTypes = new[] { typeof(AsyncAwaitMayBeElidedHighlighting) })]
 public class AsyncAwaitMayBeElidedAnalyzer : ElementProblemAnalyzer<IParametersOwnerDeclaration>
 {
-    #region methods
+   #region methods
 
-    protected override void Run(IParametersOwnerDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
-    {
-        if (!element.GetSolution()
-                    .GetComponent<IAwaitEliderChecker>()
-                    .CanElide(element))
-            return;
+   protected override void Run(IParametersOwnerDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
+   {
+      if (!element.GetSolution()
+                  .GetComponent<IAwaitEliderChecker>()
+                  .CanElide(element))
+         return;
 
-        foreach (var awaitExpression in element.DescendantsInScope<IAwaitExpression>())
-            consumer.AddHighlighting(new AsyncAwaitMayBeElidedHighlighting(awaitExpression));
-    }
+      foreach (var awaitExpression in element.DescendantsInScope<IAwaitExpression>())
+         consumer.AddHighlighting(new AsyncAwaitMayBeElidedHighlighting(awaitExpression));
+   }
 
-    #endregion
+   #endregion
 }

@@ -4,9 +4,9 @@ namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 
 public interface IConcreteCanBeUseAsyncMethodChecker
 {
-    #region methods
+   #region methods
 
-    bool CanReplace(IInvocationExpression element);
+   bool CanReplace(IInvocationExpression element);
 
-    #endregion
+   #endregion
 }

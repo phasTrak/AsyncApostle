@@ -8,29 +8,29 @@ namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 [SolutionComponent]
 class HaveAsyncMethodChecker : IConcreteCanBeUseAsyncMethodChecker
 {
-    #region fields
+   #region fields
 
-    readonly IAsyncMethodFinder _asyncMethodFinder;
+   readonly IAsyncMethodFinder _asyncMethodFinder;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public HaveAsyncMethodChecker(IAsyncMethodFinder asyncMethodFinder) => _asyncMethodFinder = asyncMethodFinder;
+   public HaveAsyncMethodChecker(IAsyncMethodFinder asyncMethodFinder) => _asyncMethodFinder = asyncMethodFinder;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public bool CanReplace(IInvocationExpression element)
-    {
-        var referenceCurrentResolveResult = element.Reference.Resolve();
+   public bool CanReplace(IInvocationExpression element)
+   {
+      var referenceCurrentResolveResult = element.Reference.Resolve();
 
-        return referenceCurrentResolveResult.IsValid()
-               && referenceCurrentResolveResult.DeclaredElement is IMethod invocationMethod
-               && _asyncMethodFinder.FindEquivalentAsyncMethod(invocationMethod, (element.ConditionalQualifier as IReferenceExpression)?.QualifierExpression?.Type()!)
-                                    .ParameterCompareResult.CanBeConvertedToAsync();
-    }
+      return referenceCurrentResolveResult.IsValid()
+          && referenceCurrentResolveResult.DeclaredElement is IMethod invocationMethod
+          && _asyncMethodFinder.FindEquivalentAsyncMethod(invocationMethod, (element.ConditionalQualifier as IReferenceExpression)?.QualifierExpression?.Type()!)
+                               .ParameterCompareResult.CanBeConvertedToAsync();
+   }
 
-    #endregion
+   #endregion
 }

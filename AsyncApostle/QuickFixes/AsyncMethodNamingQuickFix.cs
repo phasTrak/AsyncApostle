@@ -12,39 +12,39 @@ namespace AsyncApostle.QuickFixes;
 [QuickFix]
 public class AsyncMethodNamingQuickFix : QuickFixBase
 {
-    #region fields
+   #region fields
 
-    readonly AsyncMethodNamingHighlighting _asyncMethodNamingHighlighting;
+   readonly AsyncMethodNamingHighlighting _asyncMethodNamingHighlighting;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public AsyncMethodNamingQuickFix(AsyncMethodNamingHighlighting asyncMethodNamingHighlighting) => _asyncMethodNamingHighlighting = asyncMethodNamingHighlighting;
+   public AsyncMethodNamingQuickFix(AsyncMethodNamingHighlighting asyncMethodNamingHighlighting) => _asyncMethodNamingHighlighting = asyncMethodNamingHighlighting;
 
-    #endregion
+   #endregion
 
-    #region properties
+   #region properties
 
-    public override string Text => @"Add ""Async"" suffix";
+   public override string Text => @"Add ""Async"" suffix";
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public override bool IsAvailable(IUserDataHolder cache) => _asyncMethodNamingHighlighting.IsValid();
+   public override bool IsAvailable(IUserDataHolder cache) => _asyncMethodNamingHighlighting.IsValid();
 
-    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
-    {
-        var methodDeclaration = _asyncMethodNamingHighlighting.MethodDeclaration.DeclaredElement;
+   protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
+   {
+      var methodDeclaration = _asyncMethodNamingHighlighting.MethodDeclaration.DeclaredElement;
 
-        if (methodDeclaration is null)
-            return null;
+      if (methodDeclaration is null)
+         return null;
 
-        Rename(solution, new (methodDeclaration, $"{methodDeclaration.ShortName}Async"));
+      Rename(solution, new (methodDeclaration, $"{methodDeclaration.ShortName}Async"));
 
-        return null;
-    }
+      return null;
+   }
 
-    #endregion
+   #endregion
 }

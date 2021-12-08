@@ -7,42 +7,42 @@ namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 [SolutionComponent]
 class ParameterComparer : IParameterComparer
 {
-    #region fields
+   #region fields
 
-    readonly ITypeComparer _typeComparer;
+   readonly ITypeComparer _typeComparer;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public ParameterComparer(ITypeComparer typeComparer) => _typeComparer = typeComparer;
+   public ParameterComparer(ITypeComparer typeComparer) => _typeComparer = typeComparer;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters)
-    {
-        if (methodParameters.Count != originalParameters.Count)
-            return ParameterCompareResult.CreateFailDifferentLength();
+   public ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters)
+   {
+      if (methodParameters.Count != originalParameters.Count)
+         return ParameterCompareResult.CreateFailDifferentLength();
 
-        var parameterResults = new CompareResult[methodParameters.Count];
+      var parameterResults = new CompareResult[methodParameters.Count];
 
-        for (var i = 0; i < methodParameters.Count; i++)
-        {
-            var parameter = methodParameters[i];
-            var originalParameter = originalParameters[i];
+      for (var i = 0; i < methodParameters.Count; i++)
+      {
+         var parameter = methodParameters[i];
+         var originalParameter = originalParameters[i];
 
-            parameterResults[i] = new ()
-                                  {
-                                      From = originalParameter.Type,
-                                      To = parameter.Type,
-                                      Action = _typeComparer.Compare(originalParameter.Type, parameter.Type)
-                                  };
-        }
+         parameterResults[i] = new ()
+                               {
+                                  From = originalParameter.Type,
+                                  To = parameter.Type,
+                                  Action = _typeComparer.Compare(originalParameter.Type, parameter.Type)
+                               };
+      }
 
-        return ParameterCompareResult.Create(parameterResults);
-    }
+      return ParameterCompareResult.Create(parameterResults);
+   }
 
-    #endregion
+   #endregion
 }

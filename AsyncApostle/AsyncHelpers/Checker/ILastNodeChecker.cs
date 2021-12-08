@@ -4,9 +4,9 @@ namespace AsyncApostle.AsyncHelpers.Checker;
 
 public interface ILastNodeChecker
 {
-    #region methods
+   #region methods
 
-    bool IsLastNode(ICSharpExpression element);
+   bool IsLastNode(ICSharpExpression element);
 
-    #endregion
+   #endregion
 }

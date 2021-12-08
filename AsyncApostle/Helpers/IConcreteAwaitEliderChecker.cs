@@ -4,9 +4,9 @@ namespace AsyncApostle.Helpers;
 
 public interface IConcreteAwaitEliderChecker
 {
-    #region methods
+   #region methods
 
-    bool CanElide(IParametersOwnerDeclaration element);
+   bool CanElide(IParametersOwnerDeclaration element);
 
-    #endregion
+   #endregion
 }

@@ -7,26 +7,26 @@ namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 [SolutionComponent]
 class LambdaAwaitElider : ICustomAwaitElider
 {
-    #region methods
+   #region methods
 
-    public bool CanElide(ICSharpDeclaration declarationOrClosure) => declarationOrClosure is ILambdaExpression;
+   public bool CanElide(ICSharpDeclaration declarationOrClosure) => declarationOrClosure is ILambdaExpression;
 
-    public void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression)
-    {
-        if (declarationOrClosure is not ILambdaExpression lambdaExpression)
-            return;
+   public void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression)
+   {
+      if (declarationOrClosure is not ILambdaExpression lambdaExpression)
+         return;
 
-        lambdaExpression.SetAsync(false);
+      lambdaExpression.SetAsync(false);
 
-        if (lambdaExpression.BodyBlock is not null)
-        {
-            awaitExpression.GetContainingStatement()
-                           ?.ReplaceBy(GetInstance(awaitExpression)
-                                           .CreateStatement("return $0;", awaitExpression));
-        }
-        else
-            lambdaExpression.SetBodyExpression(awaitExpression);
-    }
+      if (lambdaExpression.BodyBlock is not null)
+      {
+         awaitExpression.GetContainingStatement()
+                       ?.ReplaceBy(GetInstance(awaitExpression)
+                                     .CreateStatement("return $0;", awaitExpression));
+      }
+      else
+         lambdaExpression.SetBodyExpression(awaitExpression);
+   }
 
-    #endregion
+   #endregion
 }

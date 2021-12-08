@@ -5,32 +5,28 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(IReferenceExpression),
-                        HighlightingTypes = new[]
-                                            {
-                                                typeof(AsyncWaitHighlighting)
-                                            })]
+[ElementProblemAnalyzer(typeof(IReferenceExpression), HighlightingTypes = new[] { typeof(AsyncWaitHighlighting) })]
 public class AsyncWaitAnalyzer : ElementProblemAnalyzer<IReferenceExpression>
 {
-    #region fields
+   #region fields
 
-    readonly ISyncWaitChecker _syncWaitChecker;
+   readonly ISyncWaitChecker _syncWaitChecker;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public AsyncWaitAnalyzer(ISyncWaitChecker syncWaitChecker) => _syncWaitChecker = syncWaitChecker;
+   public AsyncWaitAnalyzer(ISyncWaitChecker syncWaitChecker) => _syncWaitChecker = syncWaitChecker;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    protected override void Run(IReferenceExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
-    {
-        if (_syncWaitChecker.CanReplaceResultToAsync(element))
-            consumer.AddHighlighting(new AsyncWaitHighlighting(element));
-    }
+   protected override void Run(IReferenceExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
+   {
+      if (_syncWaitChecker.CanReplaceResultToAsync(element))
+         consumer.AddHighlighting(new AsyncWaitHighlighting(element));
+   }
 
-    #endregion
+   #endregion
 }

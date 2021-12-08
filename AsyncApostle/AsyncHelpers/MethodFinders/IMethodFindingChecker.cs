@@ -5,10 +5,10 @@ namespace AsyncApostle.AsyncHelpers.MethodFinders;
 
 public interface IMethodFindingChecker
 {
-    #region methods
+   #region methods
 
-    [Pure]
-    bool NeedSkip(IMethod originalMethod, IMethod candidateMethod);
+   [Pure]
+   bool NeedSkip(IMethod originalMethod, IMethod candidateMethod);
 
-    #endregion
+   #endregion
 }

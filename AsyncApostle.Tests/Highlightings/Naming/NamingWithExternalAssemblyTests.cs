@@ -7,13 +7,8 @@ namespace AsyncApostle.Tests.Highlightings.Naming;
 [TestReferences("LibraryToOverride.dll")]
 public class NamingWithExternalAssemblyTests : HighlightingsTestsBase
 {
-    protected sealed override string RelativeTestDataPath => @"Highlightings\Naming\WithOverride";
+   protected sealed override string RelativeTestDataPath => @"Highlightings\Naming\WithOverride";
 
-    [TestCaseSource(typeof(TestHelper),
-                    nameof(TestHelper.FileNames),
-                    new object[]
-                    {
-                        @"Highlightings\Naming\WithOverride"
-                    })]
-    public void Test(string fileName) => DoTestSolution(fileName);
+   [TestCaseSource(typeof(TestHelper), nameof(TestHelper.FileNames), new object[] { @"Highlightings\Naming\WithOverride" })]
+   public void Test(string fileName) => DoTestSolution(fileName);
 }

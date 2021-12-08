@@ -4,9 +4,9 @@ namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
 public interface IRenameChecker
 {
-    #region methods
+   #region methods
 
-    bool NeedRename(IMethodDeclaration method);
+   bool NeedRename(IMethodDeclaration method);
 
-    #endregion
+   #endregion
 }

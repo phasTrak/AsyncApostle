@@ -8,18 +8,18 @@ namespace AsyncApostle.Tests.Helpers;
 
 public class TestHelper
 {
-    #region methods
+   #region methods
 
-    public static TestCaseData[] FileNames(string folder) =>
-        GetFiles(Combine(new[]
-                         {
-                             CurrentContext.TestDirectory,
-                             @"..\..\..\..\Test\Data",
-                             folder
-                         }.ToArray()),
-                 "*.cs")
-            .Select(x => new TestCaseData(GetFileName(x)))
-            .ToArray();
+   public static TestCaseData[] FileNames(string folder) =>
+      GetFiles(Combine(new[]
+                       {
+                          CurrentContext.TestDirectory,
+                          @"..\..\..\..\Test\Data",
+                          folder
+                       }.ToArray()),
+               "*.cs")
+        .Select(x => new TestCaseData(GetFileName(x)))
+        .ToArray();
 
-    #endregion
+   #endregion
 }

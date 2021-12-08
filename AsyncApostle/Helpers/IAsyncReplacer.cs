@@ -4,9 +4,9 @@ namespace AsyncApostle.Helpers;
 
 public interface IAsyncReplacer
 {
-    #region methods
+   #region methods
 
-    void ReplaceToAsync(IMethod methodDeclaredElement);
+   void ReplaceToAsync(IMethod methodDeclaredElement);
 
-    #endregion
+   #endregion
 }

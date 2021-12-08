@@ -7,15 +7,15 @@ namespace AsyncApostle.AsyncHelpers.MethodFinders;
 [SolutionComponent]
 public class ObsoleteAttributeMethodFindingChecker : IConcreteMethodFindingChecker
 {
-    #region fields
+   #region fields
 
-    readonly ClrTypeName _obsoleteClass = new ("System.ObsoleteAttribute");
+   readonly ClrTypeName _obsoleteClass = new ("System.ObsoleteAttribute");
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public bool NeedSkip(IMethod originalMethod, IMethod candidateMethod) => !originalMethod.HasAttributeInstance(_obsoleteClass, false) && candidateMethod.HasAttributeInstance(_obsoleteClass, false);
+   public bool NeedSkip(IMethod originalMethod, IMethod candidateMethod) => !originalMethod.HasAttributeInstance(_obsoleteClass, false) && candidateMethod.HasAttributeInstance(_obsoleteClass, false);
 
-    #endregion
+   #endregion
 }

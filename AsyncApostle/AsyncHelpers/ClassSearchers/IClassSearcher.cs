@@ -5,16 +5,16 @@ namespace AsyncApostle.AsyncHelpers.ClassSearchers;
 
 public interface IClassSearcher
 {
-    #region properties
+   #region properties
 
-    int Priority { get; }
+   int Priority { get; }
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    [Pure]
-    ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType);
+   [Pure]
+   ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType);
 
-    #endregion
+   #endregion
 }

@@ -10,22 +10,22 @@ namespace AsyncApostle.AsyncHelpers.ClassSearchers;
 [SolutionComponent]
 public class EntityFrameworkCustomSearcher : IClassSearcher
 {
-    #region properties
+   #region properties
 
-    public int Priority => -100;
+   public int Priority => -100;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType)
-    {
-        var containingType = originalMethod.GetContainingType();
+   public ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType)
+   {
+      var containingType = originalMethod.GetContainingType();
 
-        return containingType is null ? null :
-               invokedType?.IsGenericIQueryable() is not true || !containingType.IsEnumerableClass() ? null : CreateTypeByCLRName(new ClrTypeName("System.Data.Entity.QueryableExtensions"), Unknown, invokedType.Module)
-                   .GetTypeElement();
-    }
+      return containingType is null                                                                ? null :
+             invokedType?.IsGenericIQueryable() is not true || !containingType.IsEnumerableClass() ? null : CreateTypeByCLRName(new ClrTypeName("System.Data.Entity.QueryableExtensions"), Unknown, invokedType.Module)
+                                                                                                       .GetTypeElement();
+   }
 
-    #endregion
+   #endregion
 }

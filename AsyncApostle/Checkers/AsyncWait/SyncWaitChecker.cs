@@ -7,28 +7,28 @@ namespace AsyncApostle.Checkers.AsyncWait;
 [SolutionComponent]
 class SyncWaitChecker : ISyncWaitChecker
 {
-    #region methods
+   #region methods
 
-    public bool CanReplaceResultToAsync(IReferenceExpression referenceExpression)
-    {
-        var type = referenceExpression.QualifierExpression?.Type();
+   static bool IsResult(IReferenceExpression referenceExpression) => referenceExpression.NameIdentifier?.Name is "Result";
 
-        return (type?.IsGenericTask() is true || type?.IsTask() is true) && IsResult(referenceExpression);
-    }
+   static IType? ResolveTargetType(IInvocationExpression invocationExpression) =>
+      (invocationExpression.InvokedExpression.FirstChild as IReferenceExpression)?.Type() ?? (invocationExpression.InvokedExpression.FirstChild as IInvocationExpression)?.Type();
 
-    public bool CanReplaceWaitToAsync(IInvocationExpression invocationExpression)
-    {
-        var targetType = ResolveTargetType(invocationExpression);
+   public bool CanReplaceResultToAsync(IReferenceExpression referenceExpression)
+   {
+      var type = referenceExpression.QualifierExpression?.Type();
 
-        return invocationExpression.Reference.Resolve()
-                                   .Result.DeclaredElement?.ShortName is "Wait" or "AwaitResult"
-               && (targetType?.IsTask() is true || targetType?.IsGenericTask() is true);
-    }
+      return (type?.IsGenericTask() is true || type?.IsTask() is true) && IsResult(referenceExpression);
+   }
 
-    static bool IsResult(IReferenceExpression referenceExpression) => referenceExpression.NameIdentifier?.Name is "Result";
+   public bool CanReplaceWaitToAsync(IInvocationExpression invocationExpression)
+   {
+      var targetType = ResolveTargetType(invocationExpression);
 
-    static IType? ResolveTargetType(IInvocationExpression invocationExpression) =>
-        (invocationExpression.InvokedExpression.FirstChild as IReferenceExpression)?.Type() ?? (invocationExpression.InvokedExpression.FirstChild as IInvocationExpression)?.Type();
+      return invocationExpression.Reference.Resolve()
+                                 .Result.DeclaredElement?.ShortName is "Wait" or "AwaitResult"
+          && (targetType?.IsTask() is true || targetType?.IsGenericTask() is true);
+   }
 
-    #endregion
+   #endregion
 }

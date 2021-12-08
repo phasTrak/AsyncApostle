@@ -2,8 +2,8 @@ namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 
 public enum ParameterCompareAggregateResult
 {
-    NotEqual,
-    DifferentLength,
-    Equal,
-    EqualOrCanBeConverting
+   NotEqual,
+   DifferentLength,
+   Equal,
+   EqualOrCanBeConverting
 }

@@ -17,7 +17,7 @@
                 </ol>
                 ]]>
     </description>
-    <version>1.0.0.4-eap07</version>
+    <version>2021.3.0.0</version>
     <vendor url="https://github.com/phasTrak/AsyncApostle">phasTrak</vendor>
     <idea-version since-build="213" until-build="213.*" />
     <extensions defaultExtensionNs="com.intellij" />

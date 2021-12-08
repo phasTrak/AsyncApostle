@@ -10,41 +10,41 @@ namespace AsyncApostle.QuickFixes;
 
 public class ConfigureAwaitAction : BulbActionBase
 {
-    #region fields
+   #region fields
 
-    readonly ConfigureAwaitHighlighting _configureAwaitHighlighting;
-    readonly bool _configureAwaitValue;
+   readonly ConfigureAwaitHighlighting _configureAwaitHighlighting;
+   readonly bool _configureAwaitValue;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public ConfigureAwaitAction(ConfigureAwaitHighlighting configureAwaitHighlighting, bool configureAwaitValue) => (_configureAwaitHighlighting, _configureAwaitValue) = (configureAwaitHighlighting, configureAwaitValue);
+   public ConfigureAwaitAction(ConfigureAwaitHighlighting configureAwaitHighlighting, bool configureAwaitValue) => (_configureAwaitHighlighting, _configureAwaitValue) = (configureAwaitHighlighting, configureAwaitValue);
 
-    #endregion
+   #endregion
 
-    #region properties
+   #region properties
 
-    public override string Text => $"Add ConfigureAwait({GetConfigureAwaitValueText()})";
+   public override string Text => $"Add ConfigureAwait({GetConfigureAwaitValueText()})";
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
-    {
-        var awaitExpression = _configureAwaitHighlighting.AwaitExpression;
+   protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
+   {
+      var awaitExpression = _configureAwaitHighlighting.AwaitExpression;
 
-        awaitExpression.Task.ReplaceBy(GetInstance(awaitExpression)
-                                           .CreateExpression($"$0.ConfigureAwait({GetConfigureAwaitValueText()})", awaitExpression.Task));
+      awaitExpression.Task.ReplaceBy(GetInstance(awaitExpression)
+                                       .CreateExpression($"$0.ConfigureAwait({GetConfigureAwaitValueText()})", awaitExpression.Task));
 
-        return null;
-    }
+      return null;
+   }
 
-    string GetConfigureAwaitValueText() =>
-        _configureAwaitValue
-            ? "true"
-            : "false";
+   string GetConfigureAwaitValueText() =>
+      _configureAwaitValue
+         ? "true"
+         : "false";
 
-    #endregion
+   #endregion
 }

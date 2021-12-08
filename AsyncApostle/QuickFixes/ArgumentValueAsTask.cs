@@ -18,62 +18,62 @@ namespace AsyncApostle.QuickFixes;
 [QuickFix]
 public class ArgumentValueAsTask : QuickFixBase
 {
-    #region fields
+   #region fields
 
-    readonly IncorrectArgumentTypeError _error;
+   readonly IncorrectArgumentTypeError _error;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public ArgumentValueAsTask(IncorrectArgumentTypeError error) => _error = error;
+   public ArgumentValueAsTask(IncorrectArgumentTypeError error) => _error = error;
 
-    #endregion
+   #endregion
 
-    #region properties
+   #region properties
 
-    public override string Text => "Replace to Task.FromResult";
+   public override string Text => "Replace to Task.FromResult";
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public override bool IsAvailable(IUserDataHolder cache)
-    {
-        var parameterType = _error.ParameterType;
+   public override bool IsAvailable(IUserDataHolder cache)
+   {
+      var parameterType = _error.ParameterType;
 
-        if (!parameterType.IsGenericTask())
-            return false;
+      if (!parameterType.IsGenericTask())
+         return false;
 
-        var scalarType = parameterType.GetScalarType();
+      var scalarType = parameterType.GetScalarType();
 
-        if (scalarType is null)
-            return false;
+      if (scalarType is null)
+         return false;
 
-        var substitution = scalarType.GetSubstitution();
+      var substitution = scalarType.GetSubstitution();
 
-        return !substitution.IsEmpty()
-               && _error.ArgumentType.ToIType()
-                        ?.IsSubtypeOf(substitution.Apply(substitution.Domain[0])) is true;
-    }
+      return !substitution.IsEmpty()
+          && _error.ArgumentType.ToIType()
+                  ?.IsSubtypeOf(substitution.Apply(substitution.Domain[0])) is true;
+   }
 
-    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
-    {
-        var expression = _error.Argument as ICSharpArgument;
+   protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
+   {
+      var expression = _error.Argument as ICSharpArgument;
 
-        if (expression?.GetContainingFile() is not ICSharpFile file)
-            return null;
+      if (expression?.GetContainingFile() is not ICSharpFile file)
+         return null;
 
-        var factory = GetInstance(expression);
+      var factory = GetInstance(expression);
 
-        expression.ReplaceBy(factory.CreateArgument(VALUE, factory.CreateExpression("Task.FromResult($0)", expression)));
+      expression.ReplaceBy(factory.CreateArgument(VALUE, factory.CreateExpression("Task.FromResult($0)", expression)));
 
-        if (file.ImportsEnumerable.OfType<IUsingSymbolDirective>()
-                .All(i => i.ImportedSymbolName.QualifiedName is not "System.Threading.Tasks"))
-            file.AddImport(factory.CreateUsingDirective("System.Threading.Tasks"), true);
+      if (file.ImportsEnumerable.OfType<IUsingSymbolDirective>()
+              .All(i => i.ImportedSymbolName.QualifiedName is not "System.Threading.Tasks"))
+         file.AddImport(factory.CreateUsingDirective("System.Threading.Tasks"), true);
 
-        return null;
-    }
+      return null;
+   }
 
-    #endregion
+   #endregion
 }

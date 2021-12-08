@@ -8,10 +8,11 @@ namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 [SolutionComponent]
 class TypeComparer : ITypeComparer
 {
-    #region methods
+   #region methods
 
-    public ParameterCompareResultAction Compare(IType originalParameterType, IType parameterType) =>
-        parameterType.IsEquals(originalParameterType) ? Equal : parameterType.IsAsyncDelegate(originalParameterType) ? NeedConvertToAsyncFunc : NotEqual;
+   public ParameterCompareResultAction Compare(IType originalParameterType, IType parameterType) =>
+      parameterType.IsEquals(originalParameterType)        ? Equal :
+      parameterType.IsAsyncDelegate(originalParameterType) ? NeedConvertToAsyncFunc : NotEqual;
 
-    #endregion
+   #endregion
 }

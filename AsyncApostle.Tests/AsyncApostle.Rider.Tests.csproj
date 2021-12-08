@@ -35,7 +35,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.Rider.SDK.Tests" Version="2021.3.0-eap07" />
+        <PackageReference Include="JetBrains.Rider.SDK.Tests" Version="2021.3.0" />
         <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.0.0" />
         <PackageReference Include="Microsoft.TestPlatform.TranslationLayer" Version="17.0.0" />
     </ItemGroup>

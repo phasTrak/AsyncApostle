@@ -9,33 +9,33 @@ namespace AsyncApostle.Helpers;
 
 public static class AttributesOwnerDeclarationExtensions
 {
-    #region methods
+   #region methods
 
-    public static bool ContainsAttribute(this IAttributesOwnerDeclaration declaration, IEnumerable<ClrTypeName> attributeNames)
-    {
-        var clrTypeNames = new HashSet<ClrTypeName>(attributeNames);
+   public static bool ContainsAttribute(this IAttributesOwnerDeclaration declaration, IEnumerable<ClrTypeName> attributeNames)
+   {
+      var clrTypeNames = new HashSet<ClrTypeName>(attributeNames);
 
-        return !clrTypeNames.IsNullOrEmpty()
-               && declaration.AttributesEnumerable.Select(attribute => attribute.Name.Reference.Resolve()
-                                                                                .DeclaredElement)
-                             .OfType<IClass>()
-                             .Select(attributeClass => attributeClass.GetClrName())
-                             .Any(clrTypeNames.Contains);
-    }
+      return !clrTypeNames.IsNullOrEmpty()
+          && declaration.AttributesEnumerable.Select(attribute => attribute.Name.Reference.Resolve()
+                                                                           .DeclaredElement)
+                        .OfType<IClass>()
+                        .Select(attributeClass => attributeClass.GetClrName())
+                        .Any(clrTypeNames.Contains);
+   }
 
-    public static bool ContainsAttribute(this IAttributesOwnerDeclaration declaration, IEnumerable<string> attributeNames)
-    {
-        static ClrTypeName NewClrTypeName(string name) => new (name);
+   public static bool ContainsAttribute(this IAttributesOwnerDeclaration declaration, IEnumerable<string> attributeNames)
+   {
+      static ClrTypeName NewClrTypeName(string name) => new (name);
 
-        var clrTypeNames = new HashSet<ClrTypeName>(attributeNames.Select(NewClrTypeName));
+      var clrTypeNames = new HashSet<ClrTypeName>(attributeNames.Select(NewClrTypeName));
 
-        return !clrTypeNames.IsNullOrEmpty()
-               && declaration.AttributesEnumerable.Select(attribute => attribute.Name.Reference.Resolve()
-                                                                                .DeclaredElement)
-                             .OfType<IClass>()
-                             .Select(attributeClass => attributeClass.GetClrName())
-                             .Any(clrTypeNames.Contains);
-    }
+      return !clrTypeNames.IsNullOrEmpty()
+          && declaration.AttributesEnumerable.Select(attribute => attribute.Name.Reference.Resolve()
+                                                                           .DeclaredElement)
+                        .OfType<IClass>()
+                        .Select(attributeClass => attributeClass.GetClrName())
+                        .Any(clrTypeNames.Contains);
+   }
 
-    #endregion
+   #endregion
 }

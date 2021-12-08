@@ -4,9 +4,9 @@ namespace AsyncApostle.Helpers;
 
 public interface IInvocationConverter
 {
-    #region methods
+   #region methods
 
-    bool TryReplaceInvocationToAsync(IInvocationExpression invocationExpression);
+   bool TryReplaceInvocationToAsync(IInvocationExpression invocationExpression);
 
-    #endregion
+   #endregion
 }

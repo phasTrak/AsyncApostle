@@ -4,10 +4,10 @@ namespace AsyncApostle.Checkers.AsyncWait;
 
 public interface ISyncWaitChecker
 {
-    #region methods
+   #region methods
 
-    bool CanReplaceResultToAsync(IReferenceExpression referenceExpression);
-    bool CanReplaceWaitToAsync(IInvocationExpression invocationExpression);
+   bool CanReplaceResultToAsync(IReferenceExpression referenceExpression);
+   bool CanReplaceWaitToAsync(IInvocationExpression invocationExpression);
 
-    #endregion
+   #endregion
 }

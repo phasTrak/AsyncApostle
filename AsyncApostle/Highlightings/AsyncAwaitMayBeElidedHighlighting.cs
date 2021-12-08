@@ -8,34 +8,39 @@ using static JetBrains.ReSharper.Feature.Services.Daemon.Severity;
 
 namespace AsyncApostle.Highlightings;
 
-[RegisterConfigurableSeverity(SeverityId, null, Id, "Elide async/await", "Elide async/await if task may be returned", WARNING)]
+[RegisterConfigurableSeverity(SeverityId,
+                              null,
+                              Id,
+                              "Elide async/await",
+                              "Elide async/await if task may be returned",
+                              WARNING)]
 [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
 public class AsyncAwaitMayBeElidedHighlighting : IHighlighting
 {
-    #region fields
+   #region fields
 
-    public const string SeverityId = "AsyncApostle.AsyncAwaitMayBeElidedHighlighting";
+   public const string SeverityId = "AsyncApostle.AsyncAwaitMayBeElidedHighlighting";
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public AsyncAwaitMayBeElidedHighlighting(IAwaitExpression awaitExpression) => AwaitExpression = awaitExpression;
+   public AsyncAwaitMayBeElidedHighlighting(IAwaitExpression awaitExpression) => AwaitExpression = awaitExpression;
 
-    #endregion
+   #endregion
 
-    #region properties
+   #region properties
 
-    public IAwaitExpression AwaitExpression { get; }
-    public string ErrorStripeToolTip => "Await may be elided.";
-    public string ToolTip => "Async in method declaration and await may be elided.";
+   public IAwaitExpression AwaitExpression { get; }
+   public string ErrorStripeToolTip => "Await may be elided.";
+   public string ToolTip => "Async in method declaration and await may be elided.";
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public DocumentRange CalculateRange() => AwaitExpression.GetDocumentRange();
-    public bool IsValid() => AwaitExpression.IsValid();
+   public DocumentRange CalculateRange() => AwaitExpression.GetDocumentRange();
+   public bool IsValid() => AwaitExpression.IsValid();
 
-    #endregion
+   #endregion
 }

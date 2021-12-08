@@ -8,21 +8,21 @@ namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 [SolutionComponent]
 class CanBeUseAsyncMethodChecker : ICanBeUseAsyncMethodChecker
 {
-    #region fields
+   #region fields
 
-    readonly IConcreteCanBeUseAsyncMethodChecker[] _checkers;
+   readonly IConcreteCanBeUseAsyncMethodChecker[] _checkers;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public CanBeUseAsyncMethodChecker(IEnumerable<IConcreteCanBeUseAsyncMethodChecker> checkers) => _checkers = checkers.ToArray();
+   public CanBeUseAsyncMethodChecker(IEnumerable<IConcreteCanBeUseAsyncMethodChecker> checkers) => _checkers = checkers.ToArray();
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public bool CanReplace(IInvocationExpression element) => _checkers.All(x => x.CanReplace(element));
+   public bool CanReplace(IInvocationExpression element) => _checkers.All(x => x.CanReplace(element));
 
-    #endregion
+   #endregion
 }

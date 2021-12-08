@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Core;
 using Nuke.Core.Utilities.Collections;
@@ -10,72 +9,68 @@ using static Nuke.Core.IO.PathConstruction;
 
 class Build : NukeBuild
 {
-    #region properties
+   #region properties
 
-    // Auto-injection fields:
+   // Auto-injection fields:
 
-    // [GitVersion] readonly GitVersion GitVersion;
-    // Semantic versioning. Must have 'GitVersion.CommandLine' referenced.
+   // [GitVersion] readonly GitVersion GitVersion;
+   // Semantic versioning. Must have 'GitVersion.CommandLine' referenced.
 
-    // [GitRepository] readonly GitRepository GitRepository;
-    // Parses origin, branch name and head from git config.
+   // [GitRepository] readonly GitRepository GitRepository;
+   // Parses origin, branch name and head from git config.
 
-    // [Parameter] readonly string MyGetApiKey;
-    // Returns command-line arguments and environment variables.
-    public override AbsolutePath ArtifactsDirectory => SolutionDirectory / "packages";
+   // [Parameter] readonly string MyGetApiKey;
+   // Returns command-line arguments and environment variables.
+   public override AbsolutePath ArtifactsDirectory => SolutionDirectory / "packages";
 
-    [NotNull]
-    Target Clean =>
-        _ => _.Executes(() =>
-                        {
-                            EnsureCleanDirectory(ArtifactsDirectory);
+   Target Clean =>
+      _ => _.Executes(() =>
+                      {
+                         EnsureCleanDirectory(ArtifactsDirectory);
 
-                            GlobDirectories(SolutionDirectory / "AsyncApostle", "**/bin", "**/obj")
-                                .ForEach(EnsureCleanDirectory);
-                        });
+                         GlobDirectories(SolutionDirectory / "AsyncApostle", "**/bin", "**/obj")
+                           .ForEach(EnsureCleanDirectory);
+                      });
 
-    [NotNull]
-    Target Compile =>
-        _ => _.DependsOn(Restore)
-              .Executes(() => DotNetBuild(_ => DefaultDotNetBuild));
+   Target Compile =>
+      _ => _.DependsOn(Restore)
+            .Executes(() => DotNetBuild(_ => DefaultDotNetBuild));
 
-    [NotNull]
-    Target Pack =>
-        _ => _.DependsOn(Compile)
-              .Executes(() =>
-                        {
-                            // TODO: DeleteDirectory not work, and move to Clean
-                            if (Exists(ArtifactsDirectory))
-                                Delete(ArtifactsDirectory, true);
+   Target Pack =>
+      _ => _.DependsOn(Compile)
+            .Executes(() =>
+                      {
+                         // TODO: DeleteDirectory not work, and move to Clean
+                         if (Exists(ArtifactsDirectory))
+                            Delete(ArtifactsDirectory, true);
 
-                            DotNetPack(_ => DefaultDotNetPack.SetOutputDirectory(ArtifactsDirectory)
-                                                             .DisableIncludeSymbols()
-                                                             .SetProject("AsyncApostle/AsyncApostle.csproj"));
+                         DotNetPack(_ => DefaultDotNetPack.SetOutputDirectory(ArtifactsDirectory)
+                                                          .DisableIncludeSymbols()
+                                                          .SetProject("AsyncApostle/AsyncApostle.csproj"));
 
-                            DotNetPack(_ => DefaultDotNetPack.SetOutputDirectory(SolutionDirectory / "Rider" / "AsyncApostle.Rider")
-                                                             .DisableIncludeSymbols()
-                                                             .SetProject("AsyncApostle/AsyncApostle.Rider.csproj"));
+                         DotNetPack(_ => DefaultDotNetPack.SetOutputDirectory(SolutionDirectory / "Rider" / "AsyncApostle.Rider")
+                                                          .DisableIncludeSymbols()
+                                                          .SetProject("AsyncApostle/AsyncApostle.Rider.csproj"));
 
-                            CreateFromDirectory(SolutionDirectory / "Rider", ArtifactsDirectory / "AsyncApostle.Rider.zip");
-                        });
+                         CreateFromDirectory(SolutionDirectory / "Rider", ArtifactsDirectory / "AsyncApostle.Rider.zip");
+                      });
 
-    [NotNull]
-    Target Restore =>
-        _ => _.DependsOn(Clean)
-              .Executes(() =>
-                        {
-                            DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.csproj"));
-                            DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
-                            DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle.Tests/AsyncApostle.Tests.csproj"));
-                            DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle.Tests/AsyncApostle.Rider.Tests.csproj"));
-                        });
+   Target Restore =>
+      _ => _.DependsOn(Clean)
+            .Executes(() =>
+                      {
+                         DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.csproj"));
+                         DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
+                         DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle.Tests/AsyncApostle.Tests.csproj"));
+                         DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle.Tests/AsyncApostle.Rider.Tests.csproj"));
+                      });
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    // Console application entry. Also defines the default target.
-    public static int Main() => Execute<Build>(x => x.Compile);
+   // Console application entry. Also defines the default target.
+   public static int Main() => Execute<Build>(x => x.Compile);
 
-    #endregion
+   #endregion
 }

@@ -10,14 +10,9 @@ namespace AsyncApostle.Tests.ContextActions;
 [TestNetFramework46]
 public class MethodToAsyncApostleTests : CSharpContextActionExecuteTestBase<MethodToAsyncApostle>
 {
-    protected override string ExtraPath => Empty;
-    protected override string RelativeTestDataPath => $@"ContextActions\{nameof(MethodToAsyncApostleTests)}";
+   protected override string ExtraPath => Empty;
+   protected override string RelativeTestDataPath => $@"ContextActions\{nameof(MethodToAsyncApostleTests)}";
 
-    [TestCaseSource(typeof(TestHelper),
-                    nameof(TestHelper.FileNames),
-                    new object[]
-                    {
-                        $@"ContextActions\{nameof(MethodToAsyncApostleTests)}"
-                    })]
-    public void Test(string fileName) => DoTestSolution(fileName);
+   [TestCaseSource(typeof(TestHelper), nameof(TestHelper.FileNames), new object[] { $@"ContextActions\{nameof(MethodToAsyncApostleTests)}" })]
+   public void Test(string fileName) => DoTestSolution(fileName);
 }

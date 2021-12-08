@@ -10,28 +10,28 @@ namespace AsyncApostle.QuickFixes;
 [QuickFix]
 public class ConfigureAwaitQuickFix : IQuickFix
 {
-    #region fields
+   #region fields
 
-    readonly ConfigureAwaitHighlighting _configureAwaitHighlighting;
+   readonly ConfigureAwaitHighlighting _configureAwaitHighlighting;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public ConfigureAwaitQuickFix(ConfigureAwaitHighlighting configureAwaitHighlighting) => _configureAwaitHighlighting = configureAwaitHighlighting;
+   public ConfigureAwaitQuickFix(ConfigureAwaitHighlighting configureAwaitHighlighting) => _configureAwaitHighlighting = configureAwaitHighlighting;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public IEnumerable<IntentionAction> CreateBulbItems() =>
-        new[]
-        {
-            new ConfigureAwaitAction(_configureAwaitHighlighting, false),
-            new ConfigureAwaitAction(_configureAwaitHighlighting, true)
-        }.ToQuickFixIntentions();
+   public IEnumerable<IntentionAction> CreateBulbItems() =>
+      new[]
+      {
+         new ConfigureAwaitAction(_configureAwaitHighlighting, false),
+         new ConfigureAwaitAction(_configureAwaitHighlighting, true)
+      }.ToQuickFixIntentions();
 
-    public bool IsAvailable(IUserDataHolder cache) => _configureAwaitHighlighting.IsValid();
+   public bool IsAvailable(IUserDataHolder cache) => _configureAwaitHighlighting.IsValid();
 
-    #endregion
+   #endregion
 }

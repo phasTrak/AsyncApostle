@@ -9,16 +9,16 @@ namespace AsyncApostle.Settings.ConfigureAwaitOptions;
 [OptionsPage(PID, "ConfigureAwait settings", typeof(ServicesThemedIcons.InspectionToolWindow), ParentId = AsyncApostlePage.PID)]
 public sealed class AsyncApostleConfigureAwaitPage : BeSimpleOptionsPage
 {
-    #region fields
+   #region fields
 
-    public const string PID = "AsyncApostleConfigureAwait";
+   public const string PID = "AsyncApostleConfigureAwait";
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public AsyncApostleConfigureAwaitPage(Lifetime lifetime, OptionsPageContext optionsPageContext, OptionsSettingsSmartContext store) : base(lifetime, optionsPageContext, store) =>
-        AddBoolOption((AsyncApostleConfigureAwaitSettings options) => options.ExcludeTestMethodsFromConfigureAwait, "Do not suggest add 'ConfigureAwait' in test method.");
+   public AsyncApostleConfigureAwaitPage(Lifetime lifetime, OptionsPageContext optionsPageContext, OptionsSettingsSmartContext store) : base(lifetime, optionsPageContext, store) =>
+      AddBoolOption((AsyncApostleConfigureAwaitSettings options) => options.ExcludeTestMethodsFromConfigureAwait, "Do not suggest add 'ConfigureAwait' in test method.");
 
-    #endregion
+   #endregion
 }

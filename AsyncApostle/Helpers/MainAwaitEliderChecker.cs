@@ -11,50 +11,50 @@ namespace AsyncApostle.Helpers;
 [SolutionComponent]
 public class MainAwaitEliderChecker : IConcreteAwaitEliderChecker
 {
-    #region fields
+   #region fields
 
-    readonly ILastNodeChecker _lastNodeChecker;
+   readonly ILastNodeChecker _lastNodeChecker;
 
-    #endregion
+   #endregion
 
-    #region constructors
+   #region constructors
 
-    public MainAwaitEliderChecker(ILastNodeChecker lastNodeChecker) => _lastNodeChecker = lastNodeChecker;
+   public MainAwaitEliderChecker(ILastNodeChecker lastNodeChecker) => _lastNodeChecker = lastNodeChecker;
 
-    #endregion
+   #endregion
 
-    #region methods
+   #region methods
 
-    public bool CanElide(IParametersOwnerDeclaration element)
-    {
-        var returnType = element.DeclaredParametersOwner?.ReturnType;
+   public bool CanElide(IParametersOwnerDeclaration element)
+   {
+      var returnType = element.DeclaredParametersOwner?.ReturnType;
 
-        if (returnType is null)
-            return false;
+      if (returnType is null)
+         return false;
 
-        var returnStatements = element.DescendantsInScope<IReturnStatement>()
-                                      .ToArray();
+      var returnStatements = element.DescendantsInScope<IReturnStatement>()
+                                    .ToArray();
 
-        if (returnType.IsTask() && returnStatements.Any() || returnType.IsGenericTask() && returnStatements.Length > 1)
-            return false;
+      if (returnType.IsTask() && returnStatements.Any() || returnType.IsGenericTask() && returnStatements.Length > 1)
+         return false;
 
-        var awaitExpressions = element.DescendantsInScope<IAwaitExpression>()
-                                      .ToArray();
+      var awaitExpressions = element.DescendantsInScope<IAwaitExpression>()
+                                    .ToArray();
 
-        // TODO: think about this, different settings
-        if (awaitExpressions.Length is not 1)
-            return false;
+      // TODO: think about this, different settings
+      if (awaitExpressions.Length is not 1)
+         return false;
 
-        var awaitExpression = awaitExpressions.First();
+      var awaitExpression = awaitExpressions.First();
 
-        if (returnStatements.Any() && returnStatements.First() != awaitExpression.GetContainingStatement() || !_lastNodeChecker.IsLastNode(awaitExpression))
-            return false;
+      if (returnStatements.Any() && returnStatements.First() != awaitExpression.GetContainingStatement() || !_lastNodeChecker.IsLastNode(awaitExpression))
+         return false;
 
-        var awaitingType = (awaitExpression.Task as IInvocationExpression)?.RemoveConfigureAwait()
-                                                                          .Type();
+      var awaitingType = (awaitExpression.Task as IInvocationExpression)?.RemoveConfigureAwait()
+                                                                         .Type();
 
-        return awaitingType is not null && (awaitingType.Equals(returnType) || returnType.IsTask() && awaitingType.IsGenericTask() || returnType.IsVoid());
-    }
+      return awaitingType is not null && (awaitingType.Equals(returnType) || returnType.IsTask() && awaitingType.IsGenericTask() || returnType.IsVoid());
+   }
 
-    #endregion
+   #endregion
 }
