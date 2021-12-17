@@ -1,13 +1,13 @@
 <Project>
 
    <PropertyGroup>
-      <AssemblyVersion>2021.3.0.1208</AssemblyVersion>
+      <AssemblyVersion>2021.3.0.1217</AssemblyVersion>
       <Authors>phasTrak</Authors>
       <CodeAnalysisRuleSet>$(SolutionDir)Strict.ruleset</CodeAnalysisRuleSet>
       <Copyright>phasTrak</Copyright>
       <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
       <IsPackable>true</IsPackable>
-      <FileVersion>2021.3.0.1208</FileVersion>
+      <FileVersion>2021.3.0.1217</FileVersion>
       <LangVersion>10.0</LangVersion>
       <Nullable>enable</Nullable>
       <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
@@ -19,7 +19,7 @@
       <DefaultItemExcludes>$(DefaultItemExcludes);obj\**</DefaultItemExcludes>
       <BaseIntermediateOutputPath>obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
       <OutputPath>bin\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
-      <Version>2021.3.0.0</Version>
+      <Version>2021.3.0.1</Version>
    </PropertyGroup>
 
 </Project>
