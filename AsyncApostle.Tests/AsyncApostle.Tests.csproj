@@ -31,9 +31,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2021.3.0" />
+        <PackageReference Include="JetBrains.Lifetimes" Version="2021.3.4" />
+        <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2021.3.1">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.0.0" />
         <PackageReference Include="Microsoft.TestPlatform.TranslationLayer" Version="17.0.0" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
     </ItemGroup>
 
     <ItemGroup>
