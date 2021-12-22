@@ -5,13 +5,14 @@
     <PropertyGroup>
         <Description>Plugin for rider, for converting code to async.</Description>
         <PackageId>AsyncApostle.Rider</PackageId>
+        <RootNamespace>AsyncApostle</RootNamespace>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DefineConstants>TRACE;DEBUG;NETFRAMEWORK;NET472;RIDER</DefineConstants>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
         <DefineConstants>TRACE;RELEASE;NETFRAMEWORK;NET472;RIDER</DefineConstants>
     </PropertyGroup>
 
@@ -22,30 +23,6 @@
     <ItemGroup>
         <PackageReference Include="JetBrains.Rider.SDK" Version="2021.3.1" PrivateAssets="All" />
         <PackageReference Include="Wave" Version="[213]" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Remove="tmp\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Remove="tmp\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Remove="tmp\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Remove="packages\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Remove="packages\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Remove="packages\**" />
     </ItemGroup>
 
 </Project>

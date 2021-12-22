@@ -61,8 +61,6 @@ class Build : NukeBuild
                       {
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.csproj"));
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
-                         DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle.Tests/AsyncApostle.Tests.csproj"));
-                         DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle.Tests/AsyncApostle.Rider.Tests.csproj"));
                       });
 
    #endregion

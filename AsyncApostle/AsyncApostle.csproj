@@ -4,14 +4,19 @@
 
    <PropertyGroup>
       <Description>Plugin for resharper, for converting code to async.</Description>
+      <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
+      <IsPackable>true</IsPackable>
+      <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
       <PackageId>AsyncApostle.AsyncApostle</PackageId>
+      <PackageProjectUrl>https://github.com/phasTrak/AsyncApostle</PackageProjectUrl>
+      <PackageTags>async</PackageTags>
    </PropertyGroup>
 
-   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DefineConstants>TRACE;DEBUG;NETFRAMEWORK;NET472;RESHARPER</DefineConstants>
    </PropertyGroup>
 
-   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DefineConstants>TRACE;RELEASE;NETFRAMEWORK;NET472;RESHARPER</DefineConstants>
    </PropertyGroup>
 
