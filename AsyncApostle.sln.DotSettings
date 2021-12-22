@@ -775,4 +775,5 @@
    <s:Boolean x:Key="/Default/UserDictionary/Words/=Comparers/@EntryIndexedValue">True</s:Boolean>
    <s:Boolean x:Key="/Default/UserDictionary/Words/=Elider/@EntryIndexedValue">True</s:Boolean>
    <s:Boolean x:Key="/Default/UserDictionary/Words/=Eliders/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=nupkg/@EntryIndexedValue">True</s:Boolean>
    <s:Boolean x:Key="/Default/UserDictionary/Words/=versioning/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

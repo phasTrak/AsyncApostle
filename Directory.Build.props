@@ -1,19 +1,19 @@
 <Project>
 
    <PropertyGroup>
-      <AssemblyVersion>2021.3.1.1221</AssemblyVersion>
+      <AssemblyVersion>2021.3.1.1222</AssemblyVersion>
       <Authors>phasTrak</Authors>
       <BaseIntermediateOutputPath>obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
       <CodeAnalysisRuleSet>$(SolutionDir)Strict.ruleset</CodeAnalysisRuleSet>
       <Copyright>phasTrak</Copyright>
       <DefaultItemExcludes>$(DefaultItemExcludes);obj\**</DefaultItemExcludes>
-      <FileVersion>2021.3.1.1221</FileVersion>
+      <FileVersion>2021.3.1.1222</FileVersion>
       <LangVersion>10.0</LangVersion>
       <Nullable>enable</Nullable>
       <OutputPath>bin\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
       <TargetFramework>net472</TargetFramework>
       <Title>AsyncApostle</Title>
-      <Version>2021.3.1.0</Version>
+      <Version>2021.3.1.1</Version>
    </PropertyGroup>
 
 </Project>
