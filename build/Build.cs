@@ -71,6 +71,9 @@ class Build : NukeBuild
                          WriteLine($@"Move ""{ArtifactsDirectory / $"AsyncApostle.Rider.{Version}" / "lib"}"" to ""{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider"}""{NewLine}");
                          Move(ArtifactsDirectory / $"AsyncApostle.Rider.{Version}" / "lib", ArtifactsDirectory / "Rider" / "AsyncApostle.Rider");
 
+                         WriteLine($@"Rename ""{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "net472"}"" to ""{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "dotnet"}""{NewLine}");
+                         Move(ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "net472", ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "dotnet");
+
                          WriteLine($@"Delete ""{ArtifactsDirectory / $"AsyncApostle.Rider.{Version}"}""{NewLine}");
                          Delete(ArtifactsDirectory / $"AsyncApostle.Rider.{Version}", true);
 
