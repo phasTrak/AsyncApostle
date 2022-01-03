@@ -21,7 +21,7 @@
    </PropertyGroup>
 
    <ItemGroup>
-      <PackageReference Include="JetBrains.ReSharper.SDK" Version="2021.3.1" PrivateAssets="All" />
+      <PackageReference Include="JetBrains.ReSharper.SDK" Version="2021.3.2" PrivateAssets="All" />
       <PackageReference Include="Wave" Version="[213]" />
    </ItemGroup>
 
