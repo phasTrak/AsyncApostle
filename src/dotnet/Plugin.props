@@ -16,6 +16,7 @@
                    <li>Analyze a method body and replace the every synchronous call with its async implementation if exists.</li>
                    <li>Analyze a method body and replace the every .Result call with the await call.</li>
                    <li>Analyze usage of a processed method. If the method is called from async context the AsyncApostle will replace its call with the await expression, otherwise it will just call .Result or .Wait()</li>
+                   <li>Analyze invocation of a Task-returning method. If the Task returned from the method is neither awaited nor returned, a warning will be shown.</li>
                </ol>]]>
      </description>
 
