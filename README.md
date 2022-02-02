@@ -104,3 +104,23 @@ Analyze invocation of a `Task`-returning method. If the `Task` returned from the
 
 ![Missing await](ReadMe/MissingAwait.gif)
 </details>
+
+## Development
+
+Taken from the [official JetBrains template](https://raw.githubusercontent.com/JetBrains/resharper-rider-plugin).
+
+### Prerequisites
+
+When developing for Rider, [Java 11 Amazon Corretto](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html) should be installed.
+
+### Run
+
+For general development, there are a couple of scripts/invocations worth knowing. Most importantly, to run and debug your plugin, invoke:
+
+```
+# For Rider
+gradlew :runIde
+
+# For ReSharper (VisualStudio)
+powershell .\runVisualStudio.ps1
+```
