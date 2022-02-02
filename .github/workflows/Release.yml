@@ -35,5 +35,7 @@ jobs:
     - name: Create GitHub release
       uses: softprops/action-gh-release@v1
       with:
-        files: ${{ github.workspace }}/output/*.nupkg
+        files: |
+         ${{ github.workspace }}/output/*.nupkg
+         ${{ github.workspace }}/output/*.zip
         tag_name: ${{ steps.tagName.outputs.tag }}
