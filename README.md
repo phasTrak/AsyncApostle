@@ -16,6 +16,7 @@ AsyncApostle can:
 4. Analyze a method body and replace the every synchronous call with its `async` implementation if exists.
 5. Analyze a method body and replace the every `.Result` call with the `await` call.
 6. Analyze usage of a processed method. If the method is called from `async` context the AsyncApostle will replace its call with the `await` expression, otherwise it will just call `.Result` or `.Wait()`
+7. Analyze invocation of a `Task`-returning method. If the `Task` returned from the method is neither awaited nor returned, a warning will be shown.
 
 <details>
     <summary>Converter method to async demo</summary>
@@ -92,4 +93,14 @@ An `await` expression can be ignored if this `await` expression is the single in
     <summary>Async/await ignoring demo</summary>
 
 ![Async/await ignoring](ReadMe/AsyncAwaitMayBeElided.gif)
+</details>
+
+### Missing await
+
+Analyze invocation of a `Task`-returning method. If the `Task` returned from the method is neither awaited nor returned, a warning will be shown. 
+
+<details>
+    <summary>Missing `await` demo</summary>
+
+![Missing await](ReadMe/MissingAwait.gif)
 </details>
