@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ReSharperPlugin.AsyncApostle\ReSharperPlugin.AsyncApostle.csproj" />
+    <ProjectReference Include="..\AsyncApostle\AsyncApostle.csproj" />
   </ItemGroup>
 
   <ItemGroup>
