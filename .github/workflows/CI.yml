@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  CI:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install and setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0'
+    - name: Import the Corretto public key
+      run: wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - 
+    - name: Add the repository to the system list
+      run: sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
+    - name: Install Corretto 11
+      run: sudo apt-get update; sudo apt-get install -y java-11-amazon-corretto-jdk
+    - name: Mark gradlew as executable
+      run: chmod 777 gradlew    
+    - name: Build Rider and ReSharper plugin
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: buildPlugin
