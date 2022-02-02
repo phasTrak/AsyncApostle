@@ -2,9 +2,8 @@ name: Release
 
 on:
   push:
-    # Sequence of patterns matched against refs/tags
     tags:
-      - '*' # Push events to matching everything, e. g. "v1" or "2021.2.2.1"
+      - '*'
 
 jobs:
   Release:
