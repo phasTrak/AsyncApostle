@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using AsyncApostle.AsyncHelpers.MissingAwaitChecker;
+﻿using AsyncApostle.AsyncHelpers.MissingAwaitChecker;
 using AsyncApostle.Helpers;
 using AsyncApostle.Highlightings;
 using JetBrains.ProjectModel;
@@ -19,11 +18,11 @@ public class MissingAwaitAnalyzer : ElementProblemAnalyzer<IParametersOwnerDecla
       IHighlightingConsumer consumer)
    {
       var missingAwaitChecker = element.GetSolution().GetComponent<IMissingAwaitChecker>();
-      var returnStatement = element.DescendantsInScope<IReturnStatement>().FirstOrDefault();
 
-      foreach (var invocationExpression in element.DescendantsInScope<IInvocationExpression>())
-         if (missingAwaitChecker.AwaitIsMissing(invocationExpression, returnStatement))
-            consumer.AddHighlighting(new MissingAwaitHighlighting(invocationExpression));
+      foreach (var cSharpTreeNode in element.DescendantsInScope<ICSharpTreeNode>())
+         if (missingAwaitChecker.AwaitIsMissing(cSharpTreeNode))
+            consumer.AddHighlighting(
+               new MissingAwaitHighlighting(cSharpTreeNode.GetContainingNode<IInvocationExpression>()!));
    }
 
    #endregion

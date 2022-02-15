@@ -6,7 +6,7 @@ public interface IMissingAwaitChecker
 {
    #region methods
 
-   bool AwaitIsMissing(IInvocationExpression invocationExpression, IReturnStatement? returnStatement);
+   bool AwaitIsMissing(ICSharpTreeNode cSharpTreeNode);
 
    #endregion
 }

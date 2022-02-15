@@ -12,11 +12,14 @@ namespace AsyncApostle.AsyncHelpers.MissingAwaitChecker;
 public class MissingAwaitChecker : IMissingAwaitChecker
 {
    /// <inheritdoc />
-   public bool AwaitIsMissing(IInvocationExpression invocationExpression, IReturnStatement? returnStatement)
+   public bool AwaitIsMissing(ICSharpTreeNode cSharpTreeNode)
    {
+      var invocationExpression = cSharpTreeNode.GetContainingNode<IInvocationExpression>();
+      if (invocationExpression == null) return false;
+
       if (!InvocationCouldBeAwaited(invocationExpression)) return false;
 
-      var invocationIsReturned = invocationExpression.GetContainingStatement() == returnStatement;
+      var invocationIsReturned = cSharpTreeNode.GetContainingNode<IReturnStatement>() != null;
       if (!InvocationIsAwaited(invocationExpression) && !invocationIsReturned) return true;
 
       return false;
