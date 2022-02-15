@@ -16,6 +16,7 @@ AsyncApostle can:
 4. Analyze a method body and replace the every synchronous call with its `async` implementation if exists.
 5. Analyze a method body and replace the every `.Result` call with the `await` call.
 6. Analyze usage of a processed method. If the method is called from `async` context the AsyncApostle will replace its call with the `await` expression, otherwise it will just call `.Result` or `.Wait()`
+7. Analyze invocation of a `Task`-returning method. If the `Task` returned from the method is neither awaited nor returned, a warning will be shown.
 
 <details>
     <summary>Converter method to async demo</summary>
@@ -93,3 +94,33 @@ An `await` expression can be ignored if this `await` expression is the single in
 
 ![Async/await ignoring](ReadMe/AsyncAwaitMayBeElided.gif)
 </details>
+
+### Missing await
+
+Analyze invocation of a `Task`-returning method. If the `Task` returned from the method is neither awaited nor returned, a warning will be shown. 
+
+<details>
+    <summary>Missing `await` demo</summary>
+
+![Missing await](ReadMe/MissingAwait.gif)
+</details>
+
+## Development
+
+Taken from the [official JetBrains template](https://raw.githubusercontent.com/JetBrains/resharper-rider-plugin).
+
+### Prerequisites
+
+When developing for Rider, [Java 11 Amazon Corretto](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html) should be installed.
+
+### Run
+
+For general development, there are a couple of scripts/invocations worth knowing. Most importantly, to run and debug your plugin, invoke:
+
+```
+# For Rider
+gradlew :runIde
+
+# For ReSharper (VisualStudio)
+powershell .\runVisualStudio.ps1
+```
