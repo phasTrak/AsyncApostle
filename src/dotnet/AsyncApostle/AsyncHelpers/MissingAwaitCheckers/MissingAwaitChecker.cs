@@ -19,8 +19,25 @@ public class MissingAwaitChecker : IMissingAwaitChecker
 
       if (!InvocationCouldBeAwaited(invocationExpression)) return false;
 
-      var invocationIsReturned = cSharpTreeNode.GetContainingNode<IReturnStatement>() != null;
-      if (!InvocationIsAwaited(invocationExpression) && !invocationIsReturned) return true;
+      if (!InvocationIsAwaited(invocationExpression) && !InvocationIsReturned(cSharpTreeNode)) return true;
+
+      return false;
+   }
+
+   private static bool InvocationIsReturned(ICSharpTreeNode cSharpTreeNode)
+   {
+      var isReturnStatement = cSharpTreeNode.GetContainingNode<IReturnStatement>() != null;
+
+      var isExpressionStatement = IsExpressionStatement(cSharpTreeNode);
+
+      return isReturnStatement || isExpressionStatement;
+   }
+
+   private static bool IsExpressionStatement(ITreeNode cSharpTreeNode)
+   {
+      if (cSharpTreeNode is IArrowExpressionClause) return true;
+
+      if (cSharpTreeNode.Parent != null) return IsExpressionStatement(cSharpTreeNode.Parent);
 
       return false;
    }
