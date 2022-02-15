@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using AsyncApostle.Helpers;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -13,19 +12,12 @@ namespace AsyncApostle.AsyncHelpers.MissingAwaitChecker;
 public class MissingAwaitChecker : IMissingAwaitChecker
 {
    /// <inheritdoc />
-   public bool AwaitIsMissing(IParametersOwnerDeclaration element)
+   public bool AwaitIsMissing(IInvocationExpression invocationExpression, IReturnStatement? returnStatement)
    {
-      var returnStatement = element.DescendantsInScope<IReturnStatement>().FirstOrDefault();
-      var invocationExpressions = element.DescendantsInScope<IInvocationExpression>()
-         .ToArray();
+      if (!InvocationCouldBeAwaited(invocationExpression)) return false;
 
-      foreach (var invocationExpression in invocationExpressions)
-      {
-         if (!InvocationCouldBeAwaited(invocationExpression)) continue;
-
-         var invocationIsReturned = invocationExpression.GetContainingStatement() == returnStatement;
-         if (!InvocationIsAwaited(invocationExpression) && !invocationIsReturned) return true;
-      }
+      var invocationIsReturned = invocationExpression.GetContainingStatement() == returnStatement;
+      if (!InvocationIsAwaited(invocationExpression) && !invocationIsReturned) return true;
 
       return false;
    }
@@ -54,7 +46,22 @@ public class MissingAwaitChecker : IMissingAwaitChecker
       if (treeNode is IAwaitExpression || treeNode.Parent is IAwaitExpression)
          return true;
 
+      if (IsSynchronouslyAwaited(treeNode)) return true;
+
       return treeNode.Parent != null && InvocationIsAwaited(treeNode.Parent);
+   }
+
+   /// <summary>
+   ///    Checks if <c>GetAwaiter().GetResult()</c> is used.
+   /// </summary>
+   private static bool IsSynchronouslyAwaited(ITreeNode treeNode)
+   {
+      if (treeNode is IReferenceExpression r1 && r1.NameIdentifier.Name.Equals("GetAwaiter", StringComparison.Ordinal))
+         if (treeNode.Parent?.Parent is IReferenceExpression r2 &&
+             r2.NameIdentifier.Name.Equals("GetResult", StringComparison.Ordinal))
+            return true;
+
+      return false;
    }
 
    private static bool ShortNamesMatch(IDeclaredElement element, string shortName) =>
