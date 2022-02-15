@@ -55,14 +55,19 @@ public class MissingAwaitChecker : IMissingAwaitChecker
    }
 
    /// <summary>
-   ///    Checks if <c>GetAwaiter().GetResult()</c> is used.
+   ///    Checks if <c>.GetAwaiter().GetResult()</c> or <c>.Result</c> is used.
    /// </summary>
    private static bool IsSynchronouslyAwaited(ITreeNode treeNode)
    {
+      // Handle .GetAwaiter().GetResult()
       if (treeNode is IReferenceExpression r1 && r1.NameIdentifier.Name.Equals("GetAwaiter", StringComparison.Ordinal))
          if (treeNode.Parent?.Parent is IReferenceExpression r2 &&
              r2.NameIdentifier.Name.Equals("GetResult", StringComparison.Ordinal))
             return true;
+
+      // Handle .Result
+      if (treeNode is IReferenceExpression r3 && r3.NameIdentifier.Name.Equals("Result", StringComparison.Ordinal))
+         return true;
 
       return false;
    }
