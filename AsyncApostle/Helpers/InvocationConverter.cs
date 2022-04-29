@@ -74,16 +74,12 @@ public class InvocationConverter : IInvocationConverter
 
             lambdaExpression.SetAsync(true);
 
-            IInvocationExpression? innerInvocationExpression;
-
-            while ((innerInvocationExpression = lambdaExpression.DescendantsInScope<IInvocationExpression>()
-                                                                .FirstOrDefault(_syncWaitChecker.CanReplaceWaitToAsync)) is not null)
+            while (lambdaExpression.DescendantsInScope<IInvocationExpression>()
+                                   .FirstOrDefault(_syncWaitChecker.CanReplaceWaitToAsync) is { } innerInvocationExpression)
                _syncWaitConverter.ReplaceWaitToAsync(innerInvocationExpression);
 
-            IReferenceExpression? referenceExpression;
-
-            while ((referenceExpression = lambdaExpression.DescendantsInScope<IReferenceExpression>()
-                                                          .FirstOrDefault(_syncWaitChecker.CanReplaceResultToAsync)) is not null)
+            while (lambdaExpression.DescendantsInScope<IReferenceExpression>()
+                                   .FirstOrDefault(_syncWaitChecker.CanReplaceResultToAsync) is { } referenceExpression)
                _syncWaitConverter.ReplaceResultToAsync(referenceExpression);
 
             foreach (var unused in lambdaExpression.DescendantsInScope<IInvocationExpression>()

@@ -21,8 +21,7 @@ public static class TypeHelper
    [ContractAnnotation("null => null")]
    public static IType? GetFirstGenericType(this IType type)
    {
-      if (type is not IDeclaredType taskDeclaredType)
-         return null;
+      if (type is not IDeclaredType taskDeclaredType) return null;
 
       var substitution = taskDeclaredType.GetSubstitution();
 
@@ -42,14 +41,12 @@ public static class TypeHelper
                              .IsTask();
       }
 
-      if (!type.IsFunc() || !otherType.IsFunc())
-         return false;
+      if (!type.IsFunc() || !otherType.IsFunc()) return false;
 
-      var substitution = (otherType as IDeclaredType)?.GetSubstitution();
+      var substitution         = (otherType as IDeclaredType)?.GetSubstitution();
       var originalSubstitution = (type as IDeclaredType)?.GetSubstitution();
 
-      if (substitution is null || substitution.Domain.Count != originalSubstitution?.Domain.Count)
-         return false;
+      if (substitution is null || substitution.Domain.Count != originalSubstitution?.Domain.Count) return false;
 
       var i = 0;
 
@@ -72,17 +69,14 @@ public static class TypeHelper
 
    public static bool IsEquals(this IType type, IType otherType)
    {
-      if (!type.IsOpenType && !otherType.IsOpenType)
-         return Equals(type, otherType);
+      if (!type.IsOpenType && !otherType.IsOpenType) return Equals(type, otherType);
 
-      if (!IsEqualTypeGroup(type, otherType))
-         return false;
+      if (!IsEqualTypeGroup(type, otherType)) return false;
 
-      var scalarType = type.GetScalarType();
+      var scalarType      = type.GetScalarType();
       var otherScalarType = otherType.GetScalarType();
 
-      if (scalarType is null || otherScalarType is null || scalarType.Classify != otherScalarType.Classify)
-         return false;
+      if (scalarType is null || otherScalarType is null || scalarType.Classify != otherScalarType.Classify) return false;
 
       var typeElement1 = scalarType.GetTypeElement();
       var typeElement2 = otherScalarType.GetTypeElement();
@@ -90,29 +84,32 @@ public static class TypeHelper
       return typeElement1 is not null
           && typeElement2 is not null
           && (typeElement1 is not ITypeParameter typeParameter1 || typeElement2 is not ITypeParameter typeParameter2
-                 ? EqualSubstitutions(typeElement1, scalarType.GetSubstitution(), typeElement2, otherScalarType.GetSubstitution())
+                 ? EqualSubstitutions(typeElement1,
+                                      scalarType.GetSubstitution(),
+                                      typeElement2,
+                                      otherScalarType.GetSubstitution())
                  : typeParameter1.HasDefaultConstructor == typeParameter2.HasDefaultConstructor
                 && typeParameter1.TypeConstraints.Count == typeParameter2.TypeConstraints.Count
                 && !typeParameter1.TypeConstraints.Where((t, i) => !t.IsEquals(typeParameter2.TypeConstraints[i]))
                                   .Any()
-                && EqualSubstitutions(typeElement1, scalarType.GetSubstitution(), typeElement2, otherScalarType.GetSubstitution()));
+                && EqualSubstitutions(typeElement1,
+                                      scalarType.GetSubstitution(),
+                                      typeElement2,
+                                      otherScalarType.GetSubstitution()));
    }
 
    [Pure]
    [ContractAnnotation("null => false")]
    public static bool IsFunc(this IType? type)
    {
-      if (type is not IDeclaredType declaredType)
-         return false;
+      if (type is not IDeclaredType declaredType) return false;
 
       var clrTypeName = declaredType.GetClrName();
 
       return clrTypeName.Equals(FUNC_FQN) || clrTypeName.FullName.StartsWith($"{FUNC_FQN}`", Ordinal);
    }
 
-   [Pure]
-   [ContractAnnotation("null => false")]
-   public static bool IsGenericIQueryable(this IType? type) => type is IDeclaredType declaredType && IsPredefinedTypeElement(declaredType.GetTypeElement(), GENERIC_IQUERYABLE_FQN);
+   [Pure] [ContractAnnotation("null => false")] public static bool IsGenericIQueryable(this IType? type) => type is IDeclaredType declaredType && IsPredefinedTypeElement(declaredType.GetTypeElement(), GENERIC_IQUERYABLE_FQN);
 
    [Pure]
    [ContractAnnotation("type:null => false; otherType:null => false")]

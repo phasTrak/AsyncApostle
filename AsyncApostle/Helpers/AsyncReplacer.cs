@@ -112,16 +112,12 @@ public class AsyncReplacer : IAsyncReplacer
          _asyncInvocationReplacer.ReplaceInvocation(invocation, GenerateAsyncMethodName(method.DeclaredName), invocation?.IsUnderAsyncDeclaration() ?? false);
 
       // TODO: ugly hack. think
-      IInvocationExpression? invocationExpression;
-
-      while ((invocationExpression = method.DescendantsInScope<IInvocationExpression>()
-                                           .FirstOrDefault(_syncWaitChecker.CanReplaceWaitToAsync)) is not null)
+      while (method.DescendantsInScope<IInvocationExpression>()
+                   .FirstOrDefault(_syncWaitChecker.CanReplaceWaitToAsync) is { } invocationExpression)
          _syncWaitConverter.ReplaceWaitToAsync(invocationExpression);
 
-      IReferenceExpression? referenceExpression;
-
-      while ((referenceExpression = method.DescendantsInScope<IReferenceExpression>()
-                                          .FirstOrDefault(_syncWaitChecker.CanReplaceResultToAsync)) is not null)
+      while (method.DescendantsInScope<IReferenceExpression>()
+                   .FirstOrDefault(_syncWaitChecker.CanReplaceResultToAsync) is { } referenceExpression)
          _syncWaitConverter.ReplaceResultToAsync(referenceExpression);
 
       while (method.DescendantsInScope<IInvocationExpression>()

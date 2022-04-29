@@ -6,7 +6,10 @@ using JetBrains.ReSharper.Feature.Services.Resources;
 
 namespace AsyncApostle.Settings.ConfigureAwaitOptions;
 
-[OptionsPage(PID, "ConfigureAwait settings", typeof(ServicesThemedIcons.InspectionToolWindow), ParentId = AsyncApostlePage.PID)]
+[OptionsPage(PID,
+             "ConfigureAwait settings",
+             typeof(ServicesThemedIcons.InspectionToolWindow),
+             ParentId = AsyncApostlePage.PID)]
 public sealed class AsyncApostleConfigureAwaitPage : BeSimpleOptionsPage
 {
    #region fields

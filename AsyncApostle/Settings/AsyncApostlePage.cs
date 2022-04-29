@@ -5,7 +5,10 @@ using JetBrains.ReSharper.Feature.Services.Resources;
 
 namespace AsyncApostle.Settings;
 
-[OptionsPage(PID, "Async Apostle", typeof(ServicesThemedIcons.FileStorage), ParentId = CodeInspectionPage.PID)]
+[OptionsPage(PID,
+             "Async Apostle",
+             typeof(ServicesThemedIcons.FileStorage),
+             ParentId = CodeInspectionPage.PID)]
 public sealed class AsyncApostlePage : AEmptyOptionsPage
 {
    #region fields

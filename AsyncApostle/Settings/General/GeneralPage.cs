@@ -6,7 +6,10 @@ using JetBrains.ReSharper.Feature.Services.Resources;
 
 namespace AsyncApostle.Settings.General;
 
-[OptionsPage(PID, "General", typeof(ServicesThemedIcons.AnalyzeThis), ParentId = AsyncApostlePage.PID)]
+[OptionsPage(PID,
+             "General",
+             typeof(ServicesThemedIcons.AnalyzeThis),
+             ParentId = AsyncApostlePage.PID)]
 public sealed class GeneralPage : BeSimpleOptionsPage
 {
    #region fields
