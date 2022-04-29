@@ -7,7 +7,7 @@ public class FindingResult
 {
    #region properties
 
-   public IMethod? Method { get; set; }
+   public IMethod?               Method                 { get; set; }
    public ParameterCompareResult ParameterCompareResult { get; set; } = default!;
 
    #endregion

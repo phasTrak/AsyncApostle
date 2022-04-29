@@ -33,8 +33,7 @@ public static class FinderHelper
                                                        overridableMember.GetSearchDomain(),
                                                        new FindResultConsumer(findResult =>
                                                                               {
-                                                                                 if ((findResult as FindResultOverridableMember)?.OverridableMember is TOverridableMember result)
-                                                                                    found.Add(result);
+                                                                                 if ((findResult as FindResultOverridableMember)?.OverridableMember is TOverridableMember result) found.Add(result);
 
                                                                                  return Continue;
                                                                               }),

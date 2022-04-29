@@ -38,11 +38,9 @@ public class AsyncWaitQuickFix : QuickFixBase
    {
       var syncWaitConverter = solution.GetComponent<ISyncWaitConverter>();
 
-      if (_asyncWaitHighlighting.InvocationExpression is not null)
-         syncWaitConverter.ReplaceWaitToAsync(_asyncWaitHighlighting.InvocationExpression);
+      if (_asyncWaitHighlighting.InvocationExpression is not null) syncWaitConverter.ReplaceWaitToAsync(_asyncWaitHighlighting.InvocationExpression);
 
-      if (_asyncWaitHighlighting.ReferenceExpression is not null)
-         syncWaitConverter.ReplaceResultToAsync(_asyncWaitHighlighting.ReferenceExpression);
+      if (_asyncWaitHighlighting.ReferenceExpression is not null) syncWaitConverter.ReplaceResultToAsync(_asyncWaitHighlighting.ReferenceExpression);
 
       return null;
    }

@@ -20,8 +20,7 @@ public class AsyncAwaitMayBeElidedAnalyzer : ElementProblemAnalyzer<IParametersO
                   .CanElide(element))
          return;
 
-      foreach (var awaitExpression in element.DescendantsInScope<IAwaitExpression>())
-         consumer.AddHighlighting(new AsyncAwaitMayBeElidedHighlighting(awaitExpression));
+      foreach (var awaitExpression in element.DescendantsInScope<IAwaitExpression>()) consumer.AddHighlighting(new AsyncAwaitMayBeElidedHighlighting(awaitExpression));
    }
 
    #endregion

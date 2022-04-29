@@ -29,26 +29,22 @@ public class MainAwaitEliderChecker : IConcreteAwaitEliderChecker
    {
       var returnType = element.DeclaredParametersOwner?.ReturnType;
 
-      if (returnType is null)
-         return false;
+      if (returnType is null) return false;
 
       var returnStatements = element.DescendantsInScope<IReturnStatement>()
                                     .ToArray();
 
-      if (returnType.IsTask() && returnStatements.Any() || returnType.IsGenericTask() && returnStatements.Length > 1)
-         return false;
+      if (returnType.IsTask() && returnStatements.Any() || returnType.IsGenericTask() && returnStatements.Length > 1) return false;
 
       var awaitExpressions = element.DescendantsInScope<IAwaitExpression>()
                                     .ToArray();
 
       // TODO: think about this, different settings
-      if (awaitExpressions.Length is not 1)
-         return false;
+      if (awaitExpressions.Length is not 1) return false;
 
       var awaitExpression = awaitExpressions.First();
 
-      if (returnStatements.Any() && returnStatements.First() != awaitExpression.GetContainingStatement() || !_lastNodeChecker.IsLastNode(awaitExpression))
-         return false;
+      if (returnStatements.Any() && returnStatements.First() != awaitExpression.GetContainingStatement() || !_lastNodeChecker.IsLastNode(awaitExpression)) return false;
 
       var awaitingType = (awaitExpression.Task as IInvocationExpression)?.RemoveConfigureAwait()
                                                                          .Type();

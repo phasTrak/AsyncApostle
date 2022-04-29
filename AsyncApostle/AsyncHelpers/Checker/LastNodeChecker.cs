@@ -15,8 +15,7 @@ class LastNodeChecker : ILastNodeChecker
 
       while (focus.GetNextStatement() is null)
       {
-         if (focus is null)
-            return true;
+         if (focus is null) return true;
 
          focus = focus.GetContainingStatement();
       }

@@ -24,8 +24,7 @@ public class AsyncResultAnalyzer : ElementProblemAnalyzer<IInvocationExpression>
 
    protected override void Run(IInvocationExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
    {
-      if (_syncWaitChecker.CanReplaceWaitToAsync(element))
-         consumer.AddHighlighting(new AsyncWaitHighlighting(element));
+      if (_syncWaitChecker.CanReplaceWaitToAsync(element)) consumer.AddHighlighting(new AsyncWaitHighlighting(element));
    }
 
    #endregion

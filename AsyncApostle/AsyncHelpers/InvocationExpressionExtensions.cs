@@ -29,8 +29,7 @@ public static class InvocationExpressionExtensions
       {
          expressionWithoutConfigureAwait = (expression.FirstChild as IReferenceExpression)?.QualifierExpression;
 
-         if (expressionWithoutConfigureAwait is null)
-            return expression;
+         if (expressionWithoutConfigureAwait is null) return expression;
       }
       else
          expressionWithoutConfigureAwait = expression;

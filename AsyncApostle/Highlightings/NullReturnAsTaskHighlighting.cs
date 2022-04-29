@@ -33,9 +33,9 @@ public class NullReturnAsTaskHighlighting : IHighlighting
    #region properties
 
    public ICSharpLiteralExpression CSharpLiteralExpression { get; }
-   public string ErrorStripeToolTip => "May cause null reference if Task will be await.";
-   public IType ReturnType { get; }
-   public string ToolTip => "Null return as Task";
+   public string                   ErrorStripeToolTip      => "May cause null reference if Task will be await.";
+   public IType                    ReturnType              { get; }
+   public string                   ToolTip                 => "Null return as Task";
 
    #endregion
 

@@ -15,14 +15,11 @@ public class NullReturnFromLambdaAnalyzer : ElementProblemAnalyzer<ILambdaExpres
    {
       var literalExpression = element.BodyExpression as ICSharpLiteralExpression;
 
-      if (literalExpression?.Literal.GetTokenType() != NULL_KEYWORD)
-         return;
+      if (literalExpression?.Literal.GetTokenType() != NULL_KEYWORD) return;
 
-      if (element.IsAsync)
-         return;
+      if (element.IsAsync) return;
 
-      if (!element.InferredReturnType.IsTask() && !element.InferredReturnType.IsGenericTask())
-         return;
+      if (!element.InferredReturnType.IsTask() && !element.InferredReturnType.IsGenericTask()) return;
 
       consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, element.InferredReturnType));
    }

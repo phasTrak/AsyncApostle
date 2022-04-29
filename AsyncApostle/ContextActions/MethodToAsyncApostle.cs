@@ -28,7 +28,7 @@ public class MethodToAsyncApostle : ContextActionBase
 
    #region properties
 
-   public override string Text => "Convert method to async and replace all inner call to async version if exist.";
+   public override string           Text     => "Convert method to async and replace all inner call to async version if exist.";
    ICSharpContextActionDataProvider Provider { get; }
 
    #endregion
@@ -39,8 +39,7 @@ public class MethodToAsyncApostle : ContextActionBase
    {
       var method = GetMethodFromCaretPosition();
 
-      if (method is null)
-         return false;
+      if (method is null) return false;
 
       var returnType = method.DeclaredElement?.ReturnType;
 
@@ -54,8 +53,7 @@ public class MethodToAsyncApostle : ContextActionBase
       var methodDeclaredElement = GetMethodFromCaretPosition()
        ?.DeclaredElement;
 
-      if (methodDeclaredElement is null)
-         return null;
+      if (methodDeclaredElement is null) return null;
 
       _asyncReplacer.ReplaceToAsync(methodDeclaredElement);
 

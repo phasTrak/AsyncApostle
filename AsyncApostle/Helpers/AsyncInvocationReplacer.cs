@@ -14,8 +14,7 @@ class AsyncInvocationReplacer : IAsyncInvocationReplacer
    {
       var referenceExpression = invocation?.FirstChild as IReferenceExpression;
 
-      if (referenceExpression?.NameIdentifier is null)
-         return;
+      if (referenceExpression?.NameIdentifier is null) return;
 
       var factory = GetInstance(invocation!);
 

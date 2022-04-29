@@ -13,7 +13,7 @@ public class ParameterCompareResult
    ParameterCompareResult(CompareResult[] compareResults)
    {
       ParameterResults = compareResults;
-      Result = Resolve();
+      Result           = Resolve();
    }
 
    ParameterCompareResult() => ParameterResults = Empty<CompareResult>();
@@ -22,8 +22,8 @@ public class ParameterCompareResult
 
    #region properties
 
-   public CompareResult[] ParameterResults { get; }
-   public ParameterCompareAggregateResult Result { get; private init; }
+   public CompareResult[]                 ParameterResults { get; }
+   public ParameterCompareAggregateResult Result           { get; private init; }
 
    #endregion
 

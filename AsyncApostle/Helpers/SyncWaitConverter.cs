@@ -18,16 +18,14 @@ public class SyncWaitConverter : ISyncWaitConverter
    {
       var replaceBy = referenceExpression.QualifierExpression;
 
-      if (replaceBy is not null)
-         ReplaceToAwait(referenceExpression, replaceBy);
+      if (replaceBy is not null) ReplaceToAwait(referenceExpression, replaceBy);
    }
 
    public void ReplaceWaitToAsync(IInvocationExpression invocationExpression)
    {
       var replaceBy = invocationExpression.FirstChild?.FirstChild;
 
-      if (replaceBy is not null)
-         ReplaceToAwait(invocationExpression, replaceBy);
+      if (replaceBy is not null) ReplaceToAwait(invocationExpression, replaceBy);
    }
 
    #endregion

@@ -15,9 +15,9 @@ public class InvocationConverter : IInvocationConverter
    #region fields
 
    readonly IAsyncInvocationReplacer _asyncInvocationReplacer;
-   readonly IAsyncMethodFinder _asyncMethodFinder;
-   readonly ISyncWaitChecker _syncWaitChecker;
-   readonly ISyncWaitConverter _syncWaitConverter;
+   readonly IAsyncMethodFinder       _asyncMethodFinder;
+   readonly ISyncWaitChecker         _syncWaitChecker;
+   readonly ISyncWaitConverter       _syncWaitConverter;
 
    #endregion
 
@@ -37,13 +37,11 @@ public class InvocationConverter : IInvocationConverter
    {
       var referenceCurrentResolveResult = invocationExpression.Reference.Resolve();
 
-      if (!referenceCurrentResolveResult.IsValid() || referenceCurrentResolveResult.DeclaredElement is not IMethod invocationMethod)
-         return false;
+      if (!referenceCurrentResolveResult.IsValid() || referenceCurrentResolveResult.DeclaredElement is not IMethod invocationMethod) return false;
 
       var findingResult = _asyncMethodFinder.FindEquivalentAsyncMethod(invocationMethod, (invocationExpression.ConditionalQualifier as IReferenceExpression)?.QualifierExpression?.Type());
 
-      if (!findingResult.CanBeConvertedToAsync() || !TryConvertParameterFuncToAsync(invocationExpression, findingResult.ParameterCompareResult) || findingResult.Method is null)
-         return false;
+      if (!findingResult.CanBeConvertedToAsync() || !TryConvertParameterFuncToAsync(invocationExpression, findingResult.ParameterCompareResult) || findingResult.Method is null) return false;
 
       _asyncInvocationReplacer.ReplaceInvocation(invocationExpression, findingResult.Method.ShortName, true);
 

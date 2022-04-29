@@ -17,11 +17,11 @@ public class AsyncReplacer : IAsyncReplacer
    #region fields
 
    readonly IAsyncInvocationReplacer _asyncInvocationReplacer;
-   readonly IAwaitElider _awaitElider;
-   readonly IAwaitEliderChecker _awaitEliderChecker;
-   readonly IInvocationConverter _invocationConverter;
-   readonly ISyncWaitChecker _syncWaitChecker;
-   readonly ISyncWaitConverter _syncWaitConverter;
+   readonly IAwaitElider             _awaitElider;
+   readonly IAwaitEliderChecker      _awaitEliderChecker;
+   readonly IInvocationConverter     _invocationConverter;
+   readonly ISyncWaitChecker         _syncWaitChecker;
+   readonly ISyncWaitConverter       _syncWaitConverter;
 
    #endregion
 
@@ -35,11 +35,11 @@ public class AsyncReplacer : IAsyncReplacer
                         ISyncWaitConverter syncWaitConverter)
    {
       _asyncInvocationReplacer = asyncInvocationReplacer;
-      _awaitElider = awaitElider;
-      _awaitEliderChecker = awaitEliderChecker;
-      _invocationConverter = invocationConverter;
-      _syncWaitChecker = syncWaitChecker;
-      _syncWaitConverter = syncWaitConverter;
+      _awaitElider             = awaitElider;
+      _awaitEliderChecker      = awaitEliderChecker;
+      _invocationConverter     = invocationConverter;
+      _syncWaitChecker         = syncWaitChecker;
+      _syncWaitConverter       = syncWaitConverter;
    }
 
    #endregion
@@ -55,8 +55,7 @@ public class AsyncReplacer : IAsyncReplacer
    {
       methodDeclaration.SetType(newReturnValue);
 
-      if (!methodDeclaration.IsAbstract)
-         methodDeclaration.SetAsync(true);
+      if (!methodDeclaration.IsAbstract) methodDeclaration.SetAsync(true);
 
       methodDeclaration.SetName(newName);
    }
@@ -83,27 +82,23 @@ public class AsyncReplacer : IAsyncReplacer
          var task = CreateTypeByCLRName("System.Threading.Tasks.Task`1", psiModule)
            .GetTypeElement();
 
-         if (task is null)
-            return;
+         if (task is null) return;
 
          newReturnValue = CreateType(task, returnType);
       }
 
       SetSignature(methodDeclaration, newReturnValue, GenerateAsyncMethodName(methodDeclaration.DeclaredName));
 
-      if (_awaitEliderChecker.CanElide(methodDeclaration))
-         _awaitElider.Elide(methodDeclaration);
+      if (_awaitEliderChecker.CanElide(methodDeclaration)) _awaitElider.Elide(methodDeclaration);
    }
 
    void ReplaceMethodToAsync(IMethodDeclaration method)
    {
-      if (!method.IsValid())
-         return;
+      if (!method.IsValid()) return;
 
       var methodDeclaredElement = method.DeclaredElement;
 
-      if (methodDeclaredElement is null)
-         return;
+      if (methodDeclaredElement is null) return;
 
       foreach (var invocation in method.GetPsiServices()
                                        .Finder.FindAllReferences(methodDeclaredElement)

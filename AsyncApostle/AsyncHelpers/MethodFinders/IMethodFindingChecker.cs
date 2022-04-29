@@ -7,8 +7,7 @@ public interface IMethodFindingChecker
 {
    #region methods
 
-   [Pure]
-   bool NeedSkip(IMethod originalMethod, IMethod candidateMethod);
+   [Pure] bool NeedSkip(IMethod originalMethod, IMethod candidateMethod);
 
    #endregion
 }

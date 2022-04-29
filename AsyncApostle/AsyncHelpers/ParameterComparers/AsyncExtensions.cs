@@ -16,15 +16,11 @@ public static class AsyncExtensions
       {
          switch (containingNode)
          {
-            case IMethodDeclaration methodDeclaration:
-               return methodDeclaration.Type.IsTask() || methodDeclaration.Type.IsGenericTask();
-            case IAnonymousFunctionExpression functionExpression:
-               return functionExpression.InferredReturnType.IsTask() || functionExpression.InferredReturnType.IsGenericTask();
-            case ILocalFunctionDeclaration functionDeclaration:
-               return functionDeclaration.Type.IsTask() || functionDeclaration.Type.IsGenericTask();
+            case IMethodDeclaration methodDeclaration:            return methodDeclaration.Type.IsTask()                || methodDeclaration.Type.IsGenericTask();
+            case IAnonymousFunctionExpression functionExpression: return functionExpression.InferredReturnType.IsTask() || functionExpression.InferredReturnType.IsGenericTask();
+            case ILocalFunctionDeclaration functionDeclaration:   return functionDeclaration.Type.IsTask()              || functionDeclaration.Type.IsGenericTask();
             case IQueryParameterPlatform:
-            case ICSharpTypeMemberDeclaration:
-               return false;
+            case ICSharpTypeMemberDeclaration: return false;
          }
       }
 

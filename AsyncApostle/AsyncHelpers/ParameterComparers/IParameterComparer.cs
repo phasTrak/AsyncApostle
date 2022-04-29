@@ -8,8 +8,7 @@ public interface IParameterComparer
 {
    #region methods
 
-   [Pure]
-   ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters);
+   [Pure] ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters);
 
    #endregion
 }

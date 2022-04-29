@@ -13,8 +13,7 @@ class MethodAwaitElider : ICustomAwaitElider
 
    public void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression)
    {
-      if (declarationOrClosure is not IMethodDeclaration methodDeclaration)
-         return;
+      if (declarationOrClosure is not IMethodDeclaration methodDeclaration) return;
 
       methodDeclaration.SetAsync(false);
 

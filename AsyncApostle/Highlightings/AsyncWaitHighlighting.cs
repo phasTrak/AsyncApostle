@@ -32,17 +32,17 @@ public class AsyncWaitHighlighting : IHighlighting
 
    #region properties
 
-   public string ErrorStripeToolTip => "Use async wait.";
+   public string                 ErrorStripeToolTip   => "Use async wait.";
    public IInvocationExpression? InvocationExpression { get; }
-   public IReferenceExpression? ReferenceExpression { get; }
-   public string ToolTip => "Use async wait instead sync wait.";
+   public IReferenceExpression?  ReferenceExpression  { get; }
+   public string                 ToolTip              => "Use async wait instead sync wait.";
 
    #endregion
 
    #region methods
 
    public DocumentRange CalculateRange() => ReferenceExpression?.GetDocumentRange() ?? InvocationExpression.GetDocumentRange();
-   public bool IsValid() => ReferenceExpression?.IsValid() ?? InvocationExpression?.IsValid() ?? false;
+   public bool IsValid() => ReferenceExpression?.IsValid()                          ?? InvocationExpression?.IsValid() ?? false;
 
    #endregion
 }

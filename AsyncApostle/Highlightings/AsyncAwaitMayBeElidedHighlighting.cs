@@ -31,9 +31,9 @@ public class AsyncAwaitMayBeElidedHighlighting : IHighlighting
 
    #region properties
 
-   public IAwaitExpression AwaitExpression { get; }
-   public string ErrorStripeToolTip => "Await may be elided.";
-   public string ToolTip => "Async in method declaration and await may be elided.";
+   public IAwaitExpression AwaitExpression    { get; }
+   public string           ErrorStripeToolTip => "Await may be elided.";
+   public string           ToolTip            => "Async in method declaration and await may be elided.";
 
    #endregion
 

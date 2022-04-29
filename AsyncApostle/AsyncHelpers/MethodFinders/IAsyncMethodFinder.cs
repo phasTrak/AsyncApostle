@@ -7,8 +7,7 @@ public interface IAsyncMethodFinder
 {
    #region methods
 
-   [Pure]
-   FindingResult FindEquivalentAsyncMethod(IMethod originalMethod, IType? invokedType);
+   [Pure] FindingResult FindEquivalentAsyncMethod(IMethod originalMethod, IType? invokedType);
 
    #endregion
 }

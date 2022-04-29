@@ -42,13 +42,11 @@ public class ArgumentValueAsTask : QuickFixBase
    {
       var parameterType = _error.ParameterType;
 
-      if (!parameterType.IsGenericTask())
-         return false;
+      if (!parameterType.IsGenericTask()) return false;
 
       var scalarType = parameterType.GetScalarType();
 
-      if (scalarType is null)
-         return false;
+      if (scalarType is null) return false;
 
       var substitution = scalarType.GetSubstitution();
 
@@ -61,8 +59,7 @@ public class ArgumentValueAsTask : QuickFixBase
    {
       var expression = _error.Argument as ICSharpArgument;
 
-      if (expression?.GetContainingFile() is not ICSharpFile file)
-         return null;
+      if (expression?.GetContainingFile() is not ICSharpFile file) return null;
 
       var factory = GetInstance(expression);
 

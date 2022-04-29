@@ -25,7 +25,6 @@ class Build : NukeBuild
    // [Parameter] readonly string MyGetApiKey;
    // Returns command-line arguments and environment variables.
    public override AbsolutePath ArtifactsDirectory => SolutionDirectory / "packages";
-   string Version => "2022.1.0";
 
    Target Clean =>
       _ => _.Executes(() =>
@@ -97,6 +96,8 @@ class Build : NukeBuild
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.csproj"));
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
                       });
+
+   string Version => "2022.1.1";
 
    #endregion
 

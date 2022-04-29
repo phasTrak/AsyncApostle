@@ -23,20 +23,19 @@ class ParameterComparer : IParameterComparer
 
    public ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters)
    {
-      if (methodParameters.Count != originalParameters.Count)
-         return ParameterCompareResult.CreateFailDifferentLength();
+      if (methodParameters.Count != originalParameters.Count) return ParameterCompareResult.CreateFailDifferentLength();
 
       var parameterResults = new CompareResult[methodParameters.Count];
 
       for (var i = 0; i < methodParameters.Count; i++)
       {
-         var parameter = methodParameters[i];
+         var parameter         = methodParameters[i];
          var originalParameter = originalParameters[i];
 
          parameterResults[i] = new ()
                                {
-                                  From = originalParameter.Type,
-                                  To = parameter.Type,
+                                  From   = originalParameter.Type,
+                                  To     = parameter.Type,
                                   Action = _typeComparer.Compare(originalParameter.Type, parameter.Type)
                                };
       }

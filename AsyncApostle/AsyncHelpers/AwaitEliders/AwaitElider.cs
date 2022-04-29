@@ -26,13 +26,11 @@ class AwaitElider : IAwaitElider
 
    public void Elide(IAwaitExpression awaitExpression)
    {
-      if (awaitExpression.Task is not IInvocationExpression invocationExpression)
-         return;
+      if (awaitExpression.Task is not IInvocationExpression invocationExpression) return;
 
       var declarationOrClosure = awaitExpression.GetContainingFunctionLikeDeclarationOrClosure();
 
-      if (declarationOrClosure is null)
-         return;
+      if (declarationOrClosure is null) return;
 
       _awaitEliders.FirstOrDefault(x => x.CanElide(declarationOrClosure))
                   ?.Elide(declarationOrClosure, invocationExpression.RemoveConfigureAwait());
@@ -40,8 +38,7 @@ class AwaitElider : IAwaitElider
 
    public void Elide(IParametersOwnerDeclaration parametersOwnerDeclaration)
    {
-      foreach (var awaitExpression in parametersOwnerDeclaration.DescendantsInScope<IAwaitExpression>())
-         Elide(awaitExpression);
+      foreach (var awaitExpression in parametersOwnerDeclaration.DescendantsInScope<IAwaitExpression>()) Elide(awaitExpression);
    }
 
    #endregion

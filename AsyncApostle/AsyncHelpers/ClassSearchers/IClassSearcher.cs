@@ -13,8 +13,7 @@ public interface IClassSearcher
 
    #region methods
 
-   [Pure]
-   ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType);
+   [Pure] ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType);
 
    #endregion
 }

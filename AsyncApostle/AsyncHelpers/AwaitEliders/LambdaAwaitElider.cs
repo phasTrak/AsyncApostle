@@ -13,8 +13,7 @@ class LambdaAwaitElider : ICustomAwaitElider
 
    public void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression)
    {
-      if (declarationOrClosure is not ILambdaExpression lambdaExpression)
-         return;
+      if (declarationOrClosure is not ILambdaExpression lambdaExpression) return;
 
       lambdaExpression.SetAsync(false);
 

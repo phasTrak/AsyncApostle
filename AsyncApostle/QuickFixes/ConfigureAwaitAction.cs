@@ -13,7 +13,7 @@ public class ConfigureAwaitAction : BulbActionBase
    #region fields
 
    readonly ConfigureAwaitHighlighting _configureAwaitHighlighting;
-   readonly bool _configureAwaitValue;
+   readonly bool                       _configureAwaitValue;
 
    #endregion
 

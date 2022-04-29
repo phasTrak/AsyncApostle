@@ -31,9 +31,9 @@ public class AsyncMethodNamingHighlighting : IHighlighting
 
    #region properties
 
-   public string ErrorStripeToolTip => @"Async method must end with ""Async""";
-   public IMethodDeclaration MethodDeclaration { get; }
-   public string ToolTip => @"Async method must end with ""Async""";
+   public string             ErrorStripeToolTip => @"Async method must end with ""Async""";
+   public IMethodDeclaration MethodDeclaration  { get; }
+   public string             ToolTip            => @"Async method must end with ""Async""";
 
    #endregion
 

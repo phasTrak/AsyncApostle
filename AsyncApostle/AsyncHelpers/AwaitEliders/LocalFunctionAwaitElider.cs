@@ -13,8 +13,7 @@ class LocalFunctionAwaitElider : ICustomAwaitElider
 
    public void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression)
    {
-      if (declarationOrClosure is not ILocalFunctionDeclaration localFunctionDeclaration)
-         return;
+      if (declarationOrClosure is not ILocalFunctionDeclaration localFunctionDeclaration) return;
 
       localFunctionDeclaration.SetAsync(false);
 

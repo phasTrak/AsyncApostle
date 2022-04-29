@@ -12,8 +12,8 @@ public class AsyncMethodFinder : IAsyncMethodFinder
    #region fields
 
    readonly IClassForSearchResolver _classForSearchResolver;
-   readonly IMethodFindingChecker _methodFindingChecker;
-   readonly IParameterComparer _parameterComparer;
+   readonly IMethodFindingChecker   _methodFindingChecker;
+   readonly IParameterComparer      _parameterComparer;
 
    #endregion
 
@@ -28,27 +28,23 @@ public class AsyncMethodFinder : IAsyncMethodFinder
 
    public FindingResult FindEquivalentAsyncMethod(IMethod originalMethod, IType? invokedType)
    {
-      if (!originalMethod.IsValid())
-         return CreateFail();
+      if (!originalMethod.IsValid()) return CreateFail();
 
       var @class = _classForSearchResolver.GetClassForSearch(originalMethod, invokedType);
 
-      if (@class is null)
-         return CreateFail();
+      if (@class is null) return CreateFail();
 
       foreach (var candidateMethod in @class.Methods)
       {
-         if (_methodFindingChecker.NeedSkip(originalMethod, candidateMethod))
-            continue;
+         if (_methodFindingChecker.NeedSkip(originalMethod, candidateMethod)) continue;
 
          var parameterCompareResult = _parameterComparer.ComparerParameters(candidateMethod.Parameters, originalMethod.Parameters);
 
-         if (!parameterCompareResult.CanBeConvertedToAsync())
-            continue;
+         if (!parameterCompareResult.CanBeConvertedToAsync()) continue;
 
          return new ()
                 {
-                   Method = candidateMethod,
+                   Method                 = candidateMethod,
                    ParameterCompareResult = parameterCompareResult
                 };
       }

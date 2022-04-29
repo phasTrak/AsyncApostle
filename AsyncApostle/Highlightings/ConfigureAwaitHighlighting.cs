@@ -31,9 +31,9 @@ public class ConfigureAwaitHighlighting : IHighlighting
 
    #region properties
 
-   public IAwaitExpression AwaitExpression { get; }
-   public string ErrorStripeToolTip => "Await not configured";
-   public string ToolTip => "If await not configured it may cause deadlock, if this code will be call synchronously";
+   public IAwaitExpression AwaitExpression    { get; }
+   public string           ErrorStripeToolTip => "Await not configured";
+   public string           ToolTip            => "If await not configured it may cause deadlock, if this code will be call synchronously";
 
    #endregion
 

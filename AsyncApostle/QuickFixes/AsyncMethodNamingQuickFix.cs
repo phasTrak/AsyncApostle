@@ -38,8 +38,7 @@ public class AsyncMethodNamingQuickFix : QuickFixBase
    {
       var methodDeclaration = _asyncMethodNamingHighlighting.MethodDeclaration.DeclaredElement;
 
-      if (methodDeclaration is null)
-         return null;
+      if (methodDeclaration is null) return null;
 
       Rename(solution, new (methodDeclaration, $"{methodDeclaration.ShortName}Async"));
 
