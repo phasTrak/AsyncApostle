@@ -1,14 +1,14 @@
 using System.IO;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Core;
-using Nuke.Core.Utilities.Collections;
+using Nuke.Common;
+using Nuke.Common.Utilities.Collections;
 using static System.Console;
 using static System.Environment;
 using static System.IO.Compression.ZipFile;
 using static System.IO.Directory;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using static Nuke.Core.IO.FileSystemTasks;
-using static Nuke.Core.IO.PathConstruction;
+using static Nuke.Common.IO.FileSystemTasks;
+using static Nuke.Common.IO.PathConstruction;
 
 class Build : NukeBuild
 {
@@ -97,7 +97,7 @@ class Build : NukeBuild
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
                       });
 
-   string Version => "2022.1.2";
+   static string Version => "2022.1.2";
 
    #endregion
 
