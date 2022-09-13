@@ -97,7 +97,7 @@ class Build : NukeBuild
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
                       });
 
-   static string Version => "2022.2.0";
+   static string Version => "2022.2.3";
 
    #endregion
 
