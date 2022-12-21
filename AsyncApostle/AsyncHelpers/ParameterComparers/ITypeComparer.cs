@@ -1,5 +1,3 @@
-using JetBrains.ReSharper.Psi;
-
 namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 
 public interface ITypeComparer

@@ -1,7 +1,3 @@
-using JetBrains.Metadata.Reader.Impl;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
-
 namespace AsyncApostle.AsyncHelpers.MethodFinders;
 
 [SolutionComponent]

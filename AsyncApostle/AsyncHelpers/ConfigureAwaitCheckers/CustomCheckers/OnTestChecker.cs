@@ -1,11 +1,4 @@
-﻿using AsyncApostle.Checkers;
-using JetBrains.Application.Settings;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-using static AsyncApostle.Settings.AsyncApostleSettingsAccessor;
-
-namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
+﻿namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 
 [SolutionComponent]
 class OnTestChecker : IConfigureAwaitCustomChecker

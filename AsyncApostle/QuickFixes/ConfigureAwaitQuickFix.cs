@@ -1,10 +1,3 @@
-using System.Collections.Generic;
-using AsyncApostle.Highlightings;
-using JetBrains.ReSharper.Feature.Services.Bulbs;
-using JetBrains.ReSharper.Feature.Services.Intentions;
-using JetBrains.ReSharper.Feature.Services.QuickFixes;
-using JetBrains.Util;
-
 namespace AsyncApostle.QuickFixes;
 
 [QuickFix]

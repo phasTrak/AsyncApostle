@@ -2,9 +2,9 @@ version: 1.1.8.{build}
 configuration: Release
 image: Visual Studio 2022
 nuget:
-  project_feed: true
+   project_feed: true
 build_script:
-  - ps: ./build.cmd Pack
+   -  ps: ./build.cmd Pack
 artifacts:
-  - path: ./packages/*.nupkg
-  - path: ./packages/*.zip
+   -  path: ./packages/*.nupkg
+   -  path: ./packages/*.zip

@@ -1,13 +1,4 @@
-﻿using System;
-using AsyncApostle.Highlightings;
-using JetBrains.Application.Progress;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.QuickFixes;
-using JetBrains.TextControl;
-using JetBrains.Util;
-using static JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename.RenameRefactoringService;
-
-namespace AsyncApostle.QuickFixes;
+﻿namespace AsyncApostle.QuickFixes;
 
 [QuickFix]
 public class AsyncMethodNamingQuickFix : QuickFixBase

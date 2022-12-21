@@ -1,11 +1,4 @@
-﻿using AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers;
-using AsyncApostle.Highlightings;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.Daemon;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-
-namespace AsyncApostle.Analyzers;
+﻿namespace AsyncApostle.Analyzers;
 
 [ElementProblemAnalyzer(typeof(IAwaitExpression), HighlightingTypes = new[] { typeof(ConfigureAwaitHighlighting) })]
 public class ConfigureAwaitAnalyzer : ElementProblemAnalyzer<IAwaitExpression>

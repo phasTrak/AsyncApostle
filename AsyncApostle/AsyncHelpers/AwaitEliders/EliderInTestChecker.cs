@@ -1,11 +1,3 @@
-using AsyncApostle.Checkers;
-using AsyncApostle.Helpers;
-using JetBrains.Application.Settings;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-using static AsyncApostle.Settings.AsyncApostleSettingsAccessor;
-
 namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
 [SolutionComponent]

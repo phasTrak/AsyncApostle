@@ -1,10 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using AsyncApostle.Settings.ConfigureAwaitOptions;
-using AsyncApostle.Settings.General;
-using JetBrains.Application.Settings;
-
-namespace AsyncApostle.Settings;
+﻿namespace AsyncApostle.Settings;
 
 public static class AsyncApostleSettingsAccessor
 {

@@ -1,12 +1,4 @@
-﻿using System;
-using AsyncApostle.Highlightings;
-using JetBrains.Application.Progress;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.Bulbs;
-using JetBrains.TextControl;
-using static JetBrains.ReSharper.Psi.CSharp.CSharpElementFactory;
-
-namespace AsyncApostle.QuickFixes;
+﻿namespace AsyncApostle.QuickFixes;
 
 public class ConfigureAwaitAction : BulbActionBase
 {

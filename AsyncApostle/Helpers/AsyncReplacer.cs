@@ -1,14 +1,3 @@
-using System.Linq;
-using AsyncApostle.AsyncHelpers.AwaitEliders;
-using AsyncApostle.Checkers.AsyncWait;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Search;
-using JetBrains.ReSharper.Psi.Tree;
-using static System.StringComparison;
-using static JetBrains.ReSharper.Psi.TypeFactory;
-
 namespace AsyncApostle.Helpers;
 
 [SolutionComponent]

@@ -1,13 +1,4 @@
-﻿using System;
-using AsyncApostle.AsyncHelpers.AwaitEliders;
-using AsyncApostle.Highlightings;
-using JetBrains.Application.Progress;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.QuickFixes;
-using JetBrains.TextControl;
-using JetBrains.Util;
-
-namespace AsyncApostle.QuickFixes;
+﻿namespace AsyncApostle.QuickFixes;
 
 [QuickFix]
 public class AsyncAwaitMayBeElidedQuickFix : QuickFixBase

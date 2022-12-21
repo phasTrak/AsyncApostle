@@ -1,5 +1,3 @@
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-
 namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
 public interface ICustomAwaitElider

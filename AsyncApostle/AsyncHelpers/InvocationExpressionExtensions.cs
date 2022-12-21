@@ -1,7 +1,4 @@
-﻿using JetBrains.Annotations;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-
-namespace AsyncApostle.AsyncHelpers;
+﻿namespace AsyncApostle.AsyncHelpers;
 
 public static class InvocationExpressionExtensions
 {

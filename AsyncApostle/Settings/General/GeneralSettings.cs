@@ -1,5 +1,3 @@
-using JetBrains.Application.Settings;
-
 namespace AsyncApostle.Settings.General;
 
 [SettingsKey(typeof(AsyncApostleSettings), "Settings for AsyncApostle plugin.")]

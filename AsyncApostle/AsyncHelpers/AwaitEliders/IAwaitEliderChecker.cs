@@ -1,6 +1,4 @@
-﻿using JetBrains.ReSharper.Psi.Tree;
-
-namespace AsyncApostle.AsyncHelpers.AwaitEliders;
+﻿namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
 public interface IAwaitEliderChecker
 {

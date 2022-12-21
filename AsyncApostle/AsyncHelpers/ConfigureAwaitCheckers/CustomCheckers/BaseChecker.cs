@@ -1,9 +1,4 @@
-﻿using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.CSharp.PostfixTemplates;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-
-namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
+﻿namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 
 [SolutionComponent]
 class BaseChecker : IConfigureAwaitCustomChecker

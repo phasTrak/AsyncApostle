@@ -1,15 +1,4 @@
-﻿using System;
-using AsyncApostle.Helpers;
-using JetBrains.Application.Progress;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.ContextActions;
-using JetBrains.ReSharper.Feature.Services.CSharp.ContextActions;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.TextControl;
-using JetBrains.Util;
-
-namespace AsyncApostle.ContextActions;
+﻿namespace AsyncApostle.ContextActions;
 
 [ContextAction(Group = "C#", Name = "ConvertToAsync", Description = "Convert method to async and replace all inner call to async version if exist.")]
 public class MethodToAsyncApostle : ContextActionBase

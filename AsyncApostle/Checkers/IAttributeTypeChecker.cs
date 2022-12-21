@@ -1,6 +1,4 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
-
-namespace AsyncApostle.Checkers;
+﻿namespace AsyncApostle.Checkers;
 
 public interface IAttributeTypeChecker
 {

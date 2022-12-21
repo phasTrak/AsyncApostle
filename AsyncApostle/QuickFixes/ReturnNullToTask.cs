@@ -1,16 +1,4 @@
-﻿using System;
-using AsyncApostle.Highlightings;
-using JetBrains.Application.Progress;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.QuickFixes;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.Util;
-using JetBrains.TextControl;
-using JetBrains.Util;
-using static JetBrains.ReSharper.Psi.CSharp.CSharpElementFactory;
-using static JetBrains.ReSharper.Psi.TypeFactory;
-
-namespace AsyncApostle.QuickFixes;
+﻿namespace AsyncApostle.QuickFixes;
 
 [QuickFix]
 public class ReturnNullAsTask : QuickFixBase

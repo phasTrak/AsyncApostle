@@ -1,19 +1,4 @@
-﻿using System;
-using System.Linq;
-using JetBrains.Application.Progress;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Daemon.CSharp.Errors;
-using JetBrains.ReSharper.Feature.Services.QuickFixes;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-using JetBrains.ReSharper.Psi.Util;
-using JetBrains.TextControl;
-using JetBrains.Util;
-using static JetBrains.ReSharper.Psi.CSharp.CSharpElementFactory;
-using static JetBrains.ReSharper.Psi.ParameterKind;
-
-namespace AsyncApostle.QuickFixes;
+﻿namespace AsyncApostle.QuickFixes;
 
 [QuickFix]
 public class ArgumentValueAsTask : QuickFixBase

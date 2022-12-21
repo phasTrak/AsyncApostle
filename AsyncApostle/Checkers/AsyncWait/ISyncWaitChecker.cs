@@ -1,5 +1,3 @@
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-
 namespace AsyncApostle.Checkers.AsyncWait;
 
 public interface ISyncWaitChecker

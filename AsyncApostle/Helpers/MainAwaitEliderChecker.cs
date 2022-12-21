@@ -1,11 +1,3 @@
-using System.Linq;
-using AsyncApostle.AsyncHelpers;
-using AsyncApostle.AsyncHelpers.Checker;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-
 namespace AsyncApostle.Helpers;
 
 [SolutionComponent]

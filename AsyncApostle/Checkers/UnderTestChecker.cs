@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using AsyncApostle.Helpers;
-using JetBrains.Metadata.Reader.Impl;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-
-namespace AsyncApostle.Checkers;
+﻿namespace AsyncApostle.Checkers;
 
 [SolutionComponent]
 public class UnderTestChecker : IUnderTestChecker

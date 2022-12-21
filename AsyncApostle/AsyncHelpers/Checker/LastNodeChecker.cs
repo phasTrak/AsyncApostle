@@ -1,8 +1,4 @@
-﻿using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.CSharp.Util;
-
-namespace AsyncApostle.AsyncHelpers.Checker;
+﻿namespace AsyncApostle.AsyncHelpers.Checker;
 
 [SolutionComponent]
 class LastNodeChecker : ILastNodeChecker

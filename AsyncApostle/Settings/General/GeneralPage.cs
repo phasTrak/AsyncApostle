@@ -1,10 +1,4 @@
-﻿using JetBrains.Application.UI.Options;
-using JetBrains.Application.UI.Options.OptionsDialog;
-using JetBrains.IDE.UI.Options;
-using JetBrains.Lifetimes;
-using JetBrains.ReSharper.Feature.Services.Resources;
-
-namespace AsyncApostle.Settings.General;
+﻿namespace AsyncApostle.Settings.General;
 
 [OptionsPage(PID,
              "General",

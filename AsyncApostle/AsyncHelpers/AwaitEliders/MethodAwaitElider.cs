@@ -1,7 +1,3 @@
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using static JetBrains.ReSharper.Psi.CSharp.CSharpElementFactory;
-
 namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
 [SolutionComponent]

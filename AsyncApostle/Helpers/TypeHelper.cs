@@ -1,17 +1,4 @@
-﻿using System.Linq;
-using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
-using JetBrains.Diagnostics;
-using JetBrains.Metadata.Reader.API;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.Resolve;
-using static System.Runtime.CompilerServices.MethodImplOptions;
-using static System.StringComparison;
-using static JetBrains.Metadata.Reader.API.NullableAnnotation;
-using static JetBrains.ReSharper.Psi.Impl.DeclaredElementEqualityComparer;
-using static JetBrains.ReSharper.Psi.PredefinedType;
-
-namespace AsyncApostle.Helpers;
+﻿namespace AsyncApostle.Helpers;
 
 public static class TypeHelper
 {

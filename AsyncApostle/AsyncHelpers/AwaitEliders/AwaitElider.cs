@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AsyncApostle.Helpers;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-
-namespace AsyncApostle.AsyncHelpers.AwaitEliders;
+﻿namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
 [SolutionComponent]
 class AwaitElider : IAwaitElider

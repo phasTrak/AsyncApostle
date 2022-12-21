@@ -1,5 +1,3 @@
-﻿using JetBrains.Application.BuildScript.Application.Zones;
-
-namespace AsyncApostle;
+﻿namespace AsyncApostle;
 
 [ZoneMarker] public class ZoneMarker { }

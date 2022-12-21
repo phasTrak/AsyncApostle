@@ -1,6 +1,3 @@
-using AsyncApostle.AsyncHelpers.ParameterComparers;
-using JetBrains.ReSharper.Psi;
-
 namespace AsyncApostle.AsyncHelpers.MethodFinders;
 
 public class FindingResult

@@ -1,5 +1,3 @@
-using JetBrains.Application.Settings;
-
 namespace AsyncApostle.Settings.ConfigureAwaitOptions;
 
 [SettingsKey(typeof(AsyncApostleSettings), "Settings for ConfigureAwait")]

@@ -1,10 +1,4 @@
-﻿using AsyncApostle.Highlightings;
-using JetBrains.ReSharper.Feature.Services.Daemon;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using static JetBrains.ReSharper.Psi.CSharp.Parsing.CSharpTokenType;
-
-namespace AsyncApostle.Analyzers;
+﻿namespace AsyncApostle.Analyzers;
 
 [ElementProblemAnalyzer(typeof(IReturnStatement), HighlightingTypes = new[] { typeof(NullReturnAsTaskHighlighting) })]
 public class NullReturnFromMethodAnalyzer : ElementProblemAnalyzer<IReturnStatement>

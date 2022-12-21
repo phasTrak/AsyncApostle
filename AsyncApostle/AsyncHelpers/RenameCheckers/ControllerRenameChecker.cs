@@ -1,13 +1,4 @@
-﻿using System.Collections.Generic;
-using JetBrains.Metadata.Reader.Impl;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Util;
-using JetBrains.Util;
-using Enumerable = System.Linq.Enumerable;
-
-namespace AsyncApostle.AsyncHelpers.RenameCheckers;
+﻿namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
 [SolutionComponent]
 class ControllerRenameChecker : IConcreteRenameChecker
@@ -27,7 +18,9 @@ class ControllerRenameChecker : IConcreteRenameChecker
    #region methods
 
    public bool SkipRename(IMethodDeclaration methodDeclaration) =>
-      methodDeclaration.DeclaredElement?.GetContainingType() is IClass @class && Enumerable.Any(@class.GetSuperTypesWithoutCircularDependent(), superType => _controllerClasses.Contains(superType.GetClrName()));
+      methodDeclaration.DeclaredElement?.GetContainingType() is IClass @class
+   && @class.GetSuperTypesWithoutCircularDependent()
+            .Any(superType => _controllerClasses.Contains(superType.GetClrName()));
 
    #endregion
 }

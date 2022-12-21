@@ -1,8 +1,4 @@
-﻿using AsyncApostle.AsyncHelpers.Checker;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-
-namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
+﻿namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 
 [SolutionComponent]
 class AttributeFunctionChecker : IConfigureAwaitCustomChecker

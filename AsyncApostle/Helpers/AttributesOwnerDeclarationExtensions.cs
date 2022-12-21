@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Metadata.Reader.Impl;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.Util;
-
-namespace AsyncApostle.Helpers;
+﻿namespace AsyncApostle.Helpers;
 
 public static class AttributesOwnerDeclarationExtensions
 {

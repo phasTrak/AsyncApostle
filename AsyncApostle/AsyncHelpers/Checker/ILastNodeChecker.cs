@@ -1,6 +1,4 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
-
-namespace AsyncApostle.AsyncHelpers.Checker;
+﻿namespace AsyncApostle.AsyncHelpers.Checker;
 
 public interface ILastNodeChecker
 {

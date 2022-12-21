@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using JetBrains.Annotations;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-using static System.Linq.Enumerable;
-
-namespace AsyncApostle.Helpers;
+﻿namespace AsyncApostle.Helpers;
 
 public static class ParametersOwnerDeclarationExtensions
 {

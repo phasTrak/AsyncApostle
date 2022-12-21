@@ -1,5 +1,4 @@
-﻿using JetBrains.Application.Settings;
-using JetBrains.ReSharper.Resources.Settings;
+﻿using JetBrains.ReSharper.Resources.Settings;
 
 namespace AsyncApostle.Settings;
 

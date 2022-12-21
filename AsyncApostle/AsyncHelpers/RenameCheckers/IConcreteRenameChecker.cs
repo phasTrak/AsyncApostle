@@ -1,6 +1,4 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
-
-namespace AsyncApostle.AsyncHelpers.RenameCheckers;
+﻿namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
 public interface IConcreteRenameChecker
 {

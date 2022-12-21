@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AsyncApostle.Helpers;
+﻿namespace AsyncApostle.Helpers;
 
 public static class EnumerableExtension
 {

@@ -1,12 +1,4 @@
-﻿using JetBrains.DocumentModel;
-using JetBrains.ReSharper.Feature.Services.Daemon;
-using JetBrains.ReSharper.Psi.CSharp;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
-using static AsyncApostle.Settings.AsyncApostleGroupSettings;
-using static JetBrains.ReSharper.Feature.Services.Daemon.Severity;
-
-namespace AsyncApostle.Highlightings;
+﻿namespace AsyncApostle.Highlightings;
 
 [RegisterConfigurableSeverity(SeverityId,
                               null,

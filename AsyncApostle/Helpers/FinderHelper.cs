@@ -1,11 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Application.Progress;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.Search;
-using static JetBrains.Application.Progress.NullProgressIndicator;
-using static JetBrains.ReSharper.Psi.Search.FindExecution;
-
 namespace AsyncApostle.Helpers;
 
 public static class FinderHelper

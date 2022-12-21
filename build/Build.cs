@@ -1,6 +1,6 @@
 using System.IO;
-using Nuke.Common.Tools.DotNet;
 using Nuke.Common;
+using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities.Collections;
 using static System.Console;
 using static System.Environment;
@@ -25,6 +25,7 @@ class Build : NukeBuild
    // [Parameter] readonly string MyGetApiKey;
    // Returns command-line arguments and environment variables.
    public override AbsolutePath ArtifactsDirectory => SolutionDirectory / "packages";
+   static          string       Version            => "2022.3.1";
 
    Target Clean =>
       _ => _.Executes(() =>
@@ -96,8 +97,6 @@ class Build : NukeBuild
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.csproj"));
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
                       });
-
-   static string Version => "2022.2.3";
 
    #endregion
 

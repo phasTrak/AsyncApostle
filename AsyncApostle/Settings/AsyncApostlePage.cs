@@ -1,9 +1,4 @@
-﻿using JetBrains.Application.UI.Options;
-using JetBrains.Application.UI.Options.OptionsDialog;
-using JetBrains.ReSharper.Feature.Services.Daemon.OptionPages;
-using JetBrains.ReSharper.Feature.Services.Resources;
-
-namespace AsyncApostle.Settings;
+﻿namespace AsyncApostle.Settings;
 
 [OptionsPage(PID,
              "Async Apostle",

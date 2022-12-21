@@ -1,5 +1,3 @@
-using JetBrains.ReSharper.Psi;
-
 namespace AsyncApostle.AsyncHelpers.MethodFinders;
 
 public interface IConcreteMethodFindingChecker

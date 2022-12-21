@@ -1,8 +1,3 @@
-using AsyncApostle.Helpers;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-
 namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
 [SolutionComponent]

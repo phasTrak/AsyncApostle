@@ -1,12 +1,3 @@
-using System;
-using AsyncApostle.Helpers;
-using AsyncApostle.Highlightings;
-using JetBrains.Application.Progress;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.QuickFixes;
-using JetBrains.TextControl;
-using JetBrains.Util;
-
 namespace AsyncApostle.QuickFixes;
 
 [QuickFix]

@@ -1,6 +1,4 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
-
-namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
+﻿namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 
 public interface IConfigureAwaitCustomChecker
 {
