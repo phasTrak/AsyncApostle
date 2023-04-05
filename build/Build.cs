@@ -1,4 +1,3 @@
-using System.IO;
 using Nuke.Common;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities.Collections;
@@ -25,7 +24,7 @@ class Build : NukeBuild
    // [Parameter] readonly string MyGetApiKey;
    // Returns command-line arguments and environment variables.
    public override AbsolutePath ArtifactsDirectory => SolutionDirectory / "packages";
-   static          string       Version            => "2022.3.1";
+   static          string       Version            => "2023.1.0";
 
    Target Clean =>
       _ => _.Executes(() =>

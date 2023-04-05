@@ -73,7 +73,7 @@ public class AsyncReplacer : IAsyncReplacer
 
          if (task is null) return;
 
-         newReturnValue = CreateType(task, returnType);
+         newReturnValue = CreateType(task, new[] { returnType });
       }
 
       SetSignature(methodDeclaration, newReturnValue, GenerateAsyncMethodName(methodDeclaration.DeclaredName));

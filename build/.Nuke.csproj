@@ -14,13 +14,13 @@
    </PropertyGroup>
 
    <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
       <PackageReference Include="Nuke.Common" Version="0.8.0"/>
       <PackageReference Include="Nuke.CodeGeneration" Version="$(NukeVersion)"
                         Condition="'$(NukeCodeGeneration)' == 'True'"/>
       <PackageReference Include="GitVersion.CommandLine"
                         IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"
-                        PrivateAssets="all" Version="5.10.3"/>
+                        PrivateAssets="all" Version="5.12.0"/>
       <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1"/>
    </ItemGroup>
 
