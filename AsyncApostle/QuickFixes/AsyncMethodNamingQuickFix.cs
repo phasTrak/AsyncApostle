@@ -17,7 +17,7 @@ public class AsyncMethodNamingQuickFix : QuickFixBase
 
    #region properties
 
-   public override string Text => @"Add ""Async"" suffix";
+   public override string Text => """Add "Async" suffix""";
 
    #endregion
 

@@ -24,10 +24,10 @@ class Build : NukeBuild
    // [Parameter] readonly string MyGetApiKey;
    // Returns command-line arguments and environment variables.
    public override AbsolutePath ArtifactsDirectory => SolutionDirectory / "packages";
-   static          string       Version            => "2023.1.0";
+   static          string       Version            => "2023.2.0";
 
    Target Clean =>
-      _ => _.Executes(() =>
+      d => d.Executes(() =>
                       {
                          EnsureCleanDirectory(ArtifactsDirectory);
 
@@ -36,17 +36,17 @@ class Build : NukeBuild
                       });
 
    Target Compile =>
-      _ => _.DependsOn(Restore)
+      d => d.DependsOn(Restore)
             .Executes(() => DotNetBuild(_ => DefaultDotNetBuild));
 
    Target Pack =>
-      _ => _.DependsOn(Compile)
+      d => d.DependsOn(Compile)
             .Executes(() =>
                       {
                          // TODO: DeleteDirectory not work, and move to Clean
                          if (Exists(ArtifactsDirectory))
                          {
-                            WriteLine($@"Delete ""{ArtifactsDirectory}""{NewLine}");
+                            WriteLine($"""Delete "{ArtifactsDirectory}"{NewLine}""");
                             Delete(ArtifactsDirectory, true);
                          }
 
@@ -58,39 +58,39 @@ class Build : NukeBuild
                                                           .DisableIncludeSymbols()
                                                           .SetProject("AsyncApostle/AsyncApostle.Rider.csproj"));
 
-                         WriteLine($@"Unzip ""{SolutionDirectory / "Rider" / "AsyncApostle.Rider" / $"AsyncApostle.Rider.{Version}.nupkg"}"" to ""{ArtifactsDirectory / $"AsyncApostle.Rider.{Version}"}""{NewLine}");
+                         WriteLine($"""Unzip "{SolutionDirectory / "Rider" / "AsyncApostle.Rider" / $"AsyncApostle.Rider.{Version}.nupkg"}" to "{ArtifactsDirectory / $"AsyncApostle.Rider.{Version}"}"{NewLine}""");
                          ExtractToDirectory(SolutionDirectory / "Rider" / "AsyncApostle.Rider" / $"AsyncApostle.Rider.{Version}.nupkg", ArtifactsDirectory / $"AsyncApostle.Rider.{Version}");
 
-                         WriteLine($@"Delete {SolutionDirectory / "Rider" / "AsyncApostle.Rider" / $"AsyncApostle.Rider.{Version}.nupkg"}{NewLine}");
+                         WriteLine($"Delete {SolutionDirectory / "Rider" / "AsyncApostle.Rider" / $"AsyncApostle.Rider.{Version}.nupkg"}{NewLine}");
                          File.Delete(SolutionDirectory / "Rider" / "AsyncApostle.Rider" / $"AsyncApostle.Rider.{Version}.nupkg");
 
-                         WriteLine($@"Create ""{ArtifactsDirectory / "Rider"}""{NewLine}");
+                         WriteLine($"""Create "{ArtifactsDirectory / "Rider"}"{NewLine}""");
                          CreateDirectory(ArtifactsDirectory / "Rider");
 
-                         WriteLine($@"Move ""{ArtifactsDirectory / $"AsyncApostle.Rider.{Version}" / "lib"}"" to ""{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider"}""{NewLine}");
+                         WriteLine($"""Move "{ArtifactsDirectory / $"AsyncApostle.Rider.{Version}" / "lib"}" to "{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider"}"{NewLine}""");
                          Move(ArtifactsDirectory / $"AsyncApostle.Rider.{Version}" / "lib", ArtifactsDirectory / "Rider" / "AsyncApostle.Rider");
 
-                         WriteLine($@"Rename ""{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "net472"}"" to ""{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "dotnet"}""{NewLine}");
+                         WriteLine($"""Rename "{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "net472"}" to "{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "dotnet"}"{NewLine}""");
                          Move(ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "net472", ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "dotnet");
 
-                         WriteLine($@"Delete ""{ArtifactsDirectory / $"AsyncApostle.Rider.{Version}"}""{NewLine}");
+                         WriteLine($"""Delete "{ArtifactsDirectory / $"AsyncApostle.Rider.{Version}"}"{NewLine}""");
                          Delete(ArtifactsDirectory / $"AsyncApostle.Rider.{Version}", true);
 
-                         WriteLine($@"Create ""{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "lib"}""{NewLine}");
+                         WriteLine($"""Create "{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "lib"}"{NewLine}""");
                          CreateDirectory(ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "lib");
 
-                         WriteLine($@"Zip ""{SolutionDirectory / "Rider" / "AsyncApostle.Rider"}"" into ""{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "lib" / $"AsyncApostle.Rider-{Version}.jar"}""{NewLine}");
+                         WriteLine($"""Zip "{SolutionDirectory / "Rider" / "AsyncApostle.Rider"}" into "{ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "lib" / $"AsyncApostle.Rider-{Version}.jar"}"{NewLine}""");
                          CreateFromDirectory(SolutionDirectory / "Rider" / "AsyncApostle.Rider", ArtifactsDirectory / "Rider" / "AsyncApostle.Rider" / "lib" / $"AsyncApostle.Rider-{Version}.jar");
 
-                         WriteLine($@"Zip ""{ArtifactsDirectory / "Rider"}"" into ""{ArtifactsDirectory / "AsyncApostle.Rider.zip"}""{NewLine}");
+                         WriteLine($"""Zip "{ArtifactsDirectory / "Rider"}" into "{ArtifactsDirectory / "AsyncApostle.Rider.zip"}"{NewLine}""");
                          CreateFromDirectory(ArtifactsDirectory / "Rider", ArtifactsDirectory / "AsyncApostle.Rider.zip");
 
-                         WriteLine($@"Delete ""{ArtifactsDirectory / "Rider"}""{NewLine}");
+                         WriteLine($"""Delete "{ArtifactsDirectory / "Rider"}"{NewLine}""");
                          Delete(ArtifactsDirectory / "Rider", true);
                       });
 
    Target Restore =>
-      _ => _.DependsOn(Clean)
+      d => d.DependsOn(Clean)
             .Executes(() =>
                       {
                          DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.csproj"));

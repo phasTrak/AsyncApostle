@@ -3,8 +3,12 @@
 [RegisterConfigurableSeverity(SeverityId,
                               null,
                               Id,
-                              @"Async method must end with ""Async""",
-                              @"Async method must end with ""Async""",
+                              """
+                              Async method must end with "Async"
+                              """,
+                              """
+                              Async method must end with "Async"
+                              """,
                               WARNING)]
 [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
 public class AsyncMethodNamingHighlighting : IHighlighting
@@ -23,9 +27,17 @@ public class AsyncMethodNamingHighlighting : IHighlighting
 
    #region properties
 
-   public string             ErrorStripeToolTip => @"Async method must end with ""Async""";
-   public IMethodDeclaration MethodDeclaration  { get; }
-   public string             ToolTip            => @"Async method must end with ""Async""";
+   public string ErrorStripeToolTip =>
+      """
+      Async method must end with "Async"
+      """;
+
+   public IMethodDeclaration MethodDeclaration { get; }
+
+   public string ToolTip =>
+      """
+      Async method must end with "Async"
+      """;
 
    #endregion
 
