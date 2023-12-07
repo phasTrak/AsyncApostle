@@ -19,8 +19,8 @@
    </ItemGroup>
 
    <ItemGroup>
-      <PackageReference Include="JetBrains.Rider.SDK" Version="2023.2.0" PrivateAssets="all"/>
-      <PackageReference Include="Wave" Version="[232]"/>
+      <PackageReference Include="JetBrains.Rider.SDK" Version="2023.3.0" PrivateAssets="all"/>
+      <PackageReference Include="Wave" Version="[233]"/>
    </ItemGroup>
 
 </Project>
