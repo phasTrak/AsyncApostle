@@ -11,17 +11,11 @@
                               """,
                               WARNING)]
 [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
-public class AsyncMethodNamingHighlighting : IHighlighting
+public class AsyncMethodNamingHighlighting(IMethodDeclaration methodDeclaration) : IHighlighting
 {
    #region fields
 
    public const string SeverityId = "AsyncApostle.AsyncMethodNamingHighlighting";
-
-   #endregion
-
-   #region constructors
-
-   public AsyncMethodNamingHighlighting(IMethodDeclaration methodDeclaration) => MethodDeclaration = methodDeclaration;
 
    #endregion
 
@@ -32,7 +26,7 @@ public class AsyncMethodNamingHighlighting : IHighlighting
       Async method must end with "Async"
       """;
 
-   public IMethodDeclaration MethodDeclaration { get; }
+   public IMethodDeclaration MethodDeclaration { get; } = methodDeclaration;
 
    public string ToolTip =>
       """

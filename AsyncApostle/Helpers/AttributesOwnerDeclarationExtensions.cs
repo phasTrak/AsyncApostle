@@ -6,28 +6,28 @@ public static class AttributesOwnerDeclarationExtensions
 
    public static bool ContainsAttribute(this IAttributesOwnerDeclaration declaration, IEnumerable<ClrTypeName> attributeNames)
    {
-      var clrTypeNames = new HashSet<ClrTypeName>(attributeNames);
+      HashSet<ClrTypeName> clrTypeNames = [..attributeNames];
 
       return !clrTypeNames.IsNullOrEmpty()
-          && declaration.AttributesEnumerable.Select(attribute => attribute.Name.Reference.Resolve()
-                                                                           .DeclaredElement)
+          && declaration.AttributesEnumerable.Select(static attribute => attribute.Name.Reference.Resolve()
+                                                                                  .DeclaredElement)
                         .OfType<IClass>()
-                        .Select(attributeClass => attributeClass.GetClrName())
+                        .Select(static attributeClass => attributeClass.GetClrName())
                         .Any(clrTypeNames.Contains);
    }
 
    public static bool ContainsAttribute(this IAttributesOwnerDeclaration declaration, IEnumerable<string> attributeNames)
    {
-      static ClrTypeName NewClrTypeName(string name) => new (name);
-
-      var clrTypeNames = new HashSet<ClrTypeName>(attributeNames.Select(NewClrTypeName));
+      HashSet<ClrTypeName> clrTypeNames = [..attributeNames.Select(NewClrTypeName)];
 
       return !clrTypeNames.IsNullOrEmpty()
-          && declaration.AttributesEnumerable.Select(attribute => attribute.Name.Reference.Resolve()
-                                                                           .DeclaredElement)
+          && declaration.AttributesEnumerable.Select(static attribute => attribute.Name.Reference.Resolve()
+                                                                                  .DeclaredElement)
                         .OfType<IClass>()
-                        .Select(attributeClass => attributeClass.GetClrName())
+                        .Select(static attributeClass => attributeClass.GetClrName())
                         .Any(clrTypeNames.Contains);
+
+      static ClrTypeName NewClrTypeName(string name) => new (name);
    }
 
    #endregion

@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(IParametersOwnerDeclaration), HighlightingTypes = new[] { typeof(AsyncAwaitMayBeElidedHighlighting) })]
+[ElementProblemAnalyzer(typeof(IParametersOwnerDeclaration), HighlightingTypes = [typeof(AsyncAwaitMayBeElidedHighlighting)])]
 public class AsyncAwaitMayBeElidedAnalyzer : ElementProblemAnalyzer<IParametersOwnerDeclaration>
 {
    #region methods

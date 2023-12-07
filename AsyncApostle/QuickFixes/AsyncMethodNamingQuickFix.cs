@@ -1,20 +1,8 @@
 ﻿namespace AsyncApostle.QuickFixes;
 
 [QuickFix]
-public class AsyncMethodNamingQuickFix : QuickFixBase
+public class AsyncMethodNamingQuickFix(AsyncMethodNamingHighlighting asyncMethodNamingHighlighting) : QuickFixBase
 {
-   #region fields
-
-   readonly AsyncMethodNamingHighlighting _asyncMethodNamingHighlighting;
-
-   #endregion
-
-   #region constructors
-
-   public AsyncMethodNamingQuickFix(AsyncMethodNamingHighlighting asyncMethodNamingHighlighting) => _asyncMethodNamingHighlighting = asyncMethodNamingHighlighting;
-
-   #endregion
-
    #region properties
 
    public override string Text => """Add "Async" suffix""";
@@ -23,11 +11,11 @@ public class AsyncMethodNamingQuickFix : QuickFixBase
 
    #region methods
 
-   public override bool IsAvailable(IUserDataHolder cache) => _asyncMethodNamingHighlighting.IsValid();
+   public override bool IsAvailable(IUserDataHolder cache) => asyncMethodNamingHighlighting.IsValid();
 
    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
    {
-      var methodDeclaration = _asyncMethodNamingHighlighting.MethodDeclaration.DeclaredElement;
+      var methodDeclaration = asyncMethodNamingHighlighting.MethodDeclaration.DeclaredElement;
 
       if (methodDeclaration is null) return null;
 

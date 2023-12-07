@@ -19,8 +19,25 @@
    </PropertyGroup>
 
    <ItemGroup>
-      <PackageReference Include="JetBrains.ReSharper.SDK" Version="2023.3.0" PrivateAssets="all"/>
-      <PackageReference Include="Wave" Version="[233]"/>
+      <PackageReference Include="JetBrains.ReSharper.SDK"
+                        Version="2023.3.0"
+                        PrivateAssets="all"/>
+      <PackageReference Include="NetEscapades.EnumGenerators"
+                        IncludeAssets="compile; build; native; contentfiles; analyzers; buildtransitive"
+                        PrivateAssets="all"
+                        Version="1.0.0-beta08"/>
+      <PackageReference Include="PolySharp"
+                        IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"
+                        PrivateAssets="all"
+                        Version="1.14.0"/>
+      <PackageReference Include="Wave"
+                        Version="[233]"/>
+   </ItemGroup>
+
+   <ItemGroup>
+      <Reference Include="mscorlib">
+         <Aliases>global, mscorlib</Aliases>
+      </Reference>
    </ItemGroup>
 
 </Project>

@@ -4,19 +4,19 @@ public class ParameterCompareResult
 {
    #region constructors
 
+   ParameterCompareResult() { }
+
    ParameterCompareResult(CompareResult[] compareResults)
    {
       ParameterResults = compareResults;
       Result           = Resolve();
    }
 
-   ParameterCompareResult() => ParameterResults = Empty<CompareResult>();
-
    #endregion
 
    #region properties
 
-   public CompareResult[]                 ParameterResults { get; }
+   public CompareResult[]                 ParameterResults { get; } = [];
    public ParameterCompareAggregateResult Result           { get; private init; }
 
    #endregion
@@ -38,7 +38,7 @@ public class ParameterCompareResult
          ParameterCompareResultAction.Equal    => ParameterCompareAggregateResult.Equal,
          NeedConvertToAsyncFunc                => EqualOrCanBeConverting,
          ParameterCompareResultAction.NotEqual => ParameterCompareAggregateResult.NotEqual,
-         _                                     => throw new ArgumentOutOfRangeException(nameof(compareResult.Action), compareResult.Action, null)
+         _                                     => throw new UnreachableException()
       };
 
    static int ToInt(ParameterCompareAggregateResult result) =>
@@ -48,7 +48,7 @@ public class ParameterCompareResult
          DifferentLength                          => 0,
          ParameterCompareAggregateResult.Equal    => 30,
          EqualOrCanBeConverting                   => 50,
-         _                                        => throw new ArgumentOutOfRangeException(nameof(result), result, null)
+         _                                        => throw new UnreachableException()
       };
 
    public bool CanBeConvertedToAsync() => Result is EqualOrCanBeConverting or ParameterCompareAggregateResult.Equal;

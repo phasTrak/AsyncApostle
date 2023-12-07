@@ -7,7 +7,7 @@
                               "Elide async/await if task may be returned",
                               WARNING)]
 [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
-public class AsyncAwaitMayBeElidedHighlighting : IHighlighting
+public class AsyncAwaitMayBeElidedHighlighting(IAwaitExpression awaitExpression) : IHighlighting
 {
    #region fields
 
@@ -15,15 +15,9 @@ public class AsyncAwaitMayBeElidedHighlighting : IHighlighting
 
    #endregion
 
-   #region constructors
-
-   public AsyncAwaitMayBeElidedHighlighting(IAwaitExpression awaitExpression) => AwaitExpression = awaitExpression;
-
-   #endregion
-
    #region properties
 
-   public IAwaitExpression AwaitExpression    { get; }
+   public IAwaitExpression AwaitExpression    { get; } = awaitExpression;
    public string           ErrorStripeToolTip => "Await may be elided.";
    public string           ToolTip            => "Async in method declaration and await may be elided.";
 

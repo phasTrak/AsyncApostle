@@ -1,20 +1,8 @@
 namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 
 [SolutionComponent]
-class HaveAsyncMethodChecker : IConcreteCanBeUseAsyncMethodChecker
+class HaveAsyncMethodChecker(IAsyncMethodFinder asyncMethodFinder) : IConcreteCanBeUseAsyncMethodChecker
 {
-   #region fields
-
-   readonly IAsyncMethodFinder _asyncMethodFinder;
-
-   #endregion
-
-   #region constructors
-
-   public HaveAsyncMethodChecker(IAsyncMethodFinder asyncMethodFinder) => _asyncMethodFinder = asyncMethodFinder;
-
-   #endregion
-
    #region methods
 
    public bool CanReplace(IInvocationExpression element)
@@ -23,8 +11,8 @@ class HaveAsyncMethodChecker : IConcreteCanBeUseAsyncMethodChecker
 
       return referenceCurrentResolveResult.IsValid()
           && referenceCurrentResolveResult.DeclaredElement is IMethod invocationMethod
-          && _asyncMethodFinder.FindEquivalentAsyncMethod(invocationMethod, (element.ConditionalQualifier as IReferenceExpression)?.QualifierExpression?.Type()!)
-                               .ParameterCompareResult.CanBeConvertedToAsync();
+          && asyncMethodFinder.FindEquivalentAsyncMethod(invocationMethod, (element.ConditionalQualifier as IReferenceExpression)?.QualifierExpression?.Type())
+                              .ParameterCompareResult.CanBeConvertedToAsync();
    }
 
    #endregion

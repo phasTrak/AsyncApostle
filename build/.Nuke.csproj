@@ -2,30 +2,39 @@
 
    <PropertyGroup>
       <OutputType>Exe</OutputType>
-      <TargetFramework>net7.0</TargetFramework>
+      <TargetFramework>net8.0</TargetFramework>
       <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
       <RootNamespace>
       </RootNamespace>
       <IsPackable>False</IsPackable>
-      <NoWarn>CS0649;CS0169</NoWarn>
+      <NoWarn>$(NoWarn),CS0649,CS0169</NoWarn>
       <!-- NUKE CONFIGURATION -->
       <NukeVersion>0.8.0</NukeVersion>
       <NukeCodeGeneration>False</NukeCodeGeneration>
    </PropertyGroup>
 
    <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-      <PackageReference Include="Nuke.Common" Version="0.8.0"/>
-      <PackageReference Include="Nuke.CodeGeneration" Version="$(NukeVersion)"
+      <PackageReference Include="Microsoft.Web.Xdt"
+                        TreatAsUsed="true"
+                        Version="3.1.0"/>
+      <PackageReference Include="Newtonsoft.Json"
+                        Version="13.0.3"/>
+      <PackageReference Include="Nuke.Common"
+                        Version="0.8.0"/>
+      <PackageReference Include="Nuke.CodeGeneration"
+                        Version="$(NukeVersion)"
                         Condition="'$(NukeCodeGeneration)' == 'True'"/>
       <PackageReference Include="GitVersion.CommandLine"
                         IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"
-                        PrivateAssets="all" Version="5.12.0"/>
-      <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1"/>
+                        PrivateAssets="all"
+                        Version="5.12.0"/>
+      <PackageReference Include="System.Text.RegularExpressions"
+                        Version="4.3.1"/>
    </ItemGroup>
 
    <ItemGroup>
-      <NukeMetadata Include="**/*.json" Exclude="bin/**;obj/**"/>
+      <NukeMetadata Include="**/*.json"
+                    Exclude="bin/**;obj/**"/>
       <None Remove="*.csproj.DotSettings;*.ref.*.txt"/>
    </ItemGroup>
 

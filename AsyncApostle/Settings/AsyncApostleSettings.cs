@@ -3,4 +3,4 @@
 namespace AsyncApostle.Settings;
 
 [SettingsKey(typeof(CodeInspectionSettings), "Settings for AsyncApostle plugin.")]
-public class AsyncApostleSettings { }
+public class AsyncApostleSettings;

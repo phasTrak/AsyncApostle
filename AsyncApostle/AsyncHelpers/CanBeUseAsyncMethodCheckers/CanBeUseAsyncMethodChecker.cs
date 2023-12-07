@@ -1,23 +1,17 @@
 namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 
 [SolutionComponent]
-class CanBeUseAsyncMethodChecker : ICanBeUseAsyncMethodChecker
+class CanBeUseAsyncMethodChecker(IEnumerable<IConcreteCanBeUseAsyncMethodChecker> checkers) : ICanBeUseAsyncMethodChecker
 {
    #region fields
 
-   readonly IConcreteCanBeUseAsyncMethodChecker[] _checkers;
-
-   #endregion
-
-   #region constructors
-
-   public CanBeUseAsyncMethodChecker(IEnumerable<IConcreteCanBeUseAsyncMethodChecker> checkers) => _checkers = checkers.ToArray();
+   readonly IConcreteCanBeUseAsyncMethodChecker[] _checkers = checkers as IConcreteCanBeUseAsyncMethodChecker[] ?? [..checkers];
 
    #endregion
 
    #region methods
 
-   public bool CanReplace(IInvocationExpression element) => _checkers.All(x => x.CanReplace(element));
+   public bool CanReplace(IInvocationExpression element) => TrueForAll(_checkers, x => x.CanReplace(element));
 
    #endregion
 }

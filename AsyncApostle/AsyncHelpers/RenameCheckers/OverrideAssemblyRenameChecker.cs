@@ -7,8 +7,8 @@ public class OverrideAssemblyRenameChecker : IConcreteRenameChecker
 
    public bool SkipRename(IMethodDeclaration methodDeclaration) =>
       methodDeclaration.DeclaredElement?.FindBaseMethods()
-                       .Any(baseMethod => baseMethod.GetSourceFiles()
-                                                    .IsEmpty) is true;
+                       .Any(static baseMethod => baseMethod.GetSourceFiles()
+                                                           .IsEmpty) is true;
 
    #endregion
 }

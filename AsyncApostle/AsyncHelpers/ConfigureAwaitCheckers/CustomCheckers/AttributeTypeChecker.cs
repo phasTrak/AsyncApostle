@@ -1,23 +1,11 @@
 ﻿namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 
 [SolutionComponent]
-class AttributeTypeChecker : IConfigureAwaitCustomChecker
+class AttributeTypeChecker(IAttributeTypeChecker attributeTypeChecker) : IConfigureAwaitCustomChecker
 {
-   #region fields
-
-   readonly IAttributeTypeChecker _attributeTypeChecker;
-
-   #endregion
-
-   #region constructors
-
-   public AttributeTypeChecker(IAttributeTypeChecker attributeTypeChecker) => _attributeTypeChecker = attributeTypeChecker;
-
-   #endregion
-
    #region methods
 
-   public bool CanBeAdded(IAwaitExpression element) => !_attributeTypeChecker.IsUnder(element);
+   public bool CanBeAdded(IAwaitExpression element) => !attributeTypeChecker.IsUnder(element);
 
    #endregion
 }

@@ -7,9 +7,11 @@ public class AttributeFunctionChecker : IAttributeFunctionChecker
 
    public bool IsUnder(ICSharpTreeNode node)
    {
-      var customTypes = node.GetSettingsStore()
-                            .EnumIndexedValues(ConfigureAwaitIgnoreAttributeTypes)
-                            .ToArray();
+      string[] customTypes =
+      [
+         ..node.GetSettingsStore()
+               .EnumIndexedValues(ConfigureAwaitIgnoreAttributeTypes)
+      ];
 
       return !customTypes.IsNullOrEmpty()
           && node.GetContainingFunctionDeclarationIgnoringClosures()

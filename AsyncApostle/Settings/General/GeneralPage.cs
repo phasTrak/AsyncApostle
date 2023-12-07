@@ -17,10 +17,10 @@ public sealed class GeneralPage : BeSimpleOptionsPage
    public GeneralPage(Lifetime lifetime, OptionsPageContext optionsPageContext, OptionsSettingsSmartContext store) : base(lifetime, optionsPageContext, store)
    {
       AddHeader("Naming options");
-      AddBoolOption((GeneralSettings options) => options.ExcludeTestMethodsFromRenaming, "Do not suggest add 'Async' suffix to test method.");
+      AddBoolOption(static (GeneralSettings options) => options.ExcludeTestMethodsFromRenaming, "Do not suggest add 'Async' suffix to test method.");
 
       AddHeader("Eliding options");
-      AddBoolOption((GeneralSettings options) => options.ExcludeTestMethodsFromEliding, "Do not suggest elide await in test method.");
+      AddBoolOption(static (GeneralSettings options) => options.ExcludeTestMethodsFromEliding, "Do not suggest elide await in test method.");
    }
 
    #endregion

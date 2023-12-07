@@ -18,14 +18,14 @@ public static class FinderHelper
 
    public static IList<TOverridableMember> FindImplementingMembers<TOverridableMember>(this TOverridableMember overridableMember, IProgressIndicator? pi = null) where TOverridableMember : class, IOverridableMember
    {
-      List<TOverridableMember> found = new ();
+      List<TOverridableMember> found = [];
 
       overridableMember.GetPsiServices()
                        .Finder.FindImplementingMembers(overridableMember,
                                                        overridableMember.GetSearchDomain(),
                                                        new FindResultConsumer(findResult =>
                                                                               {
-                                                                                 if ((findResult as FindResultOverridableMember)?.OverridableMember is TOverridableMember result) found.Add(result);
+                                                                                 if (findResult is FindResultOverridableMember { OverridableMember: TOverridableMember result }) found.Add(result);
 
                                                                                  return Continue;
                                                                               }),
@@ -37,20 +37,24 @@ public static class FinderHelper
 
    static IEnumerable<IMethod> InnerFindAllHierarchy(IFinder finder, IMethod method, IProgressIndicator pi)
    {
-      var immediateBaseMethods = finder.FindImmediateBaseElements(method, pi)
-                                       .OfType<IMethod>()
-                                       .ToArray();
+      IMethod[] immediateBaseMethods =
+      [
+         ..finder.FindImmediateBaseElements(method, pi)
+                 .OfType<IMethod>()
+      ];
 
       return immediateBaseMethods.Any()
-                ? immediateBaseMethods.SelectMany(innerMethod => innerMethod.FindAllHierarchy())
-                : new[] { method }.Concat(method.FindImplementingMembers());
+                ? immediateBaseMethods.SelectMany(static innerMethod => innerMethod.FindAllHierarchy())
+                : [method, ..method.FindImplementingMembers()];
    }
 
    static IEnumerable<IMethod> InnerFindBaseMethods(IFinder finder, IMethod method, IProgressIndicator pi) =>
-      finder.FindImmediateBaseElements(method, pi)
-            .OfType<IMethod>()
-            .SelectMany(innerMethod => innerMethod.FindBaseMethods())
-            .Concat(new[] { method });
+   [
+      ..finder.FindImmediateBaseElements(method, pi)
+              .OfType<IMethod>()
+              .SelectMany(static innerMethod => innerMethod.FindBaseMethods()),
+      method
+   ];
 
    #endregion
 }

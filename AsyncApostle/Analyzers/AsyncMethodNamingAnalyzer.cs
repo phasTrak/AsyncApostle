@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(IMethodDeclaration), HighlightingTypes = new[] { typeof(AsyncMethodNamingHighlighting) })]
+[ElementProblemAnalyzer(typeof(IMethodDeclaration), HighlightingTypes = [typeof(AsyncMethodNamingHighlighting)])]
 public class AsyncMethodNamingAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>
 {
    #region methods

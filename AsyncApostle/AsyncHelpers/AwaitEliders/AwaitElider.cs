@@ -1,17 +1,11 @@
 ﻿namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
 [SolutionComponent]
-class AwaitElider : IAwaitElider
+class AwaitElider(IEnumerable<ICustomAwaitElider> awaitEliders) : IAwaitElider
 {
    #region fields
 
-   readonly ICustomAwaitElider[] _awaitEliders;
-
-   #endregion
-
-   #region constructors
-
-   public AwaitElider(IEnumerable<ICustomAwaitElider> awaitEliders) => _awaitEliders = awaitEliders.ToArray();
+   readonly ICustomAwaitElider[] _awaitEliders = awaitEliders as ICustomAwaitElider[] ?? [..awaitEliders];
 
    #endregion
 
@@ -25,8 +19,8 @@ class AwaitElider : IAwaitElider
 
       if (declarationOrClosure is null) return;
 
-      _awaitEliders.FirstOrDefault(x => x.CanElide(declarationOrClosure))
-                  ?.Elide(declarationOrClosure, invocationExpression.RemoveConfigureAwait());
+      Find(_awaitEliders, x => x.CanElide(declarationOrClosure))
+       ?.Elide(declarationOrClosure, invocationExpression.RemoveConfigureAwait());
    }
 
    public void Elide(IParametersOwnerDeclaration parametersOwnerDeclaration)

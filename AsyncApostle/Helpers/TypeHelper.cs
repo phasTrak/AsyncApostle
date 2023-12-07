@@ -141,7 +141,7 @@ public static class TypeHelper
    && TypeElementComparer.Equals(typeElement,
                                  typeElement.Module.GetPredefinedType()
                                             .TryGetType(clrName, Unknown)
-                                            .NotNull("NOT PREDEFINED")
+                                            .NotNull()
                                             .GetTypeElement());
 
    #endregion

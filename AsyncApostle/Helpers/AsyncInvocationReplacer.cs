@@ -7,11 +7,9 @@ class AsyncInvocationReplacer : IAsyncInvocationReplacer
 
    public void ReplaceInvocation(IInvocationExpression? invocation, string newMethodName, bool useAwait)
    {
-      var referenceExpression = invocation?.FirstChild as IReferenceExpression;
+      if (invocation is not { FirstChild: IReferenceExpression { NameIdentifier: not null } referenceExpression }) return;
 
-      if (referenceExpression?.NameIdentifier is null) return;
-
-      var factory = GetInstance(invocation!);
+      var factory = GetInstance(invocation);
 
       var newReferenceExpression = referenceExpression.QualifierExpression is null
                                       ? factory.CreateReferenceExpression("$0", newMethodName)
@@ -20,15 +18,15 @@ class AsyncInvocationReplacer : IAsyncInvocationReplacer
       newReferenceExpression.SetTypeArgumentList(referenceExpression.TypeArgumentList);
 
       if (useAwait)
-         invocation?.ReplaceBy(factory.CreateExpression("await $0($1).ConfigureAwait(false)", newReferenceExpression, invocation.ArgumentList));
+         invocation.ReplaceBy(factory.CreateExpression("await $0($1).ConfigureAwait(false)", newReferenceExpression, invocation.ArgumentList));
       else
       {
-         invocation?.ReplaceBy(factory.CreateExpression(invocation.Type()
-                                                                  .IsVoid()
-                                                           ? "$0($1).Wait()"
-                                                           : "$0($1).Result",
-                                                        newReferenceExpression,
-                                                        invocation.ArgumentList));
+         invocation.ReplaceBy(factory.CreateExpression(invocation.Type()
+                                                                 .IsVoid()
+                                                          ? "$0($1).Wait()"
+                                                          : "$0($1).Result",
+                                                       newReferenceExpression,
+                                                       invocation.ArgumentList));
       }
    }
 

@@ -1,20 +1,8 @@
 ﻿namespace AsyncApostle.QuickFixes;
 
 [QuickFix]
-public class ArgumentValueAsTask : QuickFixBase
+public class ArgumentValueAsTask(IncorrectArgumentTypeError error) : QuickFixBase
 {
-   #region fields
-
-   readonly IncorrectArgumentTypeError _error;
-
-   #endregion
-
-   #region constructors
-
-   public ArgumentValueAsTask(IncorrectArgumentTypeError error) => _error = error;
-
-   #endregion
-
    #region properties
 
    public override string Text => "Replace to Task.FromResult";
@@ -25,7 +13,7 @@ public class ArgumentValueAsTask : QuickFixBase
 
    public override bool IsAvailable(IUserDataHolder cache)
    {
-      var parameterType = _error.ParameterType;
+      var parameterType = error.ParameterType;
 
       if (!parameterType.IsGenericTask()) return false;
 
@@ -36,13 +24,13 @@ public class ArgumentValueAsTask : QuickFixBase
       var substitution = scalarType.GetSubstitution();
 
       return !substitution.IsEmpty()
-          && _error.ArgumentType.ToIType()
-                  ?.IsSubtypeOf(substitution.Apply(substitution.Domain[0])) is true;
+          && error.ArgumentType.ToIType()
+                 ?.IsSubtypeOf(substitution.Apply(substitution.Domain[0])) is true;
    }
 
    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
    {
-      var expression = _error.Argument as ICSharpArgument;
+      var expression = error.Argument as ICSharpArgument;
 
       if (expression?.GetContainingFile() is not ICSharpFile file) return null;
 
@@ -51,7 +39,7 @@ public class ArgumentValueAsTask : QuickFixBase
       expression.ReplaceBy(factory.CreateArgument(VALUE, factory.CreateExpression("Task.FromResult($0)", expression)));
 
       if (file.ImportsEnumerable.OfType<IUsingSymbolDirective>()
-              .All(i => i.ImportedSymbolName.QualifiedName is not "System.Threading.Tasks"))
+              .All(static i => i.ImportedSymbolName.QualifiedName is not "System.Threading.Tasks"))
          file.AddImport(factory.CreateUsingDirective("System.Threading.Tasks"), true);
 
       return null;

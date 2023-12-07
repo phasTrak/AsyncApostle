@@ -7,7 +7,7 @@
                               "If await not configured it may cause deadlock",
                               WARNING)]
 [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
-public class ConfigureAwaitHighlighting : IHighlighting
+public class ConfigureAwaitHighlighting(IAwaitExpression awaitExpression) : IHighlighting
 {
    #region fields
 
@@ -15,15 +15,9 @@ public class ConfigureAwaitHighlighting : IHighlighting
 
    #endregion
 
-   #region constructors
-
-   public ConfigureAwaitHighlighting(IAwaitExpression awaitExpression) => AwaitExpression = awaitExpression;
-
-   #endregion
-
    #region properties
 
-   public IAwaitExpression AwaitExpression    { get; }
+   public IAwaitExpression AwaitExpression    { get; } = awaitExpression;
    public string           ErrorStripeToolTip => "Await not configured";
    public string           ToolTip            => "If await not configured it may cause deadlock, if this code will be call synchronously";
 

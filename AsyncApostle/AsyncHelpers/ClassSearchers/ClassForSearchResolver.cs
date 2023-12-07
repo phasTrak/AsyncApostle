@@ -1,19 +1,11 @@
 namespace AsyncApostle.AsyncHelpers.ClassSearchers;
 
 [SolutionComponent]
-public class ClassForSearchResolver : IClassForSearchResolver
+public class ClassForSearchResolver(IEnumerable<IClassSearcher> classSearchers) : IClassForSearchResolver
 {
    #region fields
 
-   readonly IClassSearcher[] _classSearchers;
-
-   #endregion
-
-   #region constructors
-
-   public ClassForSearchResolver(IEnumerable<IClassSearcher> classSearchers) =>
-      _classSearchers = classSearchers.OrderBy(x => x.Priority)
-                                      .ToArray();
+   readonly IClassSearcher[] _classSearchers = [..classSearchers.OrderBy(static x => x.Priority)];
 
    #endregion
 
@@ -21,7 +13,7 @@ public class ClassForSearchResolver : IClassForSearchResolver
 
    public ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType) =>
       _classSearchers.Select(strategyResolver => strategyResolver.GetClassForSearch(originalMethod, invokedType))
-                     .FirstOrDefault(element => element is not null);
+                     .FirstOrDefault(static element => element is not null);
 
    #endregion
 }

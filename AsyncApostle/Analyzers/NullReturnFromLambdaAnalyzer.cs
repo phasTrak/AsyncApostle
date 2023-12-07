@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(ILambdaExpression), HighlightingTypes = new[] { typeof(NullReturnAsTaskHighlighting) })]
+[ElementProblemAnalyzer(typeof(ILambdaExpression), HighlightingTypes = [typeof(NullReturnAsTaskHighlighting)])]
 public class NullReturnFromLambdaAnalyzer : ElementProblemAnalyzer<ILambdaExpression>
 {
    #region methods

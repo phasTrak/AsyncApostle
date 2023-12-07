@@ -4,7 +4,7 @@ public interface IAsyncReplacer
 {
    #region methods
 
-   void ReplaceToAsync(IMethod methodDeclaredElement);
+   void ReplaceToAsync(IMethod method);
 
    #endregion
 }

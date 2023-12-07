@@ -1,3 +1,3 @@
 ﻿namespace AsyncApostle;
 
-[ZoneMarker] public class ZoneMarker { }
+[ZoneMarker] public class ZoneMarker;

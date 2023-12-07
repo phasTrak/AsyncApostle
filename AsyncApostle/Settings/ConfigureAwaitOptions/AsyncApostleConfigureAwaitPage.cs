@@ -15,7 +15,7 @@ public sealed class AsyncApostleConfigureAwaitPage : BeSimpleOptionsPage
    #region constructors
 
    public AsyncApostleConfigureAwaitPage(Lifetime lifetime, OptionsPageContext optionsPageContext, OptionsSettingsSmartContext store) : base(lifetime, optionsPageContext, store) =>
-      AddBoolOption((AsyncApostleConfigureAwaitSettings options) => options.ExcludeTestMethodsFromConfigureAwait, "Do not suggest add 'ConfigureAwait' in test method.");
+      AddBoolOption(static (AsyncApostleConfigureAwaitSettings options) => options.ExcludeTestMethodsFromConfigureAwait, "Do not suggest add 'ConfigureAwait' in test method.");
 
    #endregion
 }

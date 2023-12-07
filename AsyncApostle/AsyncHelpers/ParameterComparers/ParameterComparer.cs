@@ -1,20 +1,8 @@
 namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 
 [SolutionComponent]
-class ParameterComparer : IParameterComparer
+class ParameterComparer(ITypeComparer typeComparer) : IParameterComparer
 {
-   #region fields
-
-   readonly ITypeComparer _typeComparer;
-
-   #endregion
-
-   #region constructors
-
-   public ParameterComparer(ITypeComparer typeComparer) => _typeComparer = typeComparer;
-
-   #endregion
-
    #region methods
 
    public ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters)
@@ -32,7 +20,7 @@ class ParameterComparer : IParameterComparer
                                {
                                   From   = originalParameter.Type,
                                   To     = parameter.Type,
-                                  Action = _typeComparer.Compare(originalParameter.Type, parameter.Type)
+                                  Action = typeComparer.Compare(originalParameter.Type, parameter.Type)
                                };
       }
 

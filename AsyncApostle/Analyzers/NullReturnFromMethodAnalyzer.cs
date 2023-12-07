@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(IReturnStatement), HighlightingTypes = new[] { typeof(NullReturnAsTaskHighlighting) })]
+[ElementProblemAnalyzer(typeof(IReturnStatement), HighlightingTypes = [typeof(NullReturnAsTaskHighlighting)])]
 public class NullReturnFromMethodAnalyzer : ElementProblemAnalyzer<IReturnStatement>
 {
    #region methods

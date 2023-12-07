@@ -34,7 +34,7 @@ public class AsyncWaitHighlighting : IHighlighting
    #region methods
 
    public DocumentRange CalculateRange() => ReferenceExpression?.GetDocumentRange() ?? InvocationExpression.GetDocumentRange();
-   public bool IsValid() => ReferenceExpression?.IsValid()                          ?? InvocationExpression?.IsValid() ?? false;
+   public bool IsValid() => ReferenceExpression?.IsValid()                          ?? InvocationExpression?.IsValid() is true;
 
    #endregion
 }

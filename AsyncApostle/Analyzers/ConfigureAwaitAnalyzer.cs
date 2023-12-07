@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.Analyzers;
 
-[ElementProblemAnalyzer(typeof(IAwaitExpression), HighlightingTypes = new[] { typeof(ConfigureAwaitHighlighting) })]
+[ElementProblemAnalyzer(typeof(IAwaitExpression), HighlightingTypes = [typeof(ConfigureAwaitHighlighting)])]
 public class ConfigureAwaitAnalyzer : ElementProblemAnalyzer<IAwaitExpression>
 {
    #region methods

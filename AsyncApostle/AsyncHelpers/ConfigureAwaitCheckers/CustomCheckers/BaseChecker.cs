@@ -9,7 +9,7 @@ class BaseChecker : IConfigureAwaitCustomChecker
    {
       var declaredType = element.Task?.GetExpressionType() as IDeclaredType;
 
-      return !declaredType.IsConfigurableAwaitable() && !declaredType.IsGenericConfigurableAwaitable();
+      return declaredType is not null && !declaredType.IsConfigurableAwaitable() && !declaredType.IsGenericConfigurableAwaitable();
    }
 
    #endregion

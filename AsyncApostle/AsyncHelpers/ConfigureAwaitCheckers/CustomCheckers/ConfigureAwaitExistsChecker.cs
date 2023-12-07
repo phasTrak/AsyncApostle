@@ -12,7 +12,7 @@ public class ConfigureAwaitExistsChecker : IConfigureAwaitCustomChecker
       return type.IsTask()
           || type.IsGenericTask()
           || ((type as IDeclaredType)?.Resolve()
-                                      .DeclaredElement as ITypeElement)?.Methods.Any(x => x.ShortName is "ConfigureAwait" && x.Parameters.Count is 1) is true;
+                                      .DeclaredElement as ITypeElement)?.Methods.Any(static x => x.ShortName is "ConfigureAwait" && x.Parameters.Count is 1) is true;
    }
 
    #endregion

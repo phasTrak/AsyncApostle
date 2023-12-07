@@ -1,20 +1,8 @@
 namespace AsyncApostle.Helpers;
 
 [SolutionComponent]
-public class MainAwaitEliderChecker : IConcreteAwaitEliderChecker
+public class MainAwaitEliderChecker(ILastNodeChecker lastNodeChecker) : IConcreteAwaitEliderChecker
 {
-   #region fields
-
-   readonly ILastNodeChecker _lastNodeChecker;
-
-   #endregion
-
-   #region constructors
-
-   public MainAwaitEliderChecker(ILastNodeChecker lastNodeChecker) => _lastNodeChecker = lastNodeChecker;
-
-   #endregion
-
    #region methods
 
    public bool CanElide(IParametersOwnerDeclaration element)
@@ -23,20 +11,18 @@ public class MainAwaitEliderChecker : IConcreteAwaitEliderChecker
 
       if (returnType is null) return false;
 
-      var returnStatements = element.DescendantsInScope<IReturnStatement>()
-                                    .ToArray();
+      IReturnStatement[] returnStatements = [..element.DescendantsInScope<IReturnStatement>()];
 
       if (returnType.IsTask() && returnStatements.Any() || returnType.IsGenericTask() && returnStatements.Length > 1) return false;
 
-      var awaitExpressions = element.DescendantsInScope<IAwaitExpression>()
-                                    .ToArray();
+      IAwaitExpression[] awaitExpressions = [..element.DescendantsInScope<IAwaitExpression>()];
 
       // TODO: think about this, different settings
       if (awaitExpressions.Length is not 1) return false;
 
-      var awaitExpression = awaitExpressions.First();
+      var awaitExpression = awaitExpressions[0];
 
-      if (returnStatements.Any() && returnStatements.First() != awaitExpression.GetContainingStatement() || !_lastNodeChecker.IsLastNode(awaitExpression)) return false;
+      if (returnStatements.Any() && returnStatements[0] != awaitExpression.GetContainingStatement() || !lastNodeChecker.IsLastNode(awaitExpression)) return false;
 
       var awaitingType = (awaitExpression.Task as IInvocationExpression)?.RemoveConfigureAwait()
                                                                          .Type();

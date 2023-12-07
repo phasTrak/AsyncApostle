@@ -1,38 +1,13 @@
 namespace AsyncApostle.Helpers;
 
 [SolutionComponent]
-public class AsyncReplacer : IAsyncReplacer
+public class AsyncReplacer(IAsyncInvocationReplacer asyncInvocationReplacer,
+                           IInvocationConverter invocationConverter,
+                           IAwaitElider awaitElider,
+                           IAwaitEliderChecker awaitEliderChecker,
+                           ISyncWaitChecker syncWaitChecker,
+                           ISyncWaitConverter syncWaitConverter) : IAsyncReplacer
 {
-   #region fields
-
-   readonly IAsyncInvocationReplacer _asyncInvocationReplacer;
-   readonly IAwaitElider             _awaitElider;
-   readonly IAwaitEliderChecker      _awaitEliderChecker;
-   readonly IInvocationConverter     _invocationConverter;
-   readonly ISyncWaitChecker         _syncWaitChecker;
-   readonly ISyncWaitConverter       _syncWaitConverter;
-
-   #endregion
-
-   #region constructors
-
-   public AsyncReplacer(IAsyncInvocationReplacer asyncInvocationReplacer,
-                        IInvocationConverter invocationConverter,
-                        IAwaitElider awaitElider,
-                        IAwaitEliderChecker awaitEliderChecker,
-                        ISyncWaitChecker syncWaitChecker,
-                        ISyncWaitConverter syncWaitConverter)
-   {
-      _asyncInvocationReplacer = asyncInvocationReplacer;
-      _awaitElider             = awaitElider;
-      _awaitEliderChecker      = awaitEliderChecker;
-      _invocationConverter     = invocationConverter;
-      _syncWaitChecker         = syncWaitChecker;
-      _syncWaitConverter       = syncWaitConverter;
-   }
-
-   #endregion
-
    #region methods
 
    static string GenerateAsyncMethodName(string oldName) =>
@@ -52,7 +27,7 @@ public class AsyncReplacer : IAsyncReplacer
    public void ReplaceToAsync(IMethod method)
    {
       foreach (var methodDeclaration in method.FindAllHierarchy()
-                                              .SelectMany(x => x.GetDeclarations<IMethodDeclaration>()))
+                                              .SelectMany(static x => x.GetDeclarations<IMethodDeclaration>()))
          ReplaceMethodToAsync(methodDeclaration);
    }
 
@@ -73,12 +48,12 @@ public class AsyncReplacer : IAsyncReplacer
 
          if (task is null) return;
 
-         newReturnValue = CreateType(task, new[] { returnType });
+         newReturnValue = CreateType(task, [returnType]);
       }
 
       SetSignature(methodDeclaration, newReturnValue, GenerateAsyncMethodName(methodDeclaration.DeclaredName));
 
-      if (_awaitEliderChecker.CanElide(methodDeclaration)) _awaitElider.Elide(methodDeclaration);
+      if (awaitEliderChecker.CanElide(methodDeclaration)) awaitElider.Elide(methodDeclaration);
    }
 
    void ReplaceMethodToAsync(IMethodDeclaration method)
@@ -91,26 +66,29 @@ public class AsyncReplacer : IAsyncReplacer
 
       foreach (var invocation in method.GetPsiServices()
                                        .Finder.FindAllReferences(methodDeclaredElement)
-                                       .Select(usage => usage.GetTreeNode()
-                                                             .Parent as IInvocationExpression))
-         _asyncInvocationReplacer.ReplaceInvocation(invocation, GenerateAsyncMethodName(method.DeclaredName), invocation?.IsUnderAsyncDeclaration() ?? false);
+                                       .Select(static usage => usage.GetTreeNode()
+                                                                    .Parent as IInvocationExpression))
+         asyncInvocationReplacer.ReplaceInvocation(invocation, GenerateAsyncMethodName(method.DeclaredName), invocation?.IsUnderAsyncDeclaration() is true);
 
       // TODO: ugly hack. think
       while (method.DescendantsInScope<IInvocationExpression>()
-                   .FirstOrDefault(_syncWaitChecker.CanReplaceWaitToAsync) is { } invocationExpression)
-         _syncWaitConverter.ReplaceWaitToAsync(invocationExpression);
+                   .FirstOrDefault(syncWaitChecker.CanReplaceWaitToAsync) is { } invocationExpression)
+         syncWaitConverter.ReplaceWaitToAsync(invocationExpression);
 
       while (method.DescendantsInScope<IReferenceExpression>()
-                   .FirstOrDefault(_syncWaitChecker.CanReplaceResultToAsync) is { } referenceExpression)
-         _syncWaitConverter.ReplaceResultToAsync(referenceExpression);
+                   .FirstOrDefault(syncWaitChecker.CanReplaceResultToAsync) is { } referenceExpression)
+         syncWaitConverter.ReplaceResultToAsync(referenceExpression);
 
       while (method.DescendantsInScope<IInvocationExpression>()
-                   .Any(invocationExpression2 => _invocationConverter.TryReplaceInvocationToAsync(invocationExpression2))) { }
+                   .Any(invocationConverter.TryReplaceInvocationToAsync))
+      {
+         // block intentionally left empty
+      }
 
       foreach (var parametersOwnerDeclaration in method.Descendants<IParametersOwnerDeclaration>()
                                                        .ToEnumerable()
-                                                       .Where(_awaitEliderChecker.CanElide))
-         _awaitElider.Elide(parametersOwnerDeclaration);
+                                                       .Where(awaitEliderChecker.CanElide))
+         awaitElider.Elide(parametersOwnerDeclaration);
 
       ReplaceMethodSignatureToAsync(methodDeclaredElement, method);
    }

@@ -8,7 +8,7 @@ class UsingVarChecker : IConcreteAwaitEliderChecker
    public bool CanElide(IParametersOwnerDeclaration element) =>
       element.Descendants<IMultipleLocalVariableDeclaration>()
              .ToEnumerable()
-             .All(x => x.UsingKind is Regular);
+             .All(static x => x.UsingKind is Regular);
 
    #endregion
 }

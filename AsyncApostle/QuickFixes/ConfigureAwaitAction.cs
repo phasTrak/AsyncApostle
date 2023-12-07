@@ -1,20 +1,7 @@
 ﻿namespace AsyncApostle.QuickFixes;
 
-public class ConfigureAwaitAction : BulbActionBase
+public class ConfigureAwaitAction(ConfigureAwaitHighlighting configureAwaitHighlighting, bool configureAwaitValue) : BulbActionBase
 {
-   #region fields
-
-   readonly ConfigureAwaitHighlighting _configureAwaitHighlighting;
-   readonly bool                       _configureAwaitValue;
-
-   #endregion
-
-   #region constructors
-
-   public ConfigureAwaitAction(ConfigureAwaitHighlighting configureAwaitHighlighting, bool configureAwaitValue) => (_configureAwaitHighlighting, _configureAwaitValue) = (configureAwaitHighlighting, configureAwaitValue);
-
-   #endregion
-
    #region properties
 
    public override string Text => $"Add ConfigureAwait({GetConfigureAwaitValueText()})";
@@ -25,7 +12,7 @@ public class ConfigureAwaitAction : BulbActionBase
 
    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
    {
-      var awaitExpression = _configureAwaitHighlighting.AwaitExpression;
+      var awaitExpression = configureAwaitHighlighting.AwaitExpression;
 
       awaitExpression.Task.ReplaceBy(GetInstance(awaitExpression)
                                        .CreateExpression($"$0.ConfigureAwait({GetConfigureAwaitValueText()})", awaitExpression.Task));
@@ -34,7 +21,7 @@ public class ConfigureAwaitAction : BulbActionBase
    }
 
    string GetConfigureAwaitValueText() =>
-      _configureAwaitValue
+      configureAwaitValue
          ? "true"
          : "false";
 

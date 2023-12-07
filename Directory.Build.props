@@ -10,11 +10,16 @@
       <FileVersion>2023.3.0.1205</FileVersion>
       <ImplicitUsings>enable</ImplicitUsings>
       <LangVersion>12.0</LangVersion>
+      <NoWarn>S3358</NoWarn>
       <Nullable>enable</Nullable>
       <OutputPath>bin\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
       <TargetFramework>net472</TargetFramework>
       <Title>AsyncApostle</Title>
       <Version>2023.3.0.0</Version>
    </PropertyGroup>
+
+   <ItemGroup>
+      <Using Include="System.Diagnostics.CodeAnalysis"/>
+   </ItemGroup>
 
 </Project>

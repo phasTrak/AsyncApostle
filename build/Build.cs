@@ -13,16 +13,6 @@ class Build : NukeBuild
 {
    #region properties
 
-   // Auto-injection fields:
-
-   // [GitVersion] readonly GitVersion GitVersion;
-   // Semantic versioning. Must have 'GitVersion.CommandLine' referenced.
-
-   // [GitRepository] readonly GitRepository GitRepository;
-   // Parses origin, branch name and head from git config.
-
-   // [Parameter] readonly string MyGetApiKey;
-   // Returns command-line arguments and environment variables.
    public override AbsolutePath ArtifactsDirectory => SolutionDirectory / "packages";
    static          string       Version            => "2023.3.0";
 
@@ -37,7 +27,7 @@ class Build : NukeBuild
 
    Target Compile =>
       d => d.DependsOn(Restore)
-            .Executes(() => DotNetBuild(_ => DefaultDotNetBuild));
+            .Executes(static () => DotNetBuild(static _ => DefaultDotNetBuild));
 
    Target Pack =>
       d => d.DependsOn(Compile)
@@ -91,10 +81,10 @@ class Build : NukeBuild
 
    Target Restore =>
       d => d.DependsOn(Clean)
-            .Executes(() =>
+            .Executes(static () =>
                       {
-                         DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.csproj"));
-                         DotNetRestore(_ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
+                         DotNetRestore(static _ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.csproj"));
+                         DotNetRestore(static _ => DefaultDotNetRestore.SetProjectFile("AsyncApostle/AsyncApostle.Rider.csproj"));
                       });
 
    #endregion
@@ -102,7 +92,7 @@ class Build : NukeBuild
    #region methods
 
    // Console application entry. Also defines the default target.
-   public static int Main() => Execute<Build>(x => x.Compile);
+   public static int Main() => Execute<Build>(static x => x.Compile);
 
    #endregion
 }
