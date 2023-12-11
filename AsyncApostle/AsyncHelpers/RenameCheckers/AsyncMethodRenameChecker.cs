@@ -11,7 +11,7 @@ class RenameChecker(IEnumerable<IConcreteRenameChecker> concreteCheckers) : IRen
 
    #region methods
 
-   public bool NeedRename(IMethodDeclaration method) => !TrueForAll(_concreteCheckers, x => x.SkipRename(method));
+   public bool NeedRename(IMethodDeclaration method) => !Exists(_concreteCheckers, x => x.SkipRename(method));
 
    #endregion
 }
