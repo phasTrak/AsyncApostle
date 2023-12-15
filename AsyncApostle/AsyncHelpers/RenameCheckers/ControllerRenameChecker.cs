@@ -18,7 +18,7 @@ class ControllerRenameChecker : IConcreteRenameChecker
    #region methods
 
    public bool SkipRename(IMethodDeclaration methodDeclaration) =>
-      methodDeclaration.DeclaredElement?.GetContainingType() is IClass @class && TrueForAll(@class.GetSuperTypesWithoutCircularDependent(), superType => _controllerClasses.Contains(superType.GetClrName()));
+      methodDeclaration.DeclaredElement?.GetContainingType() is IClass @class && Exists(@class.GetSuperTypesWithoutCircularDependent(), superType => _controllerClasses.Contains(superType.GetClrName()));
 
    #endregion
 }
