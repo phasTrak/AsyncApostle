@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.ContextActions;
 
-[ContextAction(Group = "C#", Name = "ConvertToAsync", Description = "Convert method to async and replace all inner call to async version if exist.")]
+[ContextAction(GroupType = typeof(CSharpContextActions), Name = "ConvertToAsync", Description = "Convert method to async and replace all inner call to async version if exist.")]
 public class MethodToAsyncApostle(ICSharpContextActionDataProvider provider) : ContextActionBase
 {
    #region fields
