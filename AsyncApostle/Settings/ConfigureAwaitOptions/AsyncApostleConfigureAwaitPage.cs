@@ -1,14 +1,14 @@
 ﻿namespace AsyncApostle.Settings.ConfigureAwaitOptions;
 
-[OptionsPage(PID,
+[OptionsPage(Pid,
              "ConfigureAwait settings",
              typeof(ServicesThemedIcons.InspectionToolWindow),
-             ParentId = AsyncApostlePage.PID)]
+             ParentId = AsyncApostlePage.Pid)]
 public sealed class AsyncApostleConfigureAwaitPage : BeSimpleOptionsPage
 {
    #region fields
 
-   public const string PID = "AsyncApostleConfigureAwait";
+   public const string Pid = "AsyncApostleConfigureAwait";
 
    #endregion
 

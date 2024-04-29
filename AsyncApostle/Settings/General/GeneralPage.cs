@@ -1,14 +1,14 @@
 ﻿namespace AsyncApostle.Settings.General;
 
-[OptionsPage(PID,
+[OptionsPage(Pid,
              "General",
              typeof(ServicesThemedIcons.AnalyzeThis),
-             ParentId = AsyncApostlePage.PID)]
+             ParentId = AsyncApostlePage.Pid)]
 public sealed class GeneralPage : BeSimpleOptionsPage
 {
    #region fields
 
-   public const string PID = "General";
+   public const string Pid = "General";
 
    #endregion
 

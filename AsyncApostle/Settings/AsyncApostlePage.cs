@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.Settings;
 
-[OptionsPage(PID,
+[OptionsPage(Pid,
              "Async Apostle",
              typeof(ServicesThemedIcons.FileStorage),
              ParentId = CodeInspectionPage.PID)]
@@ -8,7 +8,7 @@ public sealed class AsyncApostlePage : AEmptyOptionsPage
 {
    #region fields
 
-   public const string PID = "AsyncApostle";
+   public const string Pid = "AsyncApostle";
 
    #endregion
 }
