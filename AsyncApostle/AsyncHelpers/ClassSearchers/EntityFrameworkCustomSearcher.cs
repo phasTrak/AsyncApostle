@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.ClassSearchers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class EntityFrameworkCustomSearcher : IClassSearcher
 {
    #region properties

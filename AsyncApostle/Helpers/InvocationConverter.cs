@@ -1,6 +1,6 @@
 namespace AsyncApostle.Helpers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class InvocationConverter(IAsyncMethodFinder asyncMethodFinder,
                                  IAsyncInvocationReplacer asyncInvocationReplacer,
                                  ISyncWaitChecker syncWaitChecker,

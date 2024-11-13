@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class TypeComparer : ITypeComparer
 {
    #region methods

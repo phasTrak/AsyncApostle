@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.MethodFinders;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class AsyncMethodFinder(IClassForSearchResolver classForSearchResolver, IParameterComparer parameterComparer, IMethodFindingChecker methodFindingChecker) : IAsyncMethodFinder
 {
    #region methods

@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class RenameChecker(IEnumerable<IConcreteRenameChecker> concreteCheckers) : IRenameChecker
 {
    #region fields

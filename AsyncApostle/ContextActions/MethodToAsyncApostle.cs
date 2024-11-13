@@ -43,7 +43,12 @@ public class MethodToAsyncApostle(ICSharpContextActionDataProvider provider) : C
       return null;
    }
 
-   IMethodDeclaration? GetMethodFromCaretPosition() => (Provider.TokenAfterCaret as ICSharpIdentifier ?? Provider.TokenBeforeCaret as ICSharpIdentifier)?.Parent as IMethodDeclaration;
+   IMethodDeclaration? GetMethodFromCaretPosition()
+   {
+      var selectedNode = Provider.GetSelectedElement<ICSharpIdentifier>();
+
+      return selectedNode?.Parent as IMethodDeclaration;
+   }
 
    #endregion
 }

@@ -71,3 +71,4 @@ global using static JetBrains.ReSharper.Psi.TypeFactory;
 global using static System.Array;
 global using static System.Runtime.CompilerServices.MethodImplOptions;
 global using static System.StringComparison;
+global using static JetBrains.Application.Parts.Instantiation;

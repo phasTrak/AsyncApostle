@@ -1,6 +1,6 @@
 namespace AsyncApostle.Helpers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class AsyncReplacer(IAsyncInvocationReplacer asyncInvocationReplacer,
                            IInvocationConverter invocationConverter,
                            IAwaitElider awaitElider,

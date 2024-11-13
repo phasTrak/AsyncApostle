@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class InLockChecker : IConcreteCanBeUseAsyncMethodChecker
 {
    #region methods

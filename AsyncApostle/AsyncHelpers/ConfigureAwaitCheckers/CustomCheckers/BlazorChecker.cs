@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class BlazorChecker : IConfigureAwaitCustomChecker
 {
    #region fields

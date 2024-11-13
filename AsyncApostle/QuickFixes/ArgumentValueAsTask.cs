@@ -24,7 +24,7 @@ public class ArgumentValueAsTask(IncorrectArgumentTypeError error) : QuickFixBas
       var substitution = scalarType.GetSubstitution();
 
       return !substitution.IsEmpty()
-          && error.ArgumentType.ToIType()
+          && error.ArgumentType?.ToIType()
                  ?.IsSubtypeOf(substitution.Apply(substitution.Domain[0])) is true;
    }
 

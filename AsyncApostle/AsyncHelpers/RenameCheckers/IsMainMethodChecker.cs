@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class IsMainMethodChecker : IConcreteRenameChecker
 {
    #region methods

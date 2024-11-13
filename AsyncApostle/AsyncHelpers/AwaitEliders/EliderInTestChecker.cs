@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class EliderInTestChecker(IUnderTestChecker underTestChecker) : IConcreteAwaitEliderChecker
 {
    #region methods

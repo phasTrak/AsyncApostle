@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class ConfigureAwaitChecker(IEnumerable<IConfigureAwaitCustomChecker> awaitCustomCheckers) : IConfigureAwaitChecker
 {
    #region fields

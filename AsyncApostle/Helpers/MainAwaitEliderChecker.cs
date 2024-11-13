@@ -1,6 +1,6 @@
 namespace AsyncApostle.Helpers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class MainAwaitEliderChecker(ILastNodeChecker lastNodeChecker) : IConcreteAwaitEliderChecker
 {
    #region methods

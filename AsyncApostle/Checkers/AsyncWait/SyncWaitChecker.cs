@@ -1,6 +1,6 @@
 namespace AsyncApostle.Checkers.AsyncWait;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class SyncWaitChecker : ISyncWaitChecker
 {
    #region methods

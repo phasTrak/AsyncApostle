@@ -1,6 +1,6 @@
 namespace AsyncApostle.Helpers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class AsyncInvocationReplacer : IAsyncInvocationReplacer
 {
    #region methods

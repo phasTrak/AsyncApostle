@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class BaseChecker : IConfigureAwaitCustomChecker
 {
    #region methods

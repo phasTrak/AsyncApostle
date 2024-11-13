@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class HaveAsyncMethodChecker(IAsyncMethodFinder asyncMethodFinder) : IConcreteCanBeUseAsyncMethodChecker
 {
    #region methods

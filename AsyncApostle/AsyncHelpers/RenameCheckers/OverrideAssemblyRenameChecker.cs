@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class OverrideAssemblyRenameChecker : IConcreteRenameChecker
 {
    #region methods

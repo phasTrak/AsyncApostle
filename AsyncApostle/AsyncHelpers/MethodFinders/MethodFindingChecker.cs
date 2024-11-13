@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.MethodFinders;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class MethodFindingChecker(IEnumerable<IConcreteMethodFindingChecker> concreteMethodFindingCheckers) : IMethodFindingChecker
 {
    #region fields

@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class AwaitElider(IEnumerable<ICustomAwaitElider> awaitEliders) : IAwaitElider
 {
    #region fields

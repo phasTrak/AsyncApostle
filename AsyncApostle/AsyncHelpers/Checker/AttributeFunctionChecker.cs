@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.AsyncHelpers.Checker;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class AttributeFunctionChecker : IAttributeFunctionChecker
 {
    #region methods

@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.Checkers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class UnderTestChecker : IUnderTestChecker
 {
    #region fields

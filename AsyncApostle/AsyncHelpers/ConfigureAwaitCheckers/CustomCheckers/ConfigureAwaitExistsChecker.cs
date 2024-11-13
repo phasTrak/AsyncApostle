@@ -1,6 +1,6 @@
 namespace AsyncApostle.AsyncHelpers.ConfigureAwaitCheckers.CustomCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 public class ConfigureAwaitExistsChecker : IConfigureAwaitCustomChecker
 {
    #region methods

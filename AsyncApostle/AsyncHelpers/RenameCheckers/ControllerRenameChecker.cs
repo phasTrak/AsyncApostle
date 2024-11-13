@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class ControllerRenameChecker : IConcreteRenameChecker
 {
    #region fields

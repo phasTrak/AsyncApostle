@@ -1,6 +1,6 @@
 ﻿namespace AsyncApostle.AsyncHelpers.Checker;
 
-[SolutionComponent]
+[SolutionComponent(DemandAnyThreadSafe)]
 class LastNodeChecker : ILastNodeChecker
 {
    #region methods
