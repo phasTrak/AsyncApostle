@@ -20,18 +20,18 @@
 
    <ItemGroup>
       <PackageReference Include="JetBrains.Rider.SDK"
-                        Version="2024.2.1"
+                        Version="2024.3.0"
                         PrivateAssets="all"/>
       <PackageReference Include="NetEscapades.EnumGenerators"
                         IncludeAssets="compile; build; native; contentfiles; analyzers; buildtransitive"
                         PrivateAssets="all"
-                        Version="1.0.0-beta08"/>
+                        Version="1.0.0-beta11"/>
       <PackageReference Include="PolySharp"
                         IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"
                         PrivateAssets="all"
                         Version="1.14.1"/>
       <PackageReference Include="Wave"
-                        Version="[242]"/>
+                        Version="[243]"/>
    </ItemGroup>
 
    <ItemGroup>

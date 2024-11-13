@@ -7,6 +7,7 @@
       <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
       <PackageId>AsyncApostle.AsyncApostle</PackageId>
       <PackageProjectUrl>https://github.com/phasTrak/AsyncApostle</PackageProjectUrl>
+      <PackageIconUrl>https://raw.githubusercontent.com/phasTrak/AsyncApostle/main/Icon.png</PackageIconUrl>
       <PackageTags>async</PackageTags>
    </PropertyGroup>
 
@@ -20,18 +21,18 @@
 
    <ItemGroup>
       <PackageReference Include="JetBrains.ReSharper.SDK"
-                        Version="2024.2.1"
+                        Version="2024.3.0"
                         PrivateAssets="all"/>
       <PackageReference Include="NetEscapades.EnumGenerators"
                         IncludeAssets="compile; build; native; contentfiles; analyzers; buildtransitive"
                         PrivateAssets="all"
-                        Version="1.0.0-beta08"/>
+                        Version="1.0.0-beta11"/>
       <PackageReference Include="PolySharp"
                         IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"
                         PrivateAssets="all"
                         Version="1.14.1"/>
       <PackageReference Include="Wave"
-                        Version="[242]"/>
+                        Version="[243]"/>
    </ItemGroup>
 
    <ItemGroup>
