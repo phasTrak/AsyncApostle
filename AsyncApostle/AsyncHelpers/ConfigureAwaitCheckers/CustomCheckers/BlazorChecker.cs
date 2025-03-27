@@ -5,10 +5,9 @@ class BlazorChecker : IConfigureAwaitCustomChecker
 {
    #region fields
 
-   const string CodeBehindFileExtension = ".razor.cs";
-   const string ComponentAssemblyName   = "Microsoft.AspNetCore.Components";
-   const string ComponentBaseclassName  = "Microsoft.AspNetCore.Components.ComponentBase";
-   const string FileExtension           = ".razor";
+   const string CODE_BEHIND_FILE_EXTENSION = ".razor.cs";
+   const string COMPONENT_BASE_NAME        = "Microsoft.AspNetCore.Components.IComponent";
+   const string FILE_EXTENSION             = ".razor";
 
    #endregion
 
@@ -20,10 +19,10 @@ class BlazorChecker : IConfigureAwaitCustomChecker
 
       foreach (var declaredType in declaredTypes)
       {
-         var clrName = declaredType.GetClrName()
-                                   .FullName;
-
-         if (string.Equals(clrName, ComponentBaseclassName) && string.Equals(declaredType.Assembly?.Name, ComponentAssemblyName)) return declaredType;
+         if (declaredType.GetSuperTypes()
+                         .Any(static i => i.GetClrName()
+                                           .FullName.Equals(COMPONENT_BASE_NAME)))
+            return declaredType;
 
          var componentDeclaration = FindComponentBaseClass(declaredType.GetSuperTypes());
 
@@ -47,7 +46,7 @@ class BlazorChecker : IConfigureAwaitCustomChecker
 
       if (sourceFile is null) return true;
 
-      if (sourceFile.DisplayName.EndsWith(FileExtension, OrdinalIgnoreCase) || sourceFile.DisplayName.EndsWith(CodeBehindFileExtension, OrdinalIgnoreCase)) return false;
+      if (sourceFile.DisplayName.EndsWith(FILE_EXTENSION, OrdinalIgnoreCase) || sourceFile.DisplayName.EndsWith(CODE_BEHIND_FILE_EXTENSION, OrdinalIgnoreCase)) return false;
 
       var classDeclaration = GetClassDeclaration(element);
 
