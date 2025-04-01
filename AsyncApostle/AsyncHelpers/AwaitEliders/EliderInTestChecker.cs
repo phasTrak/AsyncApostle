@@ -7,7 +7,8 @@ public class EliderInTestChecker(IUnderTestChecker underTestChecker) : IConcrete
 
    public bool CanElide(IParametersOwnerDeclaration element) =>
       !element.GetSettingsStore()
-              .GetValue(ExcludeTestMethodsFromEliding)
+              .GetKey<GeneralSettings>(SettingsOptimization.OptimizeDefault)
+              .ExcludeTestMethodsFromEliding
    || element is not IMethodDeclaration method
    || !underTestChecker.IsUnder(method);
 

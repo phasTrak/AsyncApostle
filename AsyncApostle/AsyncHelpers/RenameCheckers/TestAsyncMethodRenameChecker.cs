@@ -7,7 +7,8 @@ class TestRenameChecker(IUnderTestChecker underTestChecker) : IConcreteRenameChe
 
    public bool SkipRename(IMethodDeclaration methodDeclaration) =>
       methodDeclaration.GetSettingsStore()
-                       .GetValue(ExcludeTestMethodsFromRenaming)
+                       .GetKey<GeneralSettings>(SettingsOptimization.OptimizeDefault)
+                       .ExcludeTestMethodsFromRenaming
    && underTestChecker.IsUnder(methodDeclaration);
 
    #endregion

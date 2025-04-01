@@ -8,7 +8,8 @@ class OnTestChecker(IUnderTestChecker underTestChecker) : IConfigureAwaitCustomC
    public bool CanBeAdded(IAwaitExpression element) =>
       element.GetContainingTypeMemberDeclarationIgnoringClosures() is not IMethodDeclaration methodDeclaration
    || !element.GetSettingsStore()
-              .GetValue(ExcludeTestMethodsFromConfigureAwait)
+              .GetKey<AsyncApostleConfigureAwaitSettings>(SettingsOptimization.OptimizeDefault)
+              .ExcludeTestMethodsFromConfigureAwait
    || !underTestChecker.IsUnder(methodDeclaration);
 
    #endregion
