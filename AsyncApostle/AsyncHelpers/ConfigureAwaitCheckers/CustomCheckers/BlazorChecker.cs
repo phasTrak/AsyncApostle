@@ -16,20 +16,29 @@ class BlazorChecker : IConfigureAwaitCustomChecker
    static IDeclaredType? FindComponentBaseClass(IEnumerable<IDeclaredType> superTypes)
    {
       var declaredTypes = superTypes.ToList();
+      var visited = new HashSet<IDeclaredType>();
 
-      foreach (var declaredType in declaredTypes)
+      return FindComponentBaseClassInternal(declaredTypes);
+
+      IDeclaredType? FindComponentBaseClassInternal(IEnumerable<IDeclaredType> types)
       {
-         if (declaredType.GetSuperTypes()
-                         .Any(static i => i.GetClrName()
-                                           .FullName.Equals(COMPONENT_BASE_NAME)))
-            return declaredType;
+         foreach (var declaredType in types)
+         {
+            if (!visited.Add(declaredType))
+               continue;
 
-         var componentDeclaration = FindComponentBaseClass(declaredType.GetSuperTypes());
+            if (declaredType.GetSuperTypes()
+                            .Any(static i => i.GetClrName()
+                                              .FullName.Equals(COMPONENT_BASE_NAME)))
+               return declaredType;
 
-         if (componentDeclaration is not null) return componentDeclaration;
+            var componentDeclaration = FindComponentBaseClassInternal(declaredType.GetSuperTypes());
+
+            if (componentDeclaration is not null) return componentDeclaration;
+         }
+
+         return null;
       }
-
-      return null;
    }
 
    static IClassDeclaration? GetClassDeclaration(ITreeNode? node) =>
