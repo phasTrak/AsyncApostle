@@ -15,7 +15,7 @@ class Build : NukeBuild
 
    public override AbsolutePath ArtifactsDirectory => SolutionDirectory / "packages";
 
-   static          string       Version            => "2025.2.0";
+   static          string       Version            => "2025.2.1-beta01";
 
    Target Clean =>
       d => d.Executes(() =>
