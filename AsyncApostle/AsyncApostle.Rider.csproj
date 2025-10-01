@@ -20,7 +20,7 @@
 
    <ItemGroup>
       <PackageReference Include="JetBrains.Rider.SDK"
-                        Version="2025.2.0"
+                        Version="2025.2.2.1"
                         PrivateAssets="all"/>
       <PackageReference Include="NetEscapades.EnumGenerators"
                         IncludeAssets="compile; build; native; contentfiles; analyzers; buildtransitive"

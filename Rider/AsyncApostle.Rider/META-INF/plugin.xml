@@ -15,7 +15,7 @@
                    <li>Analyze usage of a processed method. If the method is called from async context the AsyncApostle will replace its call with the await expression, otherwise it will just call .Result or .Wait()</li>
                </ol>]]>
    </description>
-   <version>2025.2.1-beta01</version>
+   <version>2025.2.1</version>
    <vendor url="https://github.com/phasTrak/AsyncApostle">phasTrak</vendor>
    <idea-version since-build="233"
                  until-build="252.*"/>
