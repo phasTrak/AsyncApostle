@@ -3,22 +3,15 @@
     <File Path=".editorconfig" />
     <File Path=".gitattributes" />
     <File Path=".gitignore" />
-    <File Path=".nuke" />
     <File Path="AsyncApostle.sln.DotSettings" />
-    <File Path="build.cmd" />
-    <File Path="build.ps1" />
-    <File Path="build.sh" />
+    <File Path="pack.ps1" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Build.targets" />
     <File Path="Directory.Packages.props" />
-    <File Path="pack.cmd" />
     <File Path="Strict.ruleset" />
   </Folder>
   <Folder Name="/srcs/">
     <Project Path="AsyncApostle/AsyncApostle.csproj" />
     <Project Path="AsyncApostle/AsyncApostle.Rider.csproj" />
   </Folder>
-  <Project Path="build/.Nuke.csproj">
-    <Build Project="false" />
-  </Project>
 </Solution>

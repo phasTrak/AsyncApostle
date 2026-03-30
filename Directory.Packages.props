@@ -3,26 +3,14 @@
       <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
    </PropertyGroup>
    <ItemGroup>
-      <PackageVersion Include="GitVersion.CommandLine"
-                      Version="5.12.0"/>
       <PackageVersion Include="JetBrains.ReSharper.SDK"
                       Version="2026.1.0"/>
       <PackageVersion Include="JetBrains.Rider.SDK"
                       Version="2026.1.0"/>
-      <PackageVersion Include="Microsoft.Web.Xdt"
-                      Version="3.2.5"/>
       <PackageVersion Include="NetEscapades.EnumGenerators"
                       Version="1.0.0-beta21"/>
-      <PackageVersion Include="Newtonsoft.Json"
-                      Version="13.0.4"/>
-      <PackageVersion Include="Nuke.CodeGeneration"
-                      Version="0.8.0"/>
-      <PackageVersion Include="Nuke.Common"
-                      Version="0.8.0"/>
       <PackageVersion Include="PolySharp"
                       Version="1.15.0"/>
-      <PackageVersion Include="System.Text.RegularExpressions"
-                      Version="4.3.1"/>
       <PackageVersion Include="Wave"
                       Version="[261]"/>
    </ItemGroup>
