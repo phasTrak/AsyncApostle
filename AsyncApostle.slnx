@@ -9,6 +9,7 @@
     <File Path="Directory.Build.targets" />
     <File Path="Directory.Packages.props" />
     <File Path="Strict.ruleset" />
+    <File Path="Rider/AsyncApostle.Rider/META-INF/plugin.xml" />
   </Folder>
   <Folder Name="/srcs/">
     <Project Path="AsyncApostle/AsyncApostle.csproj" />
