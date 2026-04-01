@@ -22,7 +22,8 @@
    <ItemGroup>
       <PackageReference Include="JetBrains.ReSharper.SDK"
                         PrivateAssets="all"/>
-      <PackageReference Include="NetEscapades.EnumGenerators"/>
+      <PackageReference Include="NetEscapades.EnumGenerators.Generators"
+                        PrivateAssets="all"/>
       <PackageReference Include="PolySharp"
                         IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"
                         PrivateAssets="all"/>

@@ -7,7 +7,7 @@
                       Version="2026.1.0"/>
       <PackageVersion Include="JetBrains.Rider.SDK"
                       Version="2026.1.0"/>
-      <PackageVersion Include="NetEscapades.EnumGenerators"
+      <PackageVersion Include="NetEscapades.EnumGenerators.Generators"
                       Version="1.0.0-beta21"/>
       <PackageVersion Include="PolySharp"
                       Version="1.15.0"/>
