@@ -2,3 +2,6 @@
 indent_style = space
 indent_size = 3
 tab_width = 3
+
+# VSTHRD200: Avoid "Async" suffix in names of methods that do not return an awaitable type
+dotnet_diagnostic.VSTHRD200.severity = none
