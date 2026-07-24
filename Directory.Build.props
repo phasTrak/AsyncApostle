@@ -7,7 +7,7 @@
       <Copyright>phasTrak</Copyright>
       <DefaultItemExcludes>$(DefaultItemExcludes);obj\**</DefaultItemExcludes>
       <ImplicitUsings>enable</ImplicitUsings>
-      <LangVersion>12.0</LangVersion>
+      <LangVersion>14.0</LangVersion>
       <NoWarn>S3358</NoWarn>
       <Nullable>enable</Nullable>
       <OutputPath>bin\$(MSBuildProjectName)\$(Configuration)\</OutputPath>

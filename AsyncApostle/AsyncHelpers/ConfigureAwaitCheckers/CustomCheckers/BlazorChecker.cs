@@ -22,11 +22,8 @@ class BlazorChecker : IConfigureAwaitCustomChecker
 
       IDeclaredType? FindComponentBaseClassInternal(IEnumerable<IDeclaredType> types)
       {
-         foreach (var declaredType in types)
+         foreach (var declaredType in types.Where(visited.Add))
          {
-            if (!visited.Add(declaredType))
-               continue;
-
             if (declaredType.GetSuperTypes()
                             .Any(static i => i.GetClrName()
                                               .FullName.Equals(COMPONENT_BASE_NAME)))

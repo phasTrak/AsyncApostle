@@ -5,7 +5,7 @@ public class AwaitEliderChecker(IEnumerable<IConcreteAwaitEliderChecker> checker
 {
    #region fields
 
-   readonly IConcreteAwaitEliderChecker[] _checkers = checkers as IConcreteAwaitEliderChecker[] ?? [..checkers];
+   readonly IConcreteAwaitEliderChecker[] _checkers = checkers as IConcreteAwaitEliderChecker[] ?? [.. checkers];
 
    #endregion
 

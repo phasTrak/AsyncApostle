@@ -5,7 +5,7 @@ class AwaitElider(IEnumerable<ICustomAwaitElider> awaitEliders) : IAwaitElider
 {
    #region fields
 
-   readonly ICustomAwaitElider[] _awaitEliders = awaitEliders as ICustomAwaitElider[] ?? [..awaitEliders];
+   readonly ICustomAwaitElider[] _awaitEliders = awaitEliders as ICustomAwaitElider[] ?? [.. awaitEliders];
 
    #endregion
 

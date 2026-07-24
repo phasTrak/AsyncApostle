@@ -5,7 +5,7 @@ public class ClassForSearchResolver(IEnumerable<IClassSearcher> classSearchers) 
 {
    #region fields
 
-   readonly IClassSearcher[] _classSearchers = [..classSearchers.OrderBy(static x => x.Priority)];
+   readonly IClassSearcher[] _classSearchers = [.. classSearchers.OrderBy(static x => x.Priority)];
 
    #endregion
 

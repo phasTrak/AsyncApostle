@@ -65,7 +65,7 @@ public class AsyncReplacer(IAsyncInvocationReplacer asyncInvocationReplacer,
       if (methodDeclaredElement is null) return;
 
       foreach (var invocation in method.GetPsiServices()
-                                       .Finder.FindAllReferences(methodDeclaredElement)
+                                       .SingleThreadedFinder.FindAllReferences(methodDeclaredElement)
                                        .Select(static usage => usage.GetTreeNode()
                                                                     .Parent as IInvocationExpression))
          asyncInvocationReplacer.ReplaceInvocation(invocation, GenerateAsyncMethodName(method.DeclaredName), invocation?.IsUnderAsyncDeclaration() is true);

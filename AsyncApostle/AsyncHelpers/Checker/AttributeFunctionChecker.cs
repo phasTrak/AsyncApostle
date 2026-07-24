@@ -9,8 +9,8 @@ public class AttributeFunctionChecker : IAttributeFunctionChecker
    {
       string[] customTypes =
       [
-         ..node.GetSettingsStore()
-               .EnumIndexedValues(ConfigureAwaitIgnoreAttributeTypes)
+         .. node.GetSettingsStore()
+                .EnumIndexedValues(ConfigureAwaitIgnoreAttributeTypes)
       ];
 
       return !customTypes.IsNullOrEmpty()

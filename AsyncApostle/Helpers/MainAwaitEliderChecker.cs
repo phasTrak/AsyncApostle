@@ -11,11 +11,11 @@ public class MainAwaitEliderChecker(ILastNodeChecker lastNodeChecker) : IConcret
 
       if (returnType is null) return false;
 
-      IReturnStatement[] returnStatements = [..element.DescendantsInScope<IReturnStatement>()];
+      IReturnStatement[] returnStatements = [.. element.DescendantsInScope<IReturnStatement>()];
 
       if (returnType.IsTask() && returnStatements.Any() || returnType.IsGenericTask() && returnStatements.Length > 1) return false;
 
-      IAwaitExpression[] awaitExpressions = [..element.DescendantsInScope<IAwaitExpression>()];
+      IAwaitExpression[] awaitExpressions = [.. element.DescendantsInScope<IAwaitExpression>()];
 
       // TODO: think about this, different settings
       if (awaitExpressions.Length is not 1) return false;

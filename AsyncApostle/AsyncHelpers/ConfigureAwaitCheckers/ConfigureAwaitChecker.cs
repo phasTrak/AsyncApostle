@@ -5,7 +5,7 @@ class ConfigureAwaitChecker(IEnumerable<IConfigureAwaitCustomChecker> awaitCusto
 {
    #region fields
 
-   readonly IConfigureAwaitCustomChecker[] _awaitCustomCheckers = awaitCustomCheckers as IConfigureAwaitCustomChecker[] ?? [..awaitCustomCheckers];
+   readonly IConfigureAwaitCustomChecker[] _awaitCustomCheckers = awaitCustomCheckers as IConfigureAwaitCustomChecker[] ?? [.. awaitCustomCheckers];
 
    #endregion
 

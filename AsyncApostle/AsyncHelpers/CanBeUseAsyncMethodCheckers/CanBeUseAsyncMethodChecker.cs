@@ -5,7 +5,7 @@ class CanBeUseAsyncMethodChecker(IEnumerable<IConcreteCanBeUseAsyncMethodChecker
 {
    #region fields
 
-   readonly IConcreteCanBeUseAsyncMethodChecker[] _checkers = checkers as IConcreteCanBeUseAsyncMethodChecker[] ?? [..checkers];
+   readonly IConcreteCanBeUseAsyncMethodChecker[] _checkers = checkers as IConcreteCanBeUseAsyncMethodChecker[] ?? [.. checkers];
 
    #endregion
 

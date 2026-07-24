@@ -5,7 +5,7 @@ public class MethodFindingChecker(IEnumerable<IConcreteMethodFindingChecker> con
 {
    #region fields
 
-   readonly IConcreteMethodFindingChecker[] _concreteMethodFindingCheckers = concreteMethodFindingCheckers as IConcreteMethodFindingChecker[] ?? [..concreteMethodFindingCheckers];
+   readonly IConcreteMethodFindingChecker[] _concreteMethodFindingCheckers = concreteMethodFindingCheckers as IConcreteMethodFindingChecker[] ?? [.. concreteMethodFindingCheckers];
 
    #endregion
 

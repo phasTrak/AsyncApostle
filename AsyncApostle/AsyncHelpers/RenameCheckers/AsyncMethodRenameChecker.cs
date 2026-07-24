@@ -5,7 +5,7 @@ class RenameChecker(IEnumerable<IConcreteRenameChecker> concreteCheckers) : IRen
 {
    #region fields
 
-   readonly IConcreteRenameChecker[] _concreteCheckers = concreteCheckers as IConcreteRenameChecker[] ?? [..concreteCheckers];
+   readonly IConcreteRenameChecker[] _concreteCheckers = concreteCheckers as IConcreteRenameChecker[] ?? [.. concreteCheckers];
 
    #endregion
 
