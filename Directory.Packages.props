@@ -4,14 +4,14 @@
    </PropertyGroup>
    <ItemGroup>
       <PackageVersion Include="JetBrains.ReSharper.SDK"
-                      Version="2026.1.0"/>
+                      Version="2026.2.0"/>
       <PackageVersion Include="JetBrains.Rider.SDK"
-                      Version="2026.1.0"/>
+                      Version="2026.2.0"/>
       <PackageVersion Include="NetEscapades.EnumGenerators.Generators"
                       Version="1.0.0-beta21"/>
       <PackageVersion Include="PolySharp"
-                      Version="1.15.0"/>
+                      Version="1.16.0"/>
       <PackageVersion Include="Wave"
-                      Version="[261]"/>
+                      Version="[262]"/>
    </ItemGroup>
 </Project>
