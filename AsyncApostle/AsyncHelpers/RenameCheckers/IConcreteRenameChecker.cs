@@ -2,9 +2,5 @@
 
 public interface IConcreteRenameChecker
 {
-   #region methods
-
    bool SkipRename(IMethodDeclaration methodDeclaration);
-
-   #endregion
 }

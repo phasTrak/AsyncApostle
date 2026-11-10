@@ -2,8 +2,6 @@
 
 public static class TypeHelper
 {
-   #region methods
-
    static bool EqualSubstitutions(ITypeElement referenceOwner,
                                   ISubstitution referenceSubstitution,
                                   ITypeElement originOwner,
@@ -36,8 +34,6 @@ public static class TypeHelper
                                             .TryGetType(clrName, Unknown)
                                             .NotNull()
                                             .GetTypeElement());
-
-   #endregion
 
    extension(IType type)
    {

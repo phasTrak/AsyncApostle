@@ -3,8 +3,6 @@ namespace AsyncApostle.QuickFixes;
 [QuickFix]
 public class ConfigureAwaitQuickFix(ConfigureAwaitHighlighting configureAwaitHighlighting) : IQuickFix
 {
-   #region methods
-
    public IEnumerable<IntentionAction> CreateBulbItems() =>
       new[]
       {
@@ -13,6 +11,4 @@ public class ConfigureAwaitQuickFix(ConfigureAwaitHighlighting configureAwaitHig
       }.ToQuickFixIntentions();
 
    public bool IsAvailable(IUserDataHolder cache) => configureAwaitHighlighting.IsValid();
-
-   #endregion
 }

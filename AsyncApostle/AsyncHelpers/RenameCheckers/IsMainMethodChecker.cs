@@ -3,8 +3,6 @@ namespace AsyncApostle.AsyncHelpers.RenameCheckers;
 [SolutionComponent(DemandAnyThreadSafe)]
 public class IsMainMethodChecker : IConcreteRenameChecker
 {
-   #region methods
-
    public bool SkipRename(IMethodDeclaration methodDeclaration) =>
       methodDeclaration.DeclaredName is "Main"
    && (methodDeclaration.Type.IsTask()
@@ -18,6 +16,4 @@ public class IsMainMethodChecker : IConcreteRenameChecker
     && methodDeclaration.ParameterDeclarations[0]
                         .Type.GetScalarType()
                         .IsString());
-
-   #endregion
 }

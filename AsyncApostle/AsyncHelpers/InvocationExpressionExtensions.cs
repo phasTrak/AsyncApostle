@@ -2,8 +2,6 @@
 
 public static class InvocationExpressionExtensions
 {
-   #region methods
-
    [Pure]
    [ContractAnnotation("null => null")]
    public static ICSharpExpression RemoveConfigureAwait(this IInvocationExpression expression)
@@ -22,6 +20,4 @@ public static class InvocationExpressionExtensions
 
       return expressionWithoutConfigureAwait;
    }
-
-   #endregion
 }

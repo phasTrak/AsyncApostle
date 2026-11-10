@@ -3,20 +3,14 @@
 [SolutionComponent(DemandAnyThreadSafe)]
 class BlazorChecker : IConfigureAwaitCustomChecker
 {
-   #region fields
-
    const string CODE_BEHIND_FILE_EXTENSION = ".razor.cs";
    const string COMPONENT_BASE_NAME        = "Microsoft.AspNetCore.Components.IComponent";
    const string FILE_EXTENSION             = ".razor";
 
-   #endregion
-
-   #region methods
-
    static IDeclaredType? FindComponentBaseClass(IEnumerable<IDeclaredType> superTypes)
    {
       var declaredTypes = superTypes.ToList();
-      var visited = new HashSet<IDeclaredType>();
+      var visited       = new HashSet<IDeclaredType>();
 
       return FindComponentBaseClassInternal(declaredTypes);
 
@@ -60,6 +54,4 @@ class BlazorChecker : IConfigureAwaitCustomChecker
 
       return FindComponentBaseClass(classDeclaration.SuperTypes) is null;
    }
-
-   #endregion
 }

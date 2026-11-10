@@ -2,9 +2,5 @@
 
 public interface ILastNodeChecker
 {
-   #region methods
-
    bool IsLastNode(ICSharpExpression element);
-
-   #endregion
 }

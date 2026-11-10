@@ -3,13 +3,7 @@
 [QuickFix]
 public class ArgumentValueAsTask(IncorrectArgumentTypeError error) : QuickFixBase
 {
-   #region properties
-
    public override string Text => "Replace to Task.FromResult";
-
-   #endregion
-
-   #region methods
 
    public override bool IsAvailable(IUserDataHolder cache)
    {
@@ -44,6 +38,4 @@ public class ArgumentValueAsTask(IncorrectArgumentTypeError error) : QuickFixBas
 
       return null;
    }
-
-   #endregion
 }

@@ -6,8 +6,6 @@ public class InvocationConverter(IAsyncMethodFinder asyncMethodFinder,
                                  ISyncWaitChecker syncWaitChecker,
                                  ISyncWaitConverter syncWaitConverter) : IInvocationConverter
 {
-   #region methods
-
    public bool TryReplaceInvocationToAsync(IInvocationExpression invocationExpression)
    {
       var referenceCurrentResolveResult = invocationExpression.Reference.Resolve();
@@ -72,6 +70,4 @@ public class InvocationConverter(IAsyncMethodFinder asyncMethodFinder,
 
       return true;
    }
-
-   #endregion
 }

@@ -2,8 +2,6 @@
 
 public static class AttributesOwnerDeclarationExtensions
 {
-   #region methods
-
    extension(IAttributesOwnerDeclaration declaration)
    {
       public bool ContainsAttribute(IEnumerable<ClrTypeName> attributeNames)
@@ -32,6 +30,4 @@ public static class AttributesOwnerDeclarationExtensions
          static ClrTypeName NewClrTypeName(string name) => new (name);
       }
    }
-
-   #endregion
 }

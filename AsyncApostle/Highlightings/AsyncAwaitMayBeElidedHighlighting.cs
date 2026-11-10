@@ -9,24 +9,10 @@
 [ConfigurableSeverityHighlighting(SeverityId, CSharpLanguage.Name)]
 public class AsyncAwaitMayBeElidedHighlighting(IAwaitExpression awaitExpression) : IHighlighting
 {
-   #region fields
-
-   public const string SeverityId = "AsyncApostle.AsyncAwaitMayBeElidedHighlighting";
-
-   #endregion
-
-   #region properties
-
-   public IAwaitExpression AwaitExpression    { get; } = awaitExpression;
-   public string           ErrorStripeToolTip => "Await may be elided.";
-   public string           ToolTip            => "Async in method declaration and await may be elided.";
-
-   #endregion
-
-   #region methods
-
+   public const string           SeverityId = "AsyncApostle.AsyncAwaitMayBeElidedHighlighting";
+   public       IAwaitExpression AwaitExpression    { get; } = awaitExpression;
+   public       string           ErrorStripeToolTip => "Await may be elided.";
+   public       string           ToolTip            => "Async in method declaration and await may be elided.";
    public DocumentRange CalculateRange() => AwaitExpression.GetDocumentRange();
    public bool IsValid() => AwaitExpression.IsValid();
-
-   #endregion
 }

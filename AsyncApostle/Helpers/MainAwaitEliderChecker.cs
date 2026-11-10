@@ -3,8 +3,6 @@ namespace AsyncApostle.Helpers;
 [SolutionComponent(DemandAnyThreadSafe)]
 public class MainAwaitEliderChecker(ILastNodeChecker lastNodeChecker) : IConcreteAwaitEliderChecker
 {
-   #region methods
-
    public bool CanElide(IParametersOwnerDeclaration element)
    {
       var returnType = element.DeclaredParametersOwner?.ReturnType;
@@ -29,6 +27,4 @@ public class MainAwaitEliderChecker(ILastNodeChecker lastNodeChecker) : IConcret
 
       return awaitingType is not null && (awaitingType.Equals(returnType) || returnType.IsTask() && awaitingType.IsGenericTask() || returnType.IsVoid());
    }
-
-   #endregion
 }

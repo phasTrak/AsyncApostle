@@ -2,13 +2,7 @@
 
 public class ConfigureAwaitAction(ConfigureAwaitHighlighting configureAwaitHighlighting, bool configureAwaitValue) : BulbActionBase
 {
-   #region properties
-
    public override string Text => $"Add ConfigureAwait({GetConfigureAwaitValueText()})";
-
-   #endregion
-
-   #region methods
 
    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
    {
@@ -24,6 +18,4 @@ public class ConfigureAwaitAction(ConfigureAwaitHighlighting configureAwaitHighl
       configureAwaitValue
          ? "true"
          : "false";
-
-   #endregion
 }

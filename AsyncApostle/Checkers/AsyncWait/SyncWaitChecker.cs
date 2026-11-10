@@ -3,8 +3,6 @@ namespace AsyncApostle.Checkers.AsyncWait;
 [SolutionComponent(DemandAnyThreadSafe)]
 class SyncWaitChecker : ISyncWaitChecker
 {
-   #region methods
-
    static bool IsResult(IReferenceExpression referenceExpression) => referenceExpression.NameIdentifier?.Name is "Result";
 
    static IType? ResolveTargetType(IInvocationExpression invocationExpression) =>
@@ -25,6 +23,4 @@ class SyncWaitChecker : ISyncWaitChecker
                                  .Result.DeclaredElement?.ShortName is "Wait" or "AwaitResult"
           && (targetType?.IsTask() is true || targetType?.IsGenericTask() is true);
    }
-
-   #endregion
 }

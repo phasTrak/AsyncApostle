@@ -3,8 +3,6 @@
 [SolutionComponent(DemandAnyThreadSafe)]
 class LastNodeChecker : ILastNodeChecker
 {
-   #region methods
-
    static bool IsFinalStatement(ICSharpStatement statement)
    {
       var focus = statement;
@@ -31,6 +29,4 @@ class LastNodeChecker : ILastNodeChecker
           && parentStatement.GetContainingNode<IIfStatement>() is null
           || element.Parent is IArrowExpressionClause or ILambdaExpression;
    }
-
-   #endregion
 }

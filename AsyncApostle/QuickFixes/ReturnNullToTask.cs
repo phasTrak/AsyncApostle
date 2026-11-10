@@ -3,14 +3,7 @@
 [QuickFix]
 public class ReturnNullAsTask(NullReturnAsTaskHighlighting error) : QuickFixBase
 {
-   #region properties
-
    public override string Text => "Wrap to Task";
-
-   #endregion
-
-   #region methods
-
    public override bool IsAvailable(IUserDataHolder cache) => error.IsValid();
 
    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
@@ -36,6 +29,4 @@ public class ReturnNullAsTask(NullReturnAsTaskHighlighting error) : QuickFixBase
 
       return null;
    }
-
-   #endregion
 }

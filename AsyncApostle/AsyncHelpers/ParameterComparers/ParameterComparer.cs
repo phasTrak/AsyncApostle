@@ -3,8 +3,6 @@ namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 [SolutionComponent(DemandAnyThreadSafe)]
 class ParameterComparer(ITypeComparer typeComparer) : IParameterComparer
 {
-   #region methods
-
    public ParameterCompareResult ComparerParameters(IList<IParameter> originalParameters, IList<IParameter> methodParameters)
    {
       if (methodParameters.Count != originalParameters.Count) return ParameterCompareResult.CreateFailDifferentLength();
@@ -26,6 +24,4 @@ class ParameterComparer(ITypeComparer typeComparer) : IParameterComparer
 
       return ParameterCompareResult.Create(parameterResults);
    }
-
-   #endregion
 }

@@ -3,20 +3,9 @@
 [ContextAction(GroupType = typeof(CSharpContextActions), Name = "ConvertToAsync", Description = "Convert method to async and replace all inner call to async version if exist.")]
 public class MethodToAsyncApostle(ICSharpContextActionDataProvider provider) : ContextActionBase
 {
-   #region fields
-
-   IAsyncReplacer? _asyncReplacer;
-
-   #endregion
-
-   #region properties
-
+   IAsyncReplacer?                  _asyncReplacer;
    public override string           Text     => "Convert method to async and replace all inner call to async version if exist.";
    ICSharpContextActionDataProvider Provider { get; } = provider;
-
-   #endregion
-
-   #region methods
 
    public override bool IsAvailable(IUserDataHolder cache)
    {
@@ -49,6 +38,4 @@ public class MethodToAsyncApostle(ICSharpContextActionDataProvider provider) : C
 
       return selectedNode?.Parent as IMethodDeclaration;
    }
-
-   #endregion
 }

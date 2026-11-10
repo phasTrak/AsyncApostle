@@ -3,8 +3,6 @@
 [SolutionComponent(DemandAnyThreadSafe)]
 public class UnderTestChecker : IUnderTestChecker
 {
-   #region fields
-
    readonly HashSet<ClrTypeName> _testAttributesClass =
    [
       new ("Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute"),
@@ -16,11 +14,5 @@ public class UnderTestChecker : IUnderTestChecker
       new ("NUnit.Framework.TestCaseSourceAttribute")
    ];
 
-   #endregion
-
-   #region methods
-
    public bool IsUnder(IMethodDeclaration method) => method.AttributeSectionList is not null && method.ContainsAttribute(_testAttributesClass);
-
-   #endregion
 }

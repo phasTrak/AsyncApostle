@@ -3,13 +3,7 @@ namespace AsyncApostle.AsyncHelpers.ClassSearchers;
 [SolutionComponent(DemandAnyThreadSafe)]
 public class EntityFrameworkCustomSearcher : IClassSearcher
 {
-   #region properties
-
    public int Priority => -100;
-
-   #endregion
-
-   #region methods
 
    public ITypeElement? GetClassForSearch(IParametersOwner originalMethod, IType? invokedType)
    {
@@ -19,6 +13,4 @@ public class EntityFrameworkCustomSearcher : IClassSearcher
              invokedType?.IsGenericIQueryable() is not true || !containingType.IsEnumerableClass() ? null : CreateTypeByCLRName(new ClrTypeName("System.Data.Entity.QueryableExtensions"), Unknown, invokedType.Module)
                                                                                                        .GetTypeElement();
    }
-
-   #endregion
 }

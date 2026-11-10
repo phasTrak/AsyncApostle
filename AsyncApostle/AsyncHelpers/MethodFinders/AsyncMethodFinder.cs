@@ -3,8 +3,6 @@ namespace AsyncApostle.AsyncHelpers.MethodFinders;
 [SolutionComponent(DemandAnyThreadSafe)]
 public class AsyncMethodFinder(IClassForSearchResolver classForSearchResolver, IParameterComparer parameterComparer, IMethodFindingChecker methodFindingChecker) : IAsyncMethodFinder
 {
-   #region methods
-
    public FindingResult FindEquivalentAsyncMethod(IMethod originalMethod, IType? invokedType)
    {
       if (!originalMethod.IsValid()) return CreateFail();
@@ -30,6 +28,4 @@ public class AsyncMethodFinder(IClassForSearchResolver classForSearchResolver, I
 
       return CreateFail();
    }
-
-   #endregion
 }

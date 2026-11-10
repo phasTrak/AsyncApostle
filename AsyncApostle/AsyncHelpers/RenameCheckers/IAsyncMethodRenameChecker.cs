@@ -2,9 +2,5 @@
 
 public interface IRenameChecker
 {
-   #region methods
-
    bool NeedRename(IMethodDeclaration method);
-
-   #endregion
 }

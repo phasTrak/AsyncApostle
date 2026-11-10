@@ -3,8 +3,6 @@
 [ElementProblemAnalyzer(typeof(ILambdaExpression), HighlightingTypes = [typeof(NullReturnAsTaskHighlighting)])]
 public class NullReturnFromLambdaAnalyzer : ElementProblemAnalyzer<ILambdaExpression>
 {
-   #region methods
-
    protected override void Run(ILambdaExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
    {
       var literalExpression = element.BodyExpression as ICSharpLiteralExpression;
@@ -17,6 +15,4 @@ public class NullReturnFromLambdaAnalyzer : ElementProblemAnalyzer<ILambdaExpres
 
       consumer.AddHighlighting(new NullReturnAsTaskHighlighting(literalExpression, element.InferredReturnType));
    }
-
-   #endregion
 }

@@ -3,14 +3,7 @@
 [QuickFix]
 public class AsyncMethodNamingQuickFix(AsyncMethodNamingHighlighting asyncMethodNamingHighlighting) : QuickFixBase
 {
-   #region properties
-
    public override string Text => """Add "Async" suffix""";
-
-   #endregion
-
-   #region methods
-
    public override bool IsAvailable(IUserDataHolder cache) => asyncMethodNamingHighlighting.IsValid();
 
    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
@@ -23,6 +16,4 @@ public class AsyncMethodNamingQuickFix(AsyncMethodNamingHighlighting asyncMethod
 
       return null;
    }
-
-   #endregion
 }

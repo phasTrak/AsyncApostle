@@ -2,23 +2,6 @@ namespace AsyncApostle.Helpers;
 
 public static class FinderHelper
 {
-   #region methods
-
-   extension(IMethod method)
-   {
-      public IEnumerable<IMethod> FindAllHierarchy(IProgressIndicator? pi = null) =>
-         InnerFindAllHierarchy(method.GetPsiServices()
-                                     .SingleThreadedFinder,
-                               method,
-                               pi ?? Create());
-
-      public IEnumerable<IMethod> FindBaseMethods(IProgressIndicator? pi = null) =>
-         InnerFindBaseMethods(method.GetPsiServices()
-                                    .SingleThreadedFinder,
-                              method,
-                              pi ?? Create());
-   }
-
    public static IList<TOverridableMember> FindImplementingMembers<TOverridableMember>(this TOverridableMember overridableMember, IProgressIndicator? pi = null) where TOverridableMember : class, IOverridableMember
    {
       List<TOverridableMember> found = [];
@@ -59,5 +42,18 @@ public static class FinderHelper
       method
    ];
 
-   #endregion
+   extension(IMethod method)
+   {
+      public IEnumerable<IMethod> FindAllHierarchy(IProgressIndicator? pi = null) =>
+         InnerFindAllHierarchy(method.GetPsiServices()
+                                     .SingleThreadedFinder,
+                               method,
+                               pi ?? Create());
+
+      public IEnumerable<IMethod> FindBaseMethods(IProgressIndicator? pi = null) =>
+         InnerFindBaseMethods(method.GetPsiServices()
+                                    .SingleThreadedFinder,
+                              method,
+                              pi ?? Create());
+   }
 }

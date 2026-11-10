@@ -3,13 +3,7 @@
 [SolutionComponent(DemandAnyThreadSafe)]
 class AwaitElider(IEnumerable<ICustomAwaitElider> awaitEliders) : IAwaitElider
 {
-   #region fields
-
    readonly ICustomAwaitElider[] _awaitEliders = awaitEliders as ICustomAwaitElider[] ?? [.. awaitEliders];
-
-   #endregion
-
-   #region methods
 
    public void Elide(IAwaitExpression awaitExpression)
    {
@@ -27,6 +21,4 @@ class AwaitElider(IEnumerable<ICustomAwaitElider> awaitEliders) : IAwaitElider
    {
       foreach (var awaitExpression in parametersOwnerDeclaration.DescendantsInScope<IAwaitExpression>()) Elide(awaitExpression);
    }
-
-   #endregion
 }

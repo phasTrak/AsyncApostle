@@ -2,9 +2,5 @@
 
 public interface IConfigureAwaitChecker
 {
-   #region methods
-
    bool NeedAdding(IAwaitExpression element);
-
-   #endregion
 }

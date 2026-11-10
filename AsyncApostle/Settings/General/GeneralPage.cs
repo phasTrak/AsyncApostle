@@ -6,13 +6,7 @@
              ParentId = AsyncApostlePage.Pid)]
 public sealed class GeneralPage : BeSimpleOptionsPage
 {
-   #region fields
-
    public const string Pid = "General";
-
-   #endregion
-
-   #region constructors
 
    public GeneralPage(Lifetime lifetime, OptionsPageContext optionsPageContext, OptionsSettingsSmartContext store) : base(lifetime, optionsPageContext, store)
    {
@@ -22,6 +16,4 @@ public sealed class GeneralPage : BeSimpleOptionsPage
       AddHeader("Eliding options");
       AddBoolOption(static (GeneralSettings options) => options.ExcludeTestMethodsFromEliding, "Do not suggest elide await in test method.");
    }
-
-   #endregion
 }

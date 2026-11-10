@@ -2,8 +2,6 @@ namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 
 public class ParameterCompareResult
 {
-   #region constructors
-
    ParameterCompareResult() { }
 
    ParameterCompareResult(CompareResult[] compareResults)
@@ -12,17 +10,8 @@ public class ParameterCompareResult
       Result           = Resolve();
    }
 
-   #endregion
-
-   #region properties
-
    public CompareResult[]                 ParameterResults { get; } = [];
    public ParameterCompareAggregateResult Result           { get; private init; }
-
-   #endregion
-
-   #region methods
-
    public static ParameterCompareResult Create(CompareResult[] compareResults) => new (compareResults);
    public static ParameterCompareResult CreateFailDifferentLength() => new () { Result = DifferentLength };
    static ParameterCompareAggregateResult Aggregate(ParameterCompareAggregateResult result, CompareResult compareResult) => Aggregate(result, Convert(compareResult));
@@ -53,6 +42,4 @@ public class ParameterCompareResult
 
    public bool CanBeConvertedToAsync() => Result is EqualOrCanBeConverting or ParameterCompareAggregateResult.Equal;
    ParameterCompareAggregateResult Resolve() => ParameterResults.Aggregate(ParameterCompareAggregateResult.Equal, Aggregate);
-
-   #endregion
 }

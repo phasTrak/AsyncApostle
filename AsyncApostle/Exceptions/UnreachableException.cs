@@ -10,8 +10,6 @@ namespace System.Diagnostics;
 [Serializable]
 public class UnreachableException : Exception
 {
-   #region constructors
-
    /// <inheritdoc/>
    /// <summary>
    ///    Initializes a new instance of the <see cref="UnreachableException"/> class with the default
@@ -40,6 +38,4 @@ public class UnreachableException : Exception
 
    /// <inheritdoc/>
    protected UnreachableException(SerializationInfo info, StreamingContext context) : base(info, context) { }
-
-   #endregion
 }

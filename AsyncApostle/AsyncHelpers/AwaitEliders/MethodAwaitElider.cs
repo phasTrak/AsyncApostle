@@ -3,8 +3,6 @@ namespace AsyncApostle.AsyncHelpers.AwaitEliders;
 [SolutionComponent(DemandAnyThreadSafe)]
 class MethodAwaitElider : ICustomAwaitElider
 {
-   #region methods
-
    public bool CanElide(ICSharpDeclaration declarationOrClosure) => declarationOrClosure is IMethodDeclaration;
 
    public void Elide(ICSharpDeclaration declarationOrClosure, ICSharpExpression awaitExpression)
@@ -22,6 +20,4 @@ class MethodAwaitElider : ICustomAwaitElider
       else
          methodDeclaration.ArrowClause?.SetExpression(awaitExpression);
    }
-
-   #endregion
 }

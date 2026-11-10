@@ -3,8 +3,6 @@ namespace AsyncApostle.Helpers;
 [SolutionComponent(DemandAnyThreadSafe)]
 public class SyncWaitConverter : ISyncWaitConverter
 {
-   #region methods
-
    static void ReplaceToAwait(ICSharpExpression invocationExpression, ITreeNode replaceBy) =>
       invocationExpression.ReplaceBy(GetInstance(invocationExpression)
                                        .CreateExpression("await $0.ConfigureAwait(false)", replaceBy));
@@ -22,6 +20,4 @@ public class SyncWaitConverter : ISyncWaitConverter
 
       if (replaceBy is not null) ReplaceToAwait(invocationExpression, replaceBy);
    }
-
-   #endregion
 }

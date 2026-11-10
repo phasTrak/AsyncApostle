@@ -2,8 +2,6 @@
 
 public static class ParametersOwnerDeclarationExtensions
 {
-   #region methods
-
    // TODO: already exists?
    [Pure]
    public static IEnumerable<TNode> DescendantsInScope<TNode>(this IParametersOwnerDeclaration? root) where TNode : class, ICSharpTreeNode =>
@@ -12,6 +10,4 @@ public static class ParametersOwnerDeclarationExtensions
          : root.Descendants<TNode>()
                .ToEnumerable()
                .Where(x => x.GetContainingFunctionLikeDeclarationOrClosure() == root);
-
-   #endregion
 }

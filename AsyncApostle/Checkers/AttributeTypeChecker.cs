@@ -3,8 +3,6 @@
 [SolutionComponent(DemandAnyThreadSafe)]
 public class AttributeTypeChecker : IAttributeTypeChecker
 {
-   #region methods
-
    public bool IsUnder(ICSharpTreeNode node)
    {
       string[] customTypes =
@@ -17,6 +15,4 @@ public class AttributeTypeChecker : IAttributeTypeChecker
           && node.GetContainingTypeDeclaration()
                 ?.ContainsAttribute(customTypes) is true;
    }
-
-   #endregion
 }

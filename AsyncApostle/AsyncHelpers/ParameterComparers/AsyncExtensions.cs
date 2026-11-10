@@ -2,8 +2,6 @@ namespace AsyncApostle.AsyncHelpers.ParameterComparers;
 
 public static class AsyncExtensions
 {
-   #region methods
-
    [Pure]
    public static bool IsUnderAsync(this ITreeNode node)
    {
@@ -21,6 +19,4 @@ public static class AsyncExtensions
 
       return false;
    }
-
-   #endregion
 }

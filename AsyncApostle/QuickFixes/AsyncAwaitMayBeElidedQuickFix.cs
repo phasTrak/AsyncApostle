@@ -3,14 +3,7 @@
 [QuickFix]
 public class AsyncAwaitMayBeElidedQuickFix(AsyncAwaitMayBeElidedHighlighting asyncAwaitMayBeElidedHighlighting) : QuickFixBase
 {
-   #region properties
-
    public override string Text => "Remove async/await.";
-
-   #endregion
-
-   #region methods
-
    public override bool IsAvailable(IUserDataHolder cache) => asyncAwaitMayBeElidedHighlighting.IsValid();
 
    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
@@ -20,6 +13,4 @@ public class AsyncAwaitMayBeElidedQuickFix(AsyncAwaitMayBeElidedHighlighting asy
 
       return null;
    }
-
-   #endregion
 }

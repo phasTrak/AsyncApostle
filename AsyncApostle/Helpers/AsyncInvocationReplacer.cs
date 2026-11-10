@@ -3,8 +3,6 @@ namespace AsyncApostle.Helpers;
 [SolutionComponent(DemandAnyThreadSafe)]
 class AsyncInvocationReplacer : IAsyncInvocationReplacer
 {
-   #region methods
-
    public void ReplaceInvocation(IInvocationExpression? invocation, string newMethodName, bool useAwait)
    {
       if (invocation is not { FirstChild: IReferenceExpression { NameIdentifier: not null } referenceExpression }) return;
@@ -29,6 +27,4 @@ class AsyncInvocationReplacer : IAsyncInvocationReplacer
                                                        invocation.ArgumentList));
       }
    }
-
-   #endregion
 }

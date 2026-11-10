@@ -3,14 +3,7 @@ namespace AsyncApostle.QuickFixes;
 [QuickFix]
 public class AsyncWaitQuickFix(AsyncWaitHighlighting asyncWaitHighlighting) : QuickFixBase
 {
-   #region properties
-
    public override string Text => "Use await";
-
-   #endregion
-
-   #region methods
-
    public override bool IsAvailable(IUserDataHolder cache) => asyncWaitHighlighting.IsValid();
 
    protected override Action<ITextControl>? ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
@@ -23,6 +16,4 @@ public class AsyncWaitQuickFix(AsyncWaitHighlighting asyncWaitHighlighting) : Qu
 
       return null;
    }
-
-   #endregion
 }

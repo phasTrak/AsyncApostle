@@ -3,8 +3,6 @@ namespace AsyncApostle.AsyncHelpers.CanBeUseAsyncMethodCheckers;
 [SolutionComponent(DemandAnyThreadSafe)]
 class HaveAsyncMethodChecker(IAsyncMethodFinder asyncMethodFinder) : IConcreteCanBeUseAsyncMethodChecker
 {
-   #region methods
-
    public bool CanReplace(IInvocationExpression element)
    {
       var referenceCurrentResolveResult = element.Reference.Resolve();
@@ -14,6 +12,4 @@ class HaveAsyncMethodChecker(IAsyncMethodFinder asyncMethodFinder) : IConcreteCa
           && asyncMethodFinder.FindEquivalentAsyncMethod(invocationMethod, (element.ConditionalQualifier as IReferenceExpression)?.QualifierExpression?.Type())
                               .ParameterCompareResult.CanBeConvertedToAsync();
    }
-
-   #endregion
 }

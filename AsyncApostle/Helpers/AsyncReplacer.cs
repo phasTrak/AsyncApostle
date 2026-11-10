@@ -8,8 +8,6 @@ public class AsyncReplacer(IAsyncInvocationReplacer asyncInvocationReplacer,
                            ISyncWaitChecker syncWaitChecker,
                            ISyncWaitConverter syncWaitConverter) : IAsyncReplacer
 {
-   #region methods
-
    static string GenerateAsyncMethodName(string oldName) =>
       oldName.EndsWith("Async", Ordinal)
          ? oldName
@@ -92,6 +90,4 @@ public class AsyncReplacer(IAsyncInvocationReplacer asyncInvocationReplacer,
 
       ReplaceMethodSignatureToAsync(methodDeclaredElement, method);
    }
-
-   #endregion
 }

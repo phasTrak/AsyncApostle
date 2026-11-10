@@ -2,9 +2,5 @@
 
 public interface IConfigureAwaitCustomChecker
 {
-   #region methods
-
    bool CanBeAdded(IAwaitExpression element);
-
-   #endregion
 }
