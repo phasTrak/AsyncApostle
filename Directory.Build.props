@@ -7,13 +7,13 @@
       <Copyright>phasTrak</Copyright>
       <DefaultItemExcludes>$(DefaultItemExcludes);obj\**</DefaultItemExcludes>
       <ImplicitUsings>enable</ImplicitUsings>
-      <LangVersion>14.0</LangVersion>
+      <LangVersion>15.0</LangVersion>
       <NoWarn>S3358</NoWarn>
       <Nullable>enable</Nullable>
       <OutputPath>bin\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
       <TargetFramework>net472</TargetFramework>
       <Title>AsyncApostle</Title>
-      <Version>2026.2.0</Version>
+      <Version>2026.3.0</Version>
    </PropertyGroup>
 
    <ItemGroup>
