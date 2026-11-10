@@ -4,9 +4,10 @@
       <Description>Plugin for resharper, for converting code to async.</Description>
       <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
       <IsPackable>true</IsPackable>
-      <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+      <PackageLicenseExpression>MIT</PackageLicenseExpression>
       <PackageId>AsyncApostle.AsyncApostle</PackageId>
       <PackageProjectUrl>https://github.com/phasTrak/AsyncApostle</PackageProjectUrl>
+      <PackageIcon>Icon.png</PackageIcon>
       <PackageIconUrl>https://raw.githubusercontent.com/phasTrak/AsyncApostle/main/Icon.png</PackageIconUrl>
       <PackageTags>async</PackageTags>
    </PropertyGroup>
@@ -34,6 +35,12 @@
       <Reference Include="mscorlib">
          <Aliases>global, mscorlib</Aliases>
       </Reference>
+   </ItemGroup>
+
+   <ItemGroup>
+      <None Include="$(MSBuildThisFileDirectory)\..\Icon.png"
+            Pack="true"
+            PackagePath=""/>
    </ItemGroup>
 
 </Project>
